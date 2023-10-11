@@ -35,10 +35,12 @@
             lblQuizMenuTitle = new Label();
             lblQuizTitle = new Label();
             panelTextQuestion = new Panel();
+            btnPlayAudioTQ = new Button();
             btnSubmitTextQuestion = new Button();
             textBoxTextQuestion = new TextBox();
             lblTextQuestion = new Label();
             panelMultipleChoiceQuestion = new Panel();
+            btnPlayAudioMCQ = new Button();
             btnOption3 = new Button();
             btnOption2 = new Button();
             btnOption1 = new Button();
@@ -134,6 +136,7 @@
             // panelTextQuestion
             // 
             panelTextQuestion.Anchor = AnchorStyles.None;
+            panelTextQuestion.Controls.Add(btnPlayAudioTQ);
             panelTextQuestion.Controls.Add(btnSubmitTextQuestion);
             panelTextQuestion.Controls.Add(textBoxTextQuestion);
             panelTextQuestion.Controls.Add(lblTextQuestion);
@@ -142,6 +145,21 @@
             panelTextQuestion.Size = new Size(961, 518);
             panelTextQuestion.TabIndex = 2;
             panelTextQuestion.Visible = false;
+            // 
+            // btnPlayAudioTQ
+            // 
+            btnPlayAudioTQ.BackgroundImage = Properties.Images.Play_button;
+            btnPlayAudioTQ.BackgroundImageLayout = ImageLayout.Zoom;
+            btnPlayAudioTQ.FlatAppearance.BorderSize = 0;
+            btnPlayAudioTQ.FlatStyle = FlatStyle.Flat;
+            btnPlayAudioTQ.ForeColor = Color.Transparent;
+            btnPlayAudioTQ.Location = new Point(458, 215);
+            btnPlayAudioTQ.Name = "btnPlayAudioTQ";
+            btnPlayAudioTQ.Size = new Size(70, 70);
+            btnPlayAudioTQ.TabIndex = 6;
+            btnPlayAudioTQ.UseVisualStyleBackColor = true;
+            btnPlayAudioTQ.Visible = false;
+            btnPlayAudioTQ.Click += btnPlayAudioTQ_Click;
             // 
             // btnSubmitTextQuestion
             // 
@@ -178,6 +196,8 @@
             // panelMultipleChoiceQuestion
             // 
             panelMultipleChoiceQuestion.Anchor = AnchorStyles.None;
+            panelMultipleChoiceQuestion.BackColor = Color.Transparent;
+            panelMultipleChoiceQuestion.Controls.Add(btnPlayAudioMCQ);
             panelMultipleChoiceQuestion.Controls.Add(btnOption3);
             panelMultipleChoiceQuestion.Controls.Add(btnOption2);
             panelMultipleChoiceQuestion.Controls.Add(btnOption1);
@@ -187,6 +207,21 @@
             panelMultipleChoiceQuestion.Size = new Size(961, 518);
             panelMultipleChoiceQuestion.TabIndex = 3;
             panelMultipleChoiceQuestion.Visible = false;
+            // 
+            // btnPlayAudioMCQ
+            // 
+            btnPlayAudioMCQ.BackgroundImage = Properties.Images.Play_button;
+            btnPlayAudioMCQ.BackgroundImageLayout = ImageLayout.Zoom;
+            btnPlayAudioMCQ.FlatAppearance.BorderSize = 0;
+            btnPlayAudioMCQ.FlatStyle = FlatStyle.Flat;
+            btnPlayAudioMCQ.ForeColor = Color.Transparent;
+            btnPlayAudioMCQ.Location = new Point(445, 205);
+            btnPlayAudioMCQ.Name = "btnPlayAudioMCQ";
+            btnPlayAudioMCQ.Size = new Size(70, 70);
+            btnPlayAudioMCQ.TabIndex = 5;
+            btnPlayAudioMCQ.UseVisualStyleBackColor = true;
+            btnPlayAudioMCQ.Visible = false;
+            btnPlayAudioMCQ.Click += btnPlayAudioMCQ_Click;
             // 
             // btnOption3
             // 
@@ -275,10 +310,10 @@
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
             Controls.Add(lblQuizTitle);
-            Controls.Add(panelQuizEndScreen);
-            Controls.Add(panelQuizMenu);
             Controls.Add(panelMultipleChoiceQuestion);
             Controls.Add(panelTextQuestion);
+            Controls.Add(panelQuizEndScreen);
+            Controls.Add(panelQuizMenu);
             Name = "QuizForm";
             Text = "QuizForm";
             panelQuizMenu.ResumeLayout(false);
@@ -313,5 +348,7 @@
         private Panel panelQuizEndScreen;
         private Label lblQuizEndScreen;
         private Button btnQuizEndScreen;
+        private Button btnPlayAudioMCQ;
+        private Button btnPlayAudioTQ;
     }
 }

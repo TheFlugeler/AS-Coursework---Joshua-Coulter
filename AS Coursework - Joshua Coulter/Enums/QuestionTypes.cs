@@ -9,5 +9,7 @@ namespace AS_Coursework___Joshua_Coulter.Enums;
 public enum QuestionTypes
 {
     MultipleChoice,
-    Text
+    Text,
+    AudioMultipleChoice,
+    AudioText
 }

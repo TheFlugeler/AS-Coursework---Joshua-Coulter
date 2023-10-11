@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ public partial class QuizForm : Form
 {
     List<Question> allQuestions = new List<Question>();
     List<Question> quizQuestions = new List<Question>();
+    string audioToPlay;
     Question currentQuestion = null;
     int questionIndex = 0;
     double currentScore = 0;
@@ -33,8 +35,12 @@ public partial class QuizForm : Form
     {
         List<MultipleChoiceQuestion> multipleChoiceQuestions = CSVReader.ReadInMultipleChoiceQuestions();
         List<TextQuestion> textQuestions = CSVReader.ReadInTextQuestions();
+        List<AudioMultipleChoiceQuestion> audioMultipleChoiceQuestions = CSVReader.ReadInAudioMultipleChoiceQuestions();
+        List<AudioTextQuestion> audioTextQuestions = CSVReader.ReadInAudioTextQuestions();
         foreach (Question question in multipleChoiceQuestions) allQuestions.Add(question);
         foreach (Question question in textQuestions) allQuestions.Add(question);
+        foreach (Question question in audioMultipleChoiceQuestions) allQuestions.Add(question);
+        foreach (Question question in audioTextQuestions) allQuestions.Add(question);
     }
 
     public void PopulateQuizQuestions(Difficulty diff)
@@ -48,6 +54,8 @@ public partial class QuizForm : Form
     public void DisplayNextQuestion()
     {
         currentPanel.Visible = false;
+        btnPlayAudioMCQ.Visible = false;
+        btnPlayAudioTQ.Visible = false;
         if (questionIndex >= quizQuestions.Count)
         {
             lblQuizTitle.Text = "Quiz finished!";
@@ -72,7 +80,7 @@ public partial class QuizForm : Form
         }
         lblQuizTitle.Text = $"Question #{questionIndex + 1}";
         currentQuestion = quizQuestions[questionIndex];
-        switch (quizQuestions[questionIndex].QuestionType)
+        switch (currentQuestion.QuestionType)
         {
             case QuestionTypes.Text:
                 currentPanel = panelTextQuestion;
@@ -81,17 +89,37 @@ public partial class QuizForm : Form
                 lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
                 break;
             case QuestionTypes.MultipleChoice:
-                MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
+                MultipleChoiceQuestion question1 = (MultipleChoiceQuestion)currentQuestion;
                 currentPanel = panelMultipleChoiceQuestion;
-                lblMultipleChoiceQuestion.Text = $"Q: {question.QuestionText}";
-                btnOption1.Text = question.Options[0];
-                btnOption2.Text = question.Options[1];
-                btnOption3.Text = question.Options[2];
+                lblMultipleChoiceQuestion.Text = $"Q: {question1.QuestionText}";
+                btnOption1.Text = question1.Options[0];
+                btnOption2.Text = question1.Options[1];
+                btnOption3.Text = question1.Options[2];
+                break;
+            case QuestionTypes.AudioMultipleChoice:
+                AudioMultipleChoiceQuestion question2 = (AudioMultipleChoiceQuestion)currentQuestion;
+                currentPanel = panelMultipleChoiceQuestion;
+                lblMultipleChoiceQuestion.Text = $"Q: {question2.QuestionText}";
+                btnPlayAudioMCQ.Visible = true;
+                audioToPlay = question2.FilePath;
+                btnOption1.Text = question2.Options[0];
+                btnOption2.Text = question2.Options[1];
+                btnOption3.Text = question2.Options[2];
+                break;
+            case QuestionTypes.AudioText:
+                AudioTextQuestion question3 = (AudioTextQuestion)currentQuestion;
+                currentPanel = panelTextQuestion;
+                textBoxTextQuestion.Clear();
+                textBoxTextQuestion.Select();
+                lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+                btnPlayAudioTQ.Visible = true;
+                audioToPlay = question3.FilePath;
                 break;
             default:
                 break;
-
         }
+
+
         currentPanel.Visible = true;
         questionIndex++;
     }
@@ -143,4 +171,32 @@ public partial class QuizForm : Form
     }
 
     private void btnQuizEndScreen_Click(object sender, EventArgs e) => Close();
+
+    private void btnPlayAudioMCQ_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            SoundPlayer player = new SoundPlayer(audioToPlay);
+            player.Play();
+            player.Dispose();
+        }
+        catch (Exception e2)
+        {
+            MessageBox.Show(e2.ToString(), "Error");
+        }
+    }
+
+    private void btnPlayAudioTQ_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            SoundPlayer player = new SoundPlayer(audioToPlay);
+            player.Play();
+            player.Dispose();
+        }
+        catch (Exception e2)
+        {
+            MessageBox.Show(e2.ToString(), "Error");
+        }
+    }
 }

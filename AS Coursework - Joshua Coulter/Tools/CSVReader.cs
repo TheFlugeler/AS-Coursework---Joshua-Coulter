@@ -11,9 +11,11 @@ namespace AS_Coursework___Joshua_Coulter.Tools;
 
 public static class CSVReader
 {
-    private static string UserFile = "Users.csv";
-    private static string MultipleQFile = "MultipleChoiceQuestions.csv";
-    private static string TextQFile = "TextQuestions.csv";
+    private static string UserFile = "Databases/Users.csv";
+    private static string MultipleQFile = "Databases/MultipleChoiceQuestions.csv";
+    private static string TextQFile = "Databases/TextQuestions.csv";
+    private static string AudioMCQFile = "Databases/AudioMultipleChoiceQuestions.csv";
+    private static string AudioTextQFile = "Databases/AudioTextQuestions.csv";
     public static List<User> ReadInUsers()
     {
         List<User> users = new List<User>();
@@ -62,6 +64,43 @@ public static class CSVReader
                 string[] temp = reader.ReadLine().Split(",");
                 if (temp.Length < 3) return questions;
                 TextQuestion question = new TextQuestion(temp[0], (Difficulty)Convert.ToInt16(temp[1]), QuestionTypes.Text, temp[2]);
+                questions.Add(question);
+            }
+            reader.Close();
+        }
+        return questions;
+    }
+
+    public static List<AudioMultipleChoiceQuestion> ReadInAudioMultipleChoiceQuestions()
+    {
+        List<AudioMultipleChoiceQuestion> questions = new List<AudioMultipleChoiceQuestion>();
+        if (File.ReadAllLines(AudioMCQFile).Length < 1) return questions;
+        using (StreamReader reader = new StreamReader(AudioMCQFile))
+        {
+            for (int i = 0; i < File.ReadAllLines(AudioMCQFile).Length; i++)
+            {
+                string[] temp = reader.ReadLine().Split(",");
+                if (temp.Length < 7) return questions;
+                string[] _options = new string[3] { temp[2], temp[3], temp[4] };
+                AudioMultipleChoiceQuestion question = new AudioMultipleChoiceQuestion(temp[0], (Difficulty)Convert.ToInt16(temp[1]), QuestionTypes.AudioMultipleChoice, _options, Convert.ToInt16(temp[5]), temp[6]);
+                questions.Add(question);
+            }
+            reader.Close();
+        }
+        return questions;
+    }
+
+    public static List<AudioTextQuestion> ReadInAudioTextQuestions()
+    {
+        List<AudioTextQuestion> questions = new List<AudioTextQuestion>();
+        if (File.ReadAllLines(AudioTextQFile).Length < 1) return questions;
+        using (StreamReader reader = new StreamReader(AudioTextQFile))
+        {
+            for (int i = 0; i < File.ReadAllLines(AudioTextQFile).Length; i++)
+            {
+                string[] temp = reader.ReadLine().Split(",");
+                if (temp.Length < 4) return questions;
+                AudioTextQuestion question = new AudioTextQuestion(temp[0], (Difficulty)Convert.ToInt16(temp[1]), QuestionTypes.AudioText, temp[2], temp[3]);
                 questions.Add(question);
             }
             reader.Close();
