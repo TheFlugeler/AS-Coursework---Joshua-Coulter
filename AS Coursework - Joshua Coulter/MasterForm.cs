@@ -20,5 +20,7 @@ namespace AS_Coursework___Joshua_Coulter
             DisplayedForm.BringToFront();
             DisplayedForm.Show();
         }
+
+        private void MasterForm_FormClosing(object sender, FormClosingEventArgs e) => Application.Exit();
     }
 }

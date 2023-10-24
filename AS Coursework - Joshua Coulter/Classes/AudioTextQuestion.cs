@@ -10,9 +10,9 @@ namespace AS_Coursework___Joshua_Coulter.Classes;
 public class AudioTextQuestion : TextQuestion
 {
     public string FilePath { get; set; }
-    public AudioTextQuestion(string qtext, Difficulty diff, QuestionTypes type, string filename, string answer) : base(qtext,diff,type,answer)
+    public AudioTextQuestion(string qtext, Difficulty diff, QuestionTypes type, string answer, string filename) : base(qtext,diff,type,answer)
     {
-        FilePath = "AudioFiles/" + filename;
+        FilePath = filename;
     }
     public override string ToWriteable() => $"{QuestionText},{QuestionDifficulty},{Answer},{FilePath}";
 }

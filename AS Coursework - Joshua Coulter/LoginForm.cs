@@ -19,6 +19,8 @@ public partial class LoginForm : Form
     {
         InitializeComponent();
         users = CSVReader.ReadInUsers();
+        panelLoginBox.Show();
+        panelRegister.Hide();
     }
 
     private void btnSignIn_Click(object sender, EventArgs e)

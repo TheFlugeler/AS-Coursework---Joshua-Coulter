@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AS_Coursework___Joshua_Coulter
 {
-    public partial class Admin : Form
+    public partial class AdminForm : Form
     {
-        public Admin()
+        public AdminForm()
         {
             InitializeComponent();
         }

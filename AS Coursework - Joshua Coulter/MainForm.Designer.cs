@@ -117,6 +117,7 @@
             btnLeaderboard.TabIndex = 3;
             btnLeaderboard.Text = "Leaderboard";
             btnLeaderboard.UseVisualStyleBackColor = true;
+            btnLeaderboard.Click += btnLeaderboard_Click;
             // 
             // btnQuiz
             // 
@@ -242,6 +243,6 @@
         private PictureBox pictureBoxLogo;
         private Label lblMainTitle;
         private System.ComponentModel.BackgroundWorker backgroundWorkerClock;
-        private Label lblClock;
+        public Label lblClock;
     }
 }

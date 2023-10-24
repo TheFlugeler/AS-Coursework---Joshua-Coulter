@@ -82,5 +82,15 @@ public partial class MainForm : Form
         }
     }
 
-    private void backgroundWorkerClock_ProgressChanged(object sender, ProgressChangedEventArgs e) => lblClock.Text = (string)e.UserState;
+    private void backgroundWorkerClock_ProgressChanged(object sender, ProgressChangedEventArgs e)
+    {
+        lblClock.Text = (string)e.UserState;
+    }
+
+    private void btnLeaderboard_Click(object sender, EventArgs e)
+    {
+        lblClock.Hide();
+        UpdateUserFile();
+        DisplayForm(new LeaderboardForm(currentUser));
+    }
 }

@@ -63,6 +63,16 @@ namespace AS_Coursework___Joshua_Coulter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Login_Graphic {
+            get {
+                object obj = ResourceManager.GetObject("Login_Graphic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Main_menu_graphic {
             get {
                 object obj = ResourceManager.GetObject("Main_menu_graphic", resourceCulture);
@@ -73,29 +83,9 @@ namespace AS_Coursework___Joshua_Coulter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Music_Maestro_Login_Background {
-            get {
-                object obj = ResourceManager.GetObject("Music_Maestro_Login_Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Music_Maestro_Logo {
             get {
                 object obj = ResourceManager.GetObject("Music_Maestro_Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap output_onlinegiftools {
-            get {
-                object obj = ResourceManager.GetObject("output_onlinegiftools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

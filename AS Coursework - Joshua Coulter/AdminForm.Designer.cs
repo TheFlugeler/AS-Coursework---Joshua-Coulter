@@ -1,6 +1,6 @@
 ﻿namespace AS_Coursework___Joshua_Coulter
 {
-    partial class Admin
+    partial class AdminForm
     {
         /// <summary>
         /// Required designer variable.

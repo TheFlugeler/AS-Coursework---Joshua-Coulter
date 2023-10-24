@@ -58,7 +58,7 @@
             // panelLoginBox
             // 
             panelLoginBox.Anchor = AnchorStyles.None;
-            panelLoginBox.BackColor = Color.FromArgb(2, 145, 212);
+            panelLoginBox.BackColor = Color.FromArgb(0, 106, 125);
             panelLoginBox.Controls.Add(linkLabelRegister);
             panelLoginBox.Controls.Add(btnSignIn);
             panelLoginBox.Controls.Add(textBoxPassword);
@@ -153,7 +153,7 @@
             // panelRegister
             // 
             panelRegister.Anchor = AnchorStyles.None;
-            panelRegister.BackColor = Color.FromArgb(2, 145, 212);
+            panelRegister.BackColor = Color.FromArgb(0, 106, 125);
             panelRegister.Controls.Add(linkLabelSignIn);
             panelRegister.Controls.Add(btnRegister);
             panelRegister.Controls.Add(lblRegisterGender);
@@ -326,12 +326,12 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(71, 82, 186);
-            BackgroundImage = Properties.Images.Music_Maestro_Login_Background;
+            BackgroundImage = Properties.Images.Login_Graphic;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
             Controls.Add(label1);
-            Controls.Add(panelRegister);
             Controls.Add(panelLoginBox);
+            Controls.Add(panelRegister);
             DoubleBuffered = true;
             Name = "LoginForm";
             Text = "LoginForm";

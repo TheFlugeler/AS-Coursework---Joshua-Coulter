@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterForm));
             panelDisplay = new Panel();
             SuspendLayout();
             // 
@@ -46,9 +47,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1262, 673);
             Controls.Add(panelDisplay);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1280, 720);
             Name = "MasterForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Music Maestro";
+            FormClosing += MasterForm_FormClosing;
             ResumeLayout(false);
         }
 

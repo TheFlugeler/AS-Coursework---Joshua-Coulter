@@ -316,6 +316,7 @@
             Controls.Add(panelQuizMenu);
             Name = "QuizForm";
             Text = "QuizForm";
+            FormClosing += QuizForm_FormClosing;
             panelQuizMenu.ResumeLayout(false);
             panelQuizMenu.PerformLayout();
             panelTextQuestion.ResumeLayout(false);

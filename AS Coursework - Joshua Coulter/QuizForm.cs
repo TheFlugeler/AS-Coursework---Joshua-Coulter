@@ -16,6 +16,7 @@ namespace AS_Coursework___Joshua_Coulter;
 
 public partial class QuizForm : Form
 {
+    SoundPlayer player = new SoundPlayer();
     List<Question> allQuestions = new List<Question>();
     List<Question> quizQuestions = new List<Question>();
     string audioToPlay;
@@ -53,6 +54,7 @@ public partial class QuizForm : Form
 
     public void DisplayNextQuestion()
     {
+        player.Stop();
         currentPanel.Visible = false;
         btnPlayAudioMCQ.Visible = false;
         btnPlayAudioTQ.Visible = false;
@@ -147,6 +149,7 @@ public partial class QuizForm : Form
         TextQuestion specificQuestion = (TextQuestion)currentQuestion;
         if (specificQuestion.CheckAnswer(textBoxTextQuestion.Text)) currentScore++;
         DisplayNextQuestion();
+        player.Stop();
     }
 
     private void btnOption1_Click(object sender, EventArgs e)
@@ -154,6 +157,7 @@ public partial class QuizForm : Form
         MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
         if (question.CheckAnswer(1)) currentScore++;
         DisplayNextQuestion();
+        player.Stop();
     }
 
     private void btnOption2_Click(object sender, EventArgs e)
@@ -161,6 +165,7 @@ public partial class QuizForm : Form
         MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
         if (question.CheckAnswer(2)) currentScore++;
         DisplayNextQuestion();
+        player.Stop();
     }
 
     private void btnOption3_Click(object sender, EventArgs e)
@@ -168,35 +173,31 @@ public partial class QuizForm : Form
         MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
         if (question.CheckAnswer(3)) currentScore++;
         DisplayNextQuestion();
+        player.Stop();
     }
 
     private void btnQuizEndScreen_Click(object sender, EventArgs e) => Close();
 
-    private void btnPlayAudioMCQ_Click(object sender, EventArgs e)
+    private void btnPlayAudioMCQ_Click(object sender, EventArgs e) => PlayAudio();
+
+    private void btnPlayAudioTQ_Click(object sender, EventArgs e) => PlayAudio();
+
+    private void PlayAudio()
     {
+        player = new SoundPlayer("AudioFiles/" + audioToPlay);
         try
         {
-            SoundPlayer player = new SoundPlayer(audioToPlay);
             player.Play();
-            player.Dispose();
         }
         catch (Exception e2)
         {
             MessageBox.Show(e2.ToString(), "Error");
+            player.Stop();
         }
     }
 
-    private void btnPlayAudioTQ_Click(object sender, EventArgs e)
+    private void QuizForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-        try
-        {
-            SoundPlayer player = new SoundPlayer(audioToPlay);
-            player.Play();
-            player.Dispose();
-        }
-        catch (Exception e2)
-        {
-            MessageBox.Show(e2.ToString(), "Error");
-        }
+        player.Dispose();
     }
 }
