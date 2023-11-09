@@ -14,5 +14,5 @@ public class AudioMultipleChoiceQuestion : MultipleChoiceQuestion
     {
         FilePath = filename;
     }
-    public override string ToWriteable() => $"{QuestionText},{QuestionDifficulty},{Options[0]},{Options[1]},{Options[2]},{Answer},{FilePath}";
+    public override string ToWriteable() => base.ToWriteable() + $",{FilePath}";
 }

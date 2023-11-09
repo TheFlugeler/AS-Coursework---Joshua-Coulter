@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,16 +21,15 @@ namespace AS_Coursework___Joshua_Coulter
             timer.Start();
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            if (panelLoader.Width < panelBackPanel.Width - 24) panelLoader.Width++;
-            else LoadComplete();
+            if (panelLoader.Width >= panelBackPanel.Width - 20) End();
+            panelLoader.Width++;
         }
 
-        void LoadComplete()
+        void End()
         {
             timer.Stop();
-            Thread.Sleep(300);
             new MasterForm().Show();
             Hide();
         }

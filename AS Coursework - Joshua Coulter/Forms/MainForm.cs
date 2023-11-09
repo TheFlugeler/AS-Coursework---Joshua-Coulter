@@ -93,4 +93,10 @@ public partial class MainForm : Form
         UpdateUserFile();
         DisplayForm(new LeaderboardForm(currentUser));
     }
+
+    private void btnAdmin_Click(object sender, EventArgs e)
+    {
+        lblClock.Hide();
+        DisplayForm(new AdminForm());
+    }
 }

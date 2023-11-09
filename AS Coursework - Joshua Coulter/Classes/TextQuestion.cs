@@ -16,7 +16,7 @@ public class TextQuestion: Question
         Answer = _answer;
     }
 
-    public virtual string ToWriteable() => $"{QuestionText},{QuestionDifficulty},{Answer}";
+    public override string ToWriteable() => base.ToWriteable() + $",{Answer}";
 
-    public bool CheckAnswer(string _answer) => Answer.ToLower() == _answer.ToLower();
+    public override bool CheckAnswer(string _answer) => Answer.ToLower() == _answer.ToLower();
 }

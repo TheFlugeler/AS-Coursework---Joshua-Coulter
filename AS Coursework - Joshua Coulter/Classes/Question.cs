@@ -21,5 +21,8 @@ public class Question
         QuestionType = type;
     }
 
-    public override string ToString() => QuestionText;
+    public virtual string ToWriteable() => $"{QuestionText},{QuestionDifficulty}";
+
+    public virtual bool CheckAnswer(string answer) => false;
+    public virtual bool CheckAnswer(int option) => false;
 }

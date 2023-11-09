@@ -42,8 +42,7 @@ public partial class LoginForm : Form
 
     private void btnRegister_Click(object sender, EventArgs e)
     {
-        User NewUser = null;
-
+        User NewUser;
         string[] details = new string[6];
         details[0] = textBoxRegisterUsername.Text;
         details[1] = textBoxRegisterPassword.Text;
@@ -103,8 +102,5 @@ public partial class LoginForm : Form
         radioButtonOther.Checked = false;
     }
 
-    private void ThrowError(string message)
-    {
-        MessageBox.Show(message, "Error");
-    }
+    private void ThrowError(string message) => MessageBox.Show(message, "Error");
 }

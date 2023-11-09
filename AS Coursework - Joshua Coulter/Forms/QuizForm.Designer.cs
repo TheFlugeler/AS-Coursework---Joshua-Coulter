@@ -215,7 +215,7 @@
             btnPlayAudioMCQ.FlatAppearance.BorderSize = 0;
             btnPlayAudioMCQ.FlatStyle = FlatStyle.Flat;
             btnPlayAudioMCQ.ForeColor = Color.Transparent;
-            btnPlayAudioMCQ.Location = new Point(445, 205);
+            btnPlayAudioMCQ.Location = new Point(445, 192);
             btnPlayAudioMCQ.Name = "btnPlayAudioMCQ";
             btnPlayAudioMCQ.Size = new Size(70, 70);
             btnPlayAudioMCQ.TabIndex = 5;
@@ -310,10 +310,10 @@
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
             Controls.Add(lblQuizTitle);
+            Controls.Add(panelQuizMenu);
             Controls.Add(panelMultipleChoiceQuestion);
             Controls.Add(panelTextQuestion);
             Controls.Add(panelQuizEndScreen);
-            Controls.Add(panelQuizMenu);
             Name = "QuizForm";
             Text = "QuizForm";
             FormClosing += QuizForm_FormClosing;

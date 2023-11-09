@@ -90,6 +90,7 @@
             btnAdmin.TabIndex = 5;
             btnAdmin.Text = "Admin";
             btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.Click += btnAdmin_Click;
             // 
             // btnProfile
             // 
@@ -187,11 +188,11 @@
             lblClock.BackColor = Color.Transparent;
             lblClock.Dock = DockStyle.Right;
             lblClock.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblClock.Location = new Point(989, 0);
+            lblClock.Location = new Point(975, 0);
             lblClock.Name = "lblClock";
-            lblClock.Size = new Size(38, 25);
+            lblClock.Size = new Size(52, 25);
             lblClock.TabIndex = 1;
-            lblClock.Text = "jjjjh";
+            lblClock.Text = "clock";
             // 
             // lblMainTitle
             // 

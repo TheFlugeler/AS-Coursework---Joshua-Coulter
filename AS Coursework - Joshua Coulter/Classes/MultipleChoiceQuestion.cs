@@ -18,7 +18,7 @@ public class MultipleChoiceQuestion: Question
         Answer = _answer;
     }
 
-    public virtual string ToWriteable() => $"{QuestionText},{QuestionDifficulty},{Options[0]},{Options[1]},{Options[2]},{Answer}";
+    public override string ToWriteable() => base.ToWriteable() + $",{Options[0]},{Options[1]},{Options[2]},{Answer}";
 
-    public bool CheckAnswer(int _answer) => _answer == Answer;
+    public override bool CheckAnswer(int _answer) => _answer == Answer;
 }

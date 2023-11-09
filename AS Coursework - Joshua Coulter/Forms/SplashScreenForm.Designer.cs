@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreenForm));
             panelLoader = new Panel();
             panelBackPanel = new Panel();
             labelSplashScreenTitle = new Label();
@@ -79,6 +80,7 @@
             Controls.Add(labelSplashScreenTitle);
             Controls.Add(panelBackPanel);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SplashScreenForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SplashScreenForm";

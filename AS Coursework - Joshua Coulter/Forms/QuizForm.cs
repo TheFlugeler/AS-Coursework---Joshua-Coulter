@@ -60,26 +60,10 @@ public partial class QuizForm : Form
         btnPlayAudioTQ.Visible = false;
         if (questionIndex >= quizQuestions.Count)
         {
-            lblQuizTitle.Text = "Quiz finished!";
-            currentPanel = panelQuizEndScreen;
-            currentPanel.Visible = true;
-            switch (quizDifficulty)
-            {
-                case Difficulty.Medium:
-                    currentScore = currentScore * 1.5;
-                    break;
-                case Difficulty.Hard:
-                    currentScore = currentScore * 2;
-                    break;
-                default:
-                    break;
-            }
-
-            lblQuizEndScreen.Text = $"Congratulations, you finished the quiz with a score of: {currentScore}";
-            if (MainForm.currentUser.HighScore < currentScore) MainForm.currentUser.HighScore = currentScore;
-            MainForm.UpdateUserFile();
+            EndQuiz();
             return;
         }
+
         lblQuizTitle.Text = $"Question #{questionIndex + 1}";
         currentQuestion = quizQuestions[questionIndex];
         switch (currentQuestion.QuestionType)
@@ -121,9 +105,31 @@ public partial class QuizForm : Form
                 break;
         }
 
-
         currentPanel.Visible = true;
         questionIndex++;
+    }
+
+    private void EndQuiz()
+    {
+        lblQuizTitle.Text = "Quiz finished!";
+        currentPanel = panelQuizEndScreen;
+        currentPanel.Visible = true;
+        switch (quizDifficulty)
+        {
+            case Difficulty.Medium:
+                currentScore = currentScore * 1.5;
+                break;
+            case Difficulty.Hard:
+                currentScore = currentScore * 2;
+                break;
+            default:
+                break;
+        }
+
+        lblQuizEndScreen.Text = $"Congratulations, you finished the quiz with a score of: {currentScore}";
+        if (MainForm.currentUser.HighScore < currentScore) MainForm.currentUser.HighScore = currentScore;
+        MainForm.UpdateUserFile();
+        return;
     }
 
     private void btnQuizEasy_Click(object sender, EventArgs e)
@@ -146,34 +152,20 @@ public partial class QuizForm : Form
 
     private void btnSubmitTextQuestion_Click(object sender, EventArgs e)
     {
-        TextQuestion specificQuestion = (TextQuestion)currentQuestion;
-        if (specificQuestion.CheckAnswer(textBoxTextQuestion.Text)) currentScore++;
+        if (currentQuestion.CheckAnswer(textBoxTextQuestion.Text)) currentScore++;
         DisplayNextQuestion();
-        player.Stop();
     }
 
-    private void btnOption1_Click(object sender, EventArgs e)
-    {
-        MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
-        if (question.CheckAnswer(1)) currentScore++;
-        DisplayNextQuestion();
-        player.Stop();
-    }
+    private void btnOption1_Click(object sender, EventArgs e) => CheckMultipleChoice(1);
 
-    private void btnOption2_Click(object sender, EventArgs e)
-    {
-        MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
-        if (question.CheckAnswer(2)) currentScore++;
-        DisplayNextQuestion();
-        player.Stop();
-    }
+    private void btnOption2_Click(object sender, EventArgs e) => CheckMultipleChoice(2);
 
-    private void btnOption3_Click(object sender, EventArgs e)
+    private void btnOption3_Click(object sender, EventArgs e) => CheckMultipleChoice(3);
+
+    private void CheckMultipleChoice(int choice)
     {
-        MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
-        if (question.CheckAnswer(3)) currentScore++;
+        if (currentQuestion.CheckAnswer(choice)) currentScore++;
         DisplayNextQuestion();
-        player.Stop();
     }
 
     private void btnQuizEndScreen_Click(object sender, EventArgs e) => Close();
@@ -185,19 +177,13 @@ public partial class QuizForm : Form
     private void PlayAudio()
     {
         player = new SoundPlayer("AudioFiles/" + audioToPlay);
-        try
+        try { player.Play(); }
+        catch (Exception e)
         {
-            player.Play();
-        }
-        catch (Exception e2)
-        {
-            MessageBox.Show(e2.ToString(), "Error");
+            MessageBox.Show(e.ToString(), "Error");
             player.Stop();
         }
     }
 
-    private void QuizForm_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        player.Dispose();
-    }
+    private void QuizForm_FormClosing(object sender, FormClosingEventArgs e) => player.Dispose();
 }

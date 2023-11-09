@@ -14,5 +14,5 @@ public class AudioTextQuestion : TextQuestion
     {
         FilePath = filename;
     }
-    public override string ToWriteable() => $"{QuestionText},{QuestionDifficulty},{Answer},{FilePath}";
+    public override string ToWriteable() => base.ToWriteable() + $"{FilePath}";
 }

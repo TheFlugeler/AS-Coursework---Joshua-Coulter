@@ -32,9 +32,7 @@
             linkLabelRegister = new LinkLabel();
             btnSignIn = new Button();
             textBoxPassword = new TextBox();
-            lblPassword = new Label();
             textBoxUsername = new TextBox();
-            lblUsername = new Label();
             lblLoginSubTitle = new Label();
             panelRegister = new Panel();
             linkLabelSignIn = new LinkLabel();
@@ -62,9 +60,7 @@
             panelLoginBox.Controls.Add(linkLabelRegister);
             panelLoginBox.Controls.Add(btnSignIn);
             panelLoginBox.Controls.Add(textBoxPassword);
-            panelLoginBox.Controls.Add(lblPassword);
             panelLoginBox.Controls.Add(textBoxUsername);
-            panelLoginBox.Controls.Add(lblUsername);
             panelLoginBox.Controls.Add(lblLoginSubTitle);
             panelLoginBox.Location = new Point(418, 166);
             panelLoginBox.Name = "panelLoginBox";
@@ -101,43 +97,24 @@
             // 
             textBoxPassword.Anchor = AnchorStyles.Top;
             textBoxPassword.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPassword.Location = new Point(169, 169);
+            textBoxPassword.Location = new Point(78, 169);
             textBoxPassword.MaxLength = 24;
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(223, 36);
+            textBoxPassword.PasswordChar = '•';
+            textBoxPassword.PlaceholderText = "Password";
+            textBoxPassword.Size = new Size(251, 36);
             textBoxPassword.TabIndex = 4;
-            // 
-            // lblPassword
-            // 
-            lblPassword.Anchor = AnchorStyles.Top;
-            lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPassword.Location = new Point(28, 172);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(124, 27);
-            lblPassword.TabIndex = 3;
-            lblPassword.Text = "Password:";
             // 
             // textBoxUsername
             // 
             textBoxUsername.Anchor = AnchorStyles.Top;
             textBoxUsername.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxUsername.Location = new Point(169, 93);
+            textBoxUsername.Location = new Point(78, 93);
             textBoxUsername.MaxLength = 24;
             textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new Size(223, 36);
+            textBoxUsername.PlaceholderText = "Username";
+            textBoxUsername.Size = new Size(251, 36);
             textBoxUsername.TabIndex = 2;
-            // 
-            // lblUsername
-            // 
-            lblUsername.Anchor = AnchorStyles.Top;
-            lblUsername.AutoSize = true;
-            lblUsername.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUsername.Location = new Point(20, 98);
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(132, 27);
-            lblUsername.TabIndex = 1;
-            lblUsername.Text = "Username:";
             // 
             // lblLoginSubTitle
             // 
@@ -203,7 +180,7 @@
             // 
             lblRegisterGender.AutoSize = true;
             lblRegisterGender.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRegisterGender.Location = new Point(60, 298);
+            lblRegisterGender.Location = new Point(60, 294);
             lblRegisterGender.Name = "lblRegisterGender";
             lblRegisterGender.Size = new Size(105, 27);
             lblRegisterGender.TabIndex = 10;
@@ -348,9 +325,7 @@
         private Panel panelLoginBox;
         private Label lblLoginSubTitle;
         private TextBox textBoxPassword;
-        private Label lblPassword;
         private TextBox textBoxUsername;
-        private Label lblUsername;
         private LinkLabel linkLabelRegister;
         private Button btnSignIn;
         private Panel panelRegister;
