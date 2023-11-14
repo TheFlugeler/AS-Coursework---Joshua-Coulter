@@ -34,10 +34,10 @@ public partial class QuizForm : Form
 
     public void PopulateQuestionList()
     {
-        List<MultipleChoiceQuestion> multipleChoiceQuestions = CSVReader.ReadInMultipleChoiceQuestions();
-        List<TextQuestion> textQuestions = CSVReader.ReadInTextQuestions();
-        List<AudioMultipleChoiceQuestion> audioMultipleChoiceQuestions = CSVReader.ReadInAudioMultipleChoiceQuestions();
-        List<AudioTextQuestion> audioTextQuestions = CSVReader.ReadInAudioTextQuestions();
+        List<MultipleChoiceQuestion> multipleChoiceQuestions = CSV.ReadInMultipleChoiceQuestions();
+        List<TextQuestion> textQuestions = CSV.ReadInTextQuestions();
+        List<AudioMultipleChoiceQuestion> audioMultipleChoiceQuestions = CSV.ReadInAudioMultipleChoiceQuestions();
+        List<AudioTextQuestion> audioTextQuestions = CSV.ReadInAudioTextQuestions();
         foreach (Question question in multipleChoiceQuestions) allQuestions.Add(question);
         foreach (Question question in textQuestions) allQuestions.Add(question);
         foreach (Question question in audioMultipleChoiceQuestions) allQuestions.Add(question);

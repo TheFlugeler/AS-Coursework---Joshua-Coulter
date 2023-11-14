@@ -64,7 +64,7 @@
             panelLoginBox.Controls.Add(lblLoginSubTitle);
             panelLoginBox.Location = new Point(418, 166);
             panelLoginBox.Name = "panelLoginBox";
-            panelLoginBox.Size = new Size(420, 389);
+            panelLoginBox.Size = new Size(420, 380);
             panelLoginBox.TabIndex = 0;
             // 
             // linkLabelRegister
@@ -84,10 +84,10 @@
             // 
             // btnSignIn
             // 
-            btnSignIn.Font = new Font("Corbel", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSignIn.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnSignIn.Location = new Point(136, 243);
             btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(135, 46);
+            btnSignIn.Size = new Size(130, 48);
             btnSignIn.TabIndex = 5;
             btnSignIn.Text = "Sign In";
             btnSignIn.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '•';
             textBoxPassword.PlaceholderText = "Password";
-            textBoxPassword.Size = new Size(251, 36);
+            textBoxPassword.Size = new Size(250, 36);
             textBoxPassword.TabIndex = 4;
             // 
             // textBoxUsername
@@ -113,7 +113,7 @@
             textBoxUsername.MaxLength = 24;
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.PlaceholderText = "Username";
-            textBoxUsername.Size = new Size(251, 36);
+            textBoxUsername.Size = new Size(250, 36);
             textBoxUsername.TabIndex = 2;
             // 
             // lblLoginSubTitle
@@ -144,9 +144,9 @@
             panelRegister.Controls.Add(textBoxRegisterUsername);
             panelRegister.Controls.Add(lblRegisterUsername);
             panelRegister.Controls.Add(lblRegister);
-            panelRegister.Location = new Point(385, 129);
+            panelRegister.Location = new Point(388, 129);
             panelRegister.Name = "panelRegister";
-            panelRegister.Size = new Size(487, 463);
+            panelRegister.Size = new Size(480, 460);
             panelRegister.TabIndex = 2;
             panelRegister.Visible = false;
             // 
@@ -227,7 +227,7 @@
             dateTimePickerRegisterDOB.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerRegisterDOB.Location = new Point(176, 227);
             dateTimePickerRegisterDOB.Name = "dateTimePickerRegisterDOB";
-            dateTimePickerRegisterDOB.Size = new Size(274, 36);
+            dateTimePickerRegisterDOB.Size = new Size(270, 36);
             dateTimePickerRegisterDOB.TabIndex = 6;
             // 
             // lblRegisterDOB
@@ -245,7 +245,7 @@
             textBoxRegisterPassword.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxRegisterPassword.Location = new Point(176, 156);
             textBoxRegisterPassword.Name = "textBoxRegisterPassword";
-            textBoxRegisterPassword.Size = new Size(277, 36);
+            textBoxRegisterPassword.Size = new Size(270, 36);
             textBoxRegisterPassword.TabIndex = 4;
             // 
             // lblRegisterPassword
@@ -263,7 +263,7 @@
             textBoxRegisterUsername.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxRegisterUsername.Location = new Point(176, 85);
             textBoxRegisterUsername.Name = "textBoxRegisterUsername";
-            textBoxRegisterUsername.Size = new Size(277, 36);
+            textBoxRegisterUsername.Size = new Size(270, 36);
             textBoxRegisterUsername.TabIndex = 2;
             // 
             // lblRegisterUsername
@@ -306,9 +306,9 @@
             BackgroundImage = Properties.Images.Login_Graphic;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(panelRegister);
             Controls.Add(label1);
             Controls.Add(panelLoginBox);
-            Controls.Add(panelRegister);
             DoubleBuffered = true;
             Name = "LoginForm";
             Text = "LoginForm";

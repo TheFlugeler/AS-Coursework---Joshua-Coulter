@@ -21,7 +21,7 @@ namespace AS_Coursework___Joshua_Coulter
         {
             InitializeComponent();
             currentUser = _currentUser;
-            users = CSVReader.ReadInUsers();
+            users = CSV.ReadInUsers();
             users = UserTools.SortUsersHighscore(users);
             currentUserPosition = UserTools.FindIndex(currentUser, users) + 1;
             users = UserTools.TrimList(users, 5);

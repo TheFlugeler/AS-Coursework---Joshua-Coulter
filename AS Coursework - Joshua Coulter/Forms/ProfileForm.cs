@@ -22,7 +22,7 @@ namespace AS_Coursework___Joshua_Coulter
             InitializeComponent();
             currentUser = user;
             userIndex = _userIndex;
-            allUsers = CSVReader.ReadInUsers();
+            allUsers = CSV.ReadInUsers();
             FillDetails();
         }
 
@@ -67,16 +67,14 @@ namespace AS_Coursework___Joshua_Coulter
 
         private void btnProfileUpdate_Click(object sender, EventArgs e)
         {
-            string[] details = new string[6];
+            string[] details = new string[4];
             details[0] = textBoxEditUsername.Text;
             details[1] = textBoxEditPassword.Text;
-            details[2] = Convert.ToString(currentUser.HighScore);
-            details[3] = dateTimePickerEditDOB.Value.ToShortDateString();
-            if (radioButtonMale.Checked) details[4] = "Male";
-            else if (radioButtonFemale.Checked) details[4] = "Female";
-            else if (radioButtonOther.Checked) details[4] = "Other";
-            else details[4] = "";
-            details[5] = Convert.ToString(currentUser.IsAdmin);
+            details[2] = dateTimePickerEditDOB.Value.ToShortDateString();
+            if (radioButtonMale.Checked) details[3] = "Male";
+            else if (radioButtonFemale.Checked) details[3] = "Female";
+            else if (radioButtonOther.Checked) details[3] = "Other";
+            else details[3] = "";
 
             if (!UserTools.CheckProperties(details))
             {
@@ -84,26 +82,16 @@ namespace AS_Coursework___Joshua_Coulter
                 return;
             }
 
-            allUsers.RemoveAt(userIndex);
-
-            foreach (User user in allUsers)
-            {
-                if (details[0] == user.Username)
-                {
-                    MessageBox.Show("Username already taken", "Error");
-                    return;
-                }
-            }
-
             currentUser.Username = details[0];
             currentUser.Password = details[1];
-            currentUser.DOB = Convert.ToDateTime(details[3]);
-            currentUser.Gender = details[4];
+            currentUser.DOB = Convert.ToDateTime(details[2]);
+            currentUser.Gender = details[3];
 
             MainForm.currentUser = currentUser;
             MainForm.UpdateUserFile();
-            userIndex = allUsers.Count;
-            allUsers = CSVReader.ReadInUsers();
+
+            userIndex = MainForm.userIndex;
+            allUsers = CSV.ReadInUsers();
 
             panelEditProfile.Visible = false;
             panelProfileDisplay.Visible = true;

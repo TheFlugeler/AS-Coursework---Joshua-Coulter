@@ -14,26 +14,33 @@ public static class UserTools
         bool passed = true;
 
         string username = details[0];
-        for(int i = 0;i < details[0].Length;i++)
+        if (string.IsNullOrEmpty(username)) passed = false;
+        foreach(char bit in username)
         {
-            if (char.IsSymbol(username[i])) passed = false;
-            if (username[i] == ' ') passed = false;
+            if (char.IsSymbol(bit)) passed = false;
+            if (char.IsWhiteSpace(bit)) passed = false;
+        }
+
+        List<User> users = CSV.ReadInUsers();
+
+        foreach (User user in users)
+        {
+            if (details[0] == user.Username) passed = false;
         }
 
         string password = details[1];
         if (string.IsNullOrEmpty(password)) passed = false;
-
-        int highscore;
-        if (!int.TryParse(details[2], out highscore)) passed = false;
+        foreach (char bit in password)
+        {
+            if (char.IsSymbol(bit)) passed = false;
+            if (char.IsWhiteSpace(bit)) passed = false;
+        }
 
         DateTime dob;
-        if(!DateTime.TryParse(details[3],out dob)) passed = false;
+        if(!DateTime.TryParse(details[2],out dob)) passed = false;
 
-        string gender = details[4];
+        string gender = details[3];
         if (gender != "Male" && gender != "Female" && gender != "Other") passed = false;
-
-        bool isadmin;
-        if (!bool.TryParse(details[5],out isadmin)) passed = false;
 
         return passed;
     }

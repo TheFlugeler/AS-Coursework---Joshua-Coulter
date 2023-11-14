@@ -14,11 +14,10 @@ public class Question
 
     public QuestionTypes QuestionType { get; set; }
 
-    public Question(string _qtext,Difficulty _difficulty, QuestionTypes type)
+    public Question(string _qtext,Difficulty _difficulty)
     {
         QuestionText = _qtext;
         QuestionDifficulty = _difficulty;
-        QuestionType = type;
     }
 
     public virtual string ToWriteable() => $"{QuestionText},{QuestionDifficulty}";

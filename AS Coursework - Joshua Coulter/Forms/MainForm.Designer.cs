@@ -80,7 +80,6 @@
             // btnAdmin
             // 
             btnAdmin.Dock = DockStyle.Top;
-            btnAdmin.Enabled = false;
             btnAdmin.FlatAppearance.BorderSize = 0;
             btnAdmin.FlatStyle = FlatStyle.Flat;
             btnAdmin.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);

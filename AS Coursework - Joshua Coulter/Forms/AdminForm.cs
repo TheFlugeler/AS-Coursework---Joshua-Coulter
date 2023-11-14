@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AS_Coursework___Joshua_Coulter.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,9 @@ namespace AS_Coursework___Joshua_Coulter
         {
             InitializeComponent();
         }
+
+        private void btnViewDatabase_Click(object sender, EventArgs e) => (ActiveForm as MainForm).DisplayForm(new DatabaseForm());
+
+
     }
 }

@@ -18,15 +18,15 @@ public partial class MainForm : Form
 
     private static List<User> allUsers = new List<User>();
     public static User currentUser;
-    private static int userIndex;
+    public static int userIndex;
 
     public MainForm(User user, int index)
     {
         InitializeComponent();
         currentUser = user;
-        allUsers = CSVReader.ReadInUsers();
+        allUsers = CSV.ReadInUsers();
         userIndex = index;
-        btnAdmin.Enabled = currentUser.IsAdmin;
+        btnAdmin.Visible = currentUser.IsAdmin;
         backgroundWorkerClock.RunWorkerAsync();
     }
 
@@ -34,8 +34,8 @@ public partial class MainForm : Form
     {
         allUsers.RemoveAt(userIndex);
         allUsers.Add(currentUser);
-        CSVWriter.WriteUsers(allUsers);
-        allUsers = CSVReader.ReadInUsers();
+        CSV.WriteUserList(allUsers);
+        allUsers = CSV.ReadInUsers();
         userIndex = allUsers.Count - 1;
     }
 

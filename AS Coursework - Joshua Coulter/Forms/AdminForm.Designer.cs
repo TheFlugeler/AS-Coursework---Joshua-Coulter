@@ -38,11 +38,12 @@
             // 
             // panelAdminControls
             // 
+            panelAdminControls.Anchor = AnchorStyles.None;
             panelAdminControls.BackColor = Color.FromArgb(0, 192, 192);
             panelAdminControls.Controls.Add(button1);
             panelAdminControls.Controls.Add(btnViewQuestions);
             panelAdminControls.Controls.Add(btnViewDatabase);
-            panelAdminControls.Location = new Point(155, 106);
+            panelAdminControls.Location = new Point(166, 142);
             panelAdminControls.Name = "panelAdminControls";
             panelAdminControls.Size = new Size(716, 386);
             panelAdminControls.TabIndex = 0;
@@ -76,12 +77,14 @@
             btnViewDatabase.TabIndex = 0;
             btnViewDatabase.Text = "View Player Database";
             btnViewDatabase.UseVisualStyleBackColor = true;
+            btnViewDatabase.Click += btnViewDatabase_Click;
             // 
             // lblAdminTitle
             // 
+            lblAdminTitle.Anchor = AnchorStyles.None;
             lblAdminTitle.AutoSize = true;
             lblAdminTitle.Font = new Font("Century Gothic", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblAdminTitle.Location = new Point(394, 31);
+            lblAdminTitle.Location = new Point(405, 45);
             lblAdminTitle.Name = "lblAdminTitle";
             lblAdminTitle.Size = new Size(239, 44);
             lblAdminTitle.TabIndex = 1;

@@ -11,9 +11,10 @@ public class TextQuestion: Question
 {
     public string Answer {  get; set; }
 
-    public TextQuestion(string _qtext, Difficulty _difficulty,QuestionTypes type, string _answer) : base(_qtext, _difficulty, type)
+    public TextQuestion(string _qtext, Difficulty _difficulty, string _answer) : base(_qtext, _difficulty)
     {
         Answer = _answer;
+        QuestionType = QuestionTypes.Text;
     }
 
     public override string ToWriteable() => base.ToWriteable() + $",{Answer}";

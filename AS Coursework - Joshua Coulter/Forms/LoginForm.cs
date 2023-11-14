@@ -18,41 +18,37 @@ public partial class LoginForm : Form
     public LoginForm()
     {
         InitializeComponent();
-        users = CSVReader.ReadInUsers();
+        users = CSV.ReadInUsers();
         panelLoginBox.Show();
         panelRegister.Hide();
     }
 
     private void btnSignIn_Click(object sender, EventArgs e)
     {
-        bool success = false;
         int index = 0;
         foreach (User user in users)
         {
-
             if (user.Username == textBoxUsername.Text && user.Password == textBoxPassword.Text)
             {
-                success = true;
                 (ActiveForm as MasterForm).DisplayForm(new MainForm(user, index));
+                return;
             }
             index++;
         }
-        if (!success) ThrowError("Invalid Log In Details");
+        ThrowError("Invalid Log In Details");
     }
 
     private void btnRegister_Click(object sender, EventArgs e)
     {
         User NewUser;
-        string[] details = new string[6];
+        string[] details = new string[4];
         details[0] = textBoxRegisterUsername.Text;
         details[1] = textBoxRegisterPassword.Text;
-        details[2] = "0";
-        details[3] = dateTimePickerRegisterDOB.Value.ToShortDateString();
-        if (radioButtonMale.Checked) details[4] = "Male";
-        else if (radioButtonFemale.Checked) details[4] = "Female";
-        else if (radioButtonOther.Checked) details[4] = "Other";
-        else details[4] = "";
-        details[5] = "false";
+        details[2] = dateTimePickerRegisterDOB.Value.ToShortDateString();
+        if (radioButtonMale.Checked) details[3] = "Male";
+        else if (radioButtonFemale.Checked) details[3] = "Female";
+        else if (radioButtonOther.Checked) details[3] = "Other";
+        else details[3] = "";
 
         if (!UserTools.CheckProperties(details))
         {
@@ -60,20 +56,10 @@ public partial class LoginForm : Form
             return;
         }
 
-        foreach (User user in users)
-        {
-            if (details[0] == user.Username)
-            {
-                ThrowError("Username already taken");
-                return;
-            }
-        }
-
-        NewUser = new User(details[0], details[1], Convert.ToInt16(details[2]), Convert.ToDateTime(details[3]), details[4], Convert.ToBoolean(details[5]));
-
-        users.Add(NewUser);
-        CSVWriter.WriteUsers(users);
-        users = CSVReader.ReadInUsers();
+        NewUser = new User(details[0], details[1], 0, Convert.ToDateTime(details[2]), details[3], false);
+        
+        CSV.AddUser(NewUser);
+        users = CSV.ReadInUsers();
 
         panelRegister.Visible = false;
         panelLoginBox.Visible = true;
