@@ -17,13 +17,13 @@ namespace AS_Coursework___Joshua_Coulter
         List<User> users = new List<User>();
         User currentUser;
         int currentUserPosition;
-        public LeaderboardForm(User _currentUser)
+        public LeaderboardForm()
         {
-            InitializeComponent();
-            currentUser = _currentUser;
+            InitializeComponent();            
             users = CSV.ReadInUsers();
+            currentUser = UserTools.FindUserID(users, MainForm.userID);
             users = UserTools.SortUsersHighscore(users);
-            currentUserPosition = UserTools.FindIndex(currentUser, users) + 1;
+            currentUserPosition = UserTools.FindIndex(users, MainForm.userID)+1;
             users = UserTools.TrimList(users, 5);
             PopulateLeaderboard();
         }

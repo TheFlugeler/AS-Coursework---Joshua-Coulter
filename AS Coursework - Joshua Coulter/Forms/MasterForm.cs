@@ -2,7 +2,7 @@ namespace AS_Coursework___Joshua_Coulter
 {
     public partial class MasterForm : Form
     {
-        Form DisplayedForm = null;
+        public static Form DisplayedForm = null;
         public MasterForm()
         {
             InitializeComponent();

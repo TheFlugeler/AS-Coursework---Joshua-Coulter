@@ -15,14 +15,12 @@ namespace AS_Coursework___Joshua_Coulter
     public partial class ProfileForm : Form
     {
         User currentUser;
-        int userIndex;
         List<User> allUsers = new List<User>();
-        public ProfileForm(User user, int _userIndex)
+        public ProfileForm()
         {
             InitializeComponent();
-            currentUser = user;
-            userIndex = _userIndex;
             allUsers = CSV.ReadInUsers();
+            currentUser = UserTools.FindUserID(allUsers, MainForm.userID);            
             FillDetails();
         }
 
@@ -62,7 +60,6 @@ namespace AS_Coursework___Joshua_Coulter
                     break;
             }
             dateTimePickerEditDOB.Value = currentUser.DOB;
-
         }
 
         private void btnProfileUpdate_Click(object sender, EventArgs e)
@@ -87,11 +84,9 @@ namespace AS_Coursework___Joshua_Coulter
             currentUser.DOB = Convert.ToDateTime(details[2]);
             currentUser.Gender = details[3];
 
-            MainForm.currentUser = currentUser;
-            MainForm.UpdateUserFile();
-
-            userIndex = MainForm.userIndex;
-            allUsers = CSV.ReadInUsers();
+            allUsers = UserTools.RemoveUserID(allUsers, currentUser.ID);
+            allUsers.Add(currentUser);
+            CSV.WriteUserList(allUsers);
 
             panelEditProfile.Visible = false;
             panelProfileDisplay.Visible = true;

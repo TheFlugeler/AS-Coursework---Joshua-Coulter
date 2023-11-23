@@ -26,8 +26,8 @@ public static class CSV
             for (int i = 0; i < File.ReadAllLines(UserFile).Length; i++)
             {
                 string[] temp = reader.ReadLine().Split(",");
-                if(temp.Length < 6) return users;
-                User user = new User(temp[0], temp[1], Convert.ToDouble(temp[2]), Convert.ToDateTime(temp[3]), temp[4], Convert.ToBoolean(temp[5]));
+                if(temp.Length < 7) return users;
+                User user = new User(temp[0], temp[1], Convert.ToDouble(temp[2]), Convert.ToDateTime(temp[3]), temp[4], Convert.ToBoolean(temp[5]), Convert.ToInt16(temp[6]));
                 users.Add(user);
             }
             reader.Close();
@@ -113,6 +113,7 @@ public static class CSV
     {
         using (StreamWriter writer = new StreamWriter(UserFile, false))
         {
+            users.Sort();
             foreach (User user in users)
             {
                 writer.WriteLine(user.ToString());

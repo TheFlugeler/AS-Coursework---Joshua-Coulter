@@ -30,7 +30,7 @@ public partial class LoginForm : Form
         {
             if (user.Username == textBoxUsername.Text && user.Password == textBoxPassword.Text)
             {
-                (ActiveForm as MasterForm).DisplayForm(new MainForm(user, index));
+                (ActiveForm as MasterForm).DisplayForm(new MainForm(user.ID,user.IsAdmin));
                 return;
             }
             index++;
@@ -55,8 +55,9 @@ public partial class LoginForm : Form
             ThrowError("Invalid User Details Entered");
             return;
         }
+        int id = UserTools.GenerateID();
 
-        NewUser = new User(details[0], details[1], 0, Convert.ToDateTime(details[2]), details[3], false);
+        NewUser = new User(details[0], details[1], 0, Convert.ToDateTime(details[2]), details[3], false, id);
         
         CSV.AddUser(NewUser);
         users = CSV.ReadInUsers();

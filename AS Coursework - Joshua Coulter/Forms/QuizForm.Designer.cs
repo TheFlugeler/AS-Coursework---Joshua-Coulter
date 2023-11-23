@@ -215,7 +215,7 @@
             btnPlayAudioMCQ.FlatAppearance.BorderSize = 0;
             btnPlayAudioMCQ.FlatStyle = FlatStyle.Flat;
             btnPlayAudioMCQ.ForeColor = Color.Transparent;
-            btnPlayAudioMCQ.Location = new Point(445, 192);
+            btnPlayAudioMCQ.Location = new Point(469, 215);
             btnPlayAudioMCQ.Name = "btnPlayAudioMCQ";
             btnPlayAudioMCQ.Size = new Size(70, 70);
             btnPlayAudioMCQ.TabIndex = 5;
@@ -227,7 +227,7 @@
             // 
             btnOption3.Anchor = AnchorStyles.None;
             btnOption3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOption3.Location = new Point(657, 340);
+            btnOption3.Location = new Point(653, 410);
             btnOption3.Name = "btnOption3";
             btnOption3.Size = new Size(161, 58);
             btnOption3.TabIndex = 4;
@@ -239,7 +239,7 @@
             // 
             btnOption2.Anchor = AnchorStyles.None;
             btnOption2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOption2.Location = new Point(400, 340);
+            btnOption2.Location = new Point(423, 410);
             btnOption2.Name = "btnOption2";
             btnOption2.Size = new Size(161, 58);
             btnOption2.TabIndex = 3;
@@ -251,7 +251,7 @@
             // 
             btnOption1.Anchor = AnchorStyles.None;
             btnOption1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOption1.Location = new Point(143, 340);
+            btnOption1.Location = new Point(193, 410);
             btnOption1.Name = "btnOption1";
             btnOption1.Size = new Size(161, 58);
             btnOption1.TabIndex = 2;
@@ -310,10 +310,10 @@
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
             Controls.Add(lblQuizTitle);
-            Controls.Add(panelQuizMenu);
             Controls.Add(panelMultipleChoiceQuestion);
             Controls.Add(panelTextQuestion);
             Controls.Add(panelQuizEndScreen);
+            Controls.Add(panelQuizMenu);
             Name = "QuizForm";
             Text = "QuizForm";
             FormClosing += QuizForm_FormClosing;

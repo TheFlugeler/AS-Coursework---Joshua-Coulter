@@ -18,7 +18,10 @@ namespace AS_Coursework___Joshua_Coulter
             InitializeComponent();
         }
 
-        private void btnViewDatabase_Click(object sender, EventArgs e) => (ActiveForm as MainForm).DisplayForm(new DatabaseForm());
+        private void btnViewDatabase_Click(object sender, EventArgs e)
+        {
+            (MasterForm.DisplayedForm as MainForm)!.DisplayForm(new DatabaseForm());
+        }
 
 
     }

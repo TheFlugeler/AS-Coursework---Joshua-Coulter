@@ -7,7 +7,7 @@ using AS_Coursework___Joshua_Coulter.Enums;
 
 namespace AS_Coursework___Joshua_Coulter.Classes;
 
-public class Question
+public abstract class Question
 {
     public string QuestionText { get; set; }
     public Difficulty QuestionDifficulty {  get; set; }

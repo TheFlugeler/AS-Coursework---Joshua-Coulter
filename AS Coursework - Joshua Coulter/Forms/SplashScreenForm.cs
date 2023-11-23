@@ -23,13 +23,14 @@ namespace AS_Coursework___Joshua_Coulter
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (panelLoader.Width >= panelBackPanel.Width - 20) End();
+            if (panelLoader.Width >= panelBackPanel.Width - 22) End();
             panelLoader.Width += 2;
         }
 
         void End()
         {
             timer.Stop();
+            Thread.Sleep(500);
             new MasterForm().Show();
             Hide();
         }

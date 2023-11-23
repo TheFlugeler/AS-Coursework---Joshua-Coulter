@@ -9,34 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.Forms;
 
 namespace AS_Coursework___Joshua_Coulter;
 
 public partial class MainForm : Form
 {
     private Form DisplayedForm = null;
+    public static int userID;
 
-    private static List<User> allUsers = new List<User>();
-    public static User currentUser;
-    public static int userIndex;
-
-    public MainForm(User user, int index)
+    public MainForm(int id, bool isAdmin)
     {
         InitializeComponent();
-        currentUser = user;
-        allUsers = CSV.ReadInUsers();
-        userIndex = index;
-        btnAdmin.Visible = currentUser.IsAdmin;
+        userID = id;
+        btnAdmin.Visible = isAdmin;
         backgroundWorkerClock.RunWorkerAsync();
-    }
-
-    public static void UpdateUserFile()
-    {
-        allUsers.RemoveAt(userIndex);
-        allUsers.Add(currentUser);
-        CSV.WriteUserList(allUsers);
-        allUsers = CSV.ReadInUsers();
-        userIndex = allUsers.Count - 1;
     }
 
     public void DisplayForm(Form form)
@@ -67,10 +54,24 @@ public partial class MainForm : Form
 
     private void btnProfile_Click(object sender, EventArgs e)
     {
-        UpdateUserFile();
         lblClock.Hide();
-        DisplayForm(new ProfileForm(currentUser, userIndex));
+        DisplayForm(new ProfileForm());
     }
+
+    private void btnLeaderboard_Click(object sender, EventArgs e)
+    {
+        lblClock.Hide();
+        DisplayForm(new LeaderboardForm());
+    }
+
+    private void btnAdmin_Click(object sender, EventArgs e)
+    {
+        lblClock.Hide();
+        DisplayForm(new AdminForm());
+    }
+
+
+    //=======================================================
 
     private void backgroundWorkerClock_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -85,18 +86,5 @@ public partial class MainForm : Form
     private void backgroundWorkerClock_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
         lblClock.Text = (string)e.UserState;
-    }
-
-    private void btnLeaderboard_Click(object sender, EventArgs e)
-    {
-        lblClock.Hide();
-        UpdateUserFile();
-        DisplayForm(new LeaderboardForm(currentUser));
-    }
-
-    private void btnAdmin_Click(object sender, EventArgs e)
-    {
-        lblClock.Hide();
-        DisplayForm(new AdminForm());
     }
 }

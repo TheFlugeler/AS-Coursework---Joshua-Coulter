@@ -41,7 +41,7 @@
             // 
             panelLoader.Anchor = AnchorStyles.Left;
             panelLoader.BackColor = Color.OliveDrab;
-            panelLoader.Location = new Point(12, 11);
+            panelLoader.Location = new Point(10, 10);
             panelLoader.Name = "panelLoader";
             panelLoader.Size = new Size(15, 40);
             panelLoader.TabIndex = 0;

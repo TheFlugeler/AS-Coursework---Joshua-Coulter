@@ -20,7 +20,7 @@ public partial class QuizForm : Form
     List<Question> allQuestions = new List<Question>();
     List<Question> quizQuestions = new List<Question>();
     string audioToPlay;
-    Question currentQuestion = null;
+    Question currentQuestion;
     int questionIndex = 0;
     double currentScore = 0;
     Panel currentPanel;
@@ -34,14 +34,10 @@ public partial class QuizForm : Form
 
     public void PopulateQuestionList()
     {
-        List<MultipleChoiceQuestion> multipleChoiceQuestions = CSV.ReadInMultipleChoiceQuestions();
-        List<TextQuestion> textQuestions = CSV.ReadInTextQuestions();
-        List<AudioMultipleChoiceQuestion> audioMultipleChoiceQuestions = CSV.ReadInAudioMultipleChoiceQuestions();
-        List<AudioTextQuestion> audioTextQuestions = CSV.ReadInAudioTextQuestions();
-        foreach (Question question in multipleChoiceQuestions) allQuestions.Add(question);
-        foreach (Question question in textQuestions) allQuestions.Add(question);
-        foreach (Question question in audioMultipleChoiceQuestions) allQuestions.Add(question);
-        foreach (Question question in audioTextQuestions) allQuestions.Add(question);
+        allQuestions.AddRange(CSV.ReadInTextQuestions());
+        allQuestions.AddRange(CSV.ReadInMultipleChoiceQuestions());
+        allQuestions.AddRange(CSV.ReadInAudioTextQuestions());
+        allQuestions.AddRange(CSV.ReadInAudioMultipleChoiceQuestions());
     }
 
     public void PopulateQuizQuestions(Difficulty diff)
@@ -127,8 +123,17 @@ public partial class QuizForm : Form
         }
 
         lblQuizEndScreen.Text = $"Congratulations, you finished the quiz with a score of: {currentScore}";
-        if (MainForm.currentUser.HighScore < currentScore) MainForm.currentUser.HighScore = currentScore;
-        MainForm.UpdateUserFile();
+
+        List<User> users = CSV.ReadInUsers();
+        User user = UserTools.FindUserID(users, MainForm.userID);
+        if (user.HighScore < currentScore)
+        {
+            user.HighScore = currentScore;
+            users = UserTools.RemoveUserID(users, MainForm.userID);
+            users.Add(user);
+            CSV.WriteUserList(users);
+        }
+
         return;
     }
 

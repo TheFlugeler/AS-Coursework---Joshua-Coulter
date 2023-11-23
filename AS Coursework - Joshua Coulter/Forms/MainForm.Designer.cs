@@ -60,7 +60,7 @@
             panelSideMenu.Dock = DockStyle.Left;
             panelSideMenu.Location = new Point(0, 0);
             panelSideMenu.Name = "panelSideMenu";
-            panelSideMenu.Size = new Size(235, 673);
+            panelSideMenu.Size = new Size(234, 673);
             panelSideMenu.TabIndex = 0;
             // 
             // btnLogout
@@ -71,7 +71,7 @@
             btnLogout.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnLogout.Location = new Point(0, 532);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(235, 72);
+            btnLogout.Size = new Size(234, 72);
             btnLogout.TabIndex = 6;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@
             btnAdmin.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnAdmin.Location = new Point(0, 460);
             btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(235, 72);
+            btnAdmin.Size = new Size(234, 72);
             btnAdmin.TabIndex = 5;
             btnAdmin.Text = "Admin";
             btnAdmin.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             btnProfile.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnProfile.Location = new Point(0, 388);
             btnProfile.Name = "btnProfile";
-            btnProfile.Size = new Size(235, 72);
+            btnProfile.Size = new Size(234, 72);
             btnProfile.TabIndex = 4;
             btnProfile.Text = "Profile";
             btnProfile.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             btnLeaderboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnLeaderboard.Location = new Point(0, 316);
             btnLeaderboard.Name = "btnLeaderboard";
-            btnLeaderboard.Size = new Size(235, 72);
+            btnLeaderboard.Size = new Size(234, 72);
             btnLeaderboard.TabIndex = 3;
             btnLeaderboard.Text = "Leaderboard";
             btnLeaderboard.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             btnQuiz.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnQuiz.Location = new Point(0, 244);
             btnQuiz.Name = "btnQuiz";
-            btnQuiz.Size = new Size(235, 72);
+            btnQuiz.Size = new Size(234, 72);
             btnQuiz.TabIndex = 2;
             btnQuiz.Text = "Quiz";
             btnQuiz.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             btnMainMenu.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnMainMenu.Location = new Point(0, 172);
             btnMainMenu.Name = "btnMainMenu";
-            btnMainMenu.Size = new Size(235, 72);
+            btnMainMenu.Size = new Size(234, 72);
             btnMainMenu.TabIndex = 1;
             btnMainMenu.Text = "Main Page";
             btnMainMenu.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(235, 172);
+            panelLogo.Size = new Size(234, 172);
             panelLogo.TabIndex = 0;
             // 
             // pictureBoxLogo
@@ -176,9 +176,9 @@
             panelDisplay.Controls.Add(lblClock);
             panelDisplay.Controls.Add(lblMainTitle);
             panelDisplay.Dock = DockStyle.Fill;
-            panelDisplay.Location = new Point(235, 0);
+            panelDisplay.Location = new Point(234, 0);
             panelDisplay.Name = "panelDisplay";
-            panelDisplay.Size = new Size(1027, 673);
+            panelDisplay.Size = new Size(1028, 673);
             panelDisplay.TabIndex = 1;
             // 
             // lblClock
@@ -187,7 +187,7 @@
             lblClock.BackColor = Color.Transparent;
             lblClock.Dock = DockStyle.Right;
             lblClock.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblClock.Location = new Point(975, 0);
+            lblClock.Location = new Point(976, 0);
             lblClock.Name = "lblClock";
             lblClock.Size = new Size(52, 25);
             lblClock.TabIndex = 1;
@@ -199,7 +199,7 @@
             lblMainTitle.AutoSize = true;
             lblMainTitle.BackColor = Color.Transparent;
             lblMainTitle.Font = new Font("Century Gothic", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMainTitle.Location = new Point(465, 269);
+            lblMainTitle.Location = new Point(466, 269);
             lblMainTitle.Name = "lblMainTitle";
             lblMainTitle.Size = new Size(550, 47);
             lblMainTitle.TabIndex = 0;
