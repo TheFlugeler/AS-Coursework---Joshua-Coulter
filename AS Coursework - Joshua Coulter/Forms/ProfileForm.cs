@@ -20,7 +20,7 @@ namespace AS_Coursework___Joshua_Coulter
         {
             InitializeComponent();
             allUsers = CSV.ReadInUsers();
-            currentUser = UserTools.FindUserID(allUsers, MainForm.userID);            
+            currentUser = UserTools.FindUserID(allUsers, MainForm.userID);
             FillDetails();
         }
 
@@ -72,6 +72,7 @@ namespace AS_Coursework___Joshua_Coulter
             else if (radioButtonFemale.Checked) details[3] = "Female";
             else if (radioButtonOther.Checked) details[3] = "Other";
             else details[3] = "";
+            details[4] = Convert.ToString(MainForm.userID);
 
             if (!UserTools.CheckProperties(details))
             {

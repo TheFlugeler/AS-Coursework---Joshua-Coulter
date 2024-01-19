@@ -15,12 +15,16 @@ namespace AS_Coursework___Joshua_Coulter;
 public partial class LoginForm : Form
 {
     List<User> users = new List<User>();
+    bool passwordVisible;
     public LoginForm()
     {
         InitializeComponent();
         users = CSV.ReadInUsers();
         panelLoginBox.Show();
         panelRegister.Hide();
+        textBoxPassword.PasswordChar = '•';
+        pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
+        passwordVisible = false;
     }
 
     private void btnSignIn_Click(object sender, EventArgs e)
@@ -30,7 +34,7 @@ public partial class LoginForm : Form
         {
             if (user.Username == textBoxUsername.Text && user.Password == textBoxPassword.Text)
             {
-                (ActiveForm as MasterForm).DisplayForm(new MainForm(user.ID,user.IsAdmin));
+                (ActiveForm as MasterForm).DisplayForm(new MainForm(user.ID, user.IsAdmin));
                 return;
             }
             index++;
@@ -58,7 +62,7 @@ public partial class LoginForm : Form
         int id = UserTools.GenerateID();
 
         NewUser = new User(details[0], details[1], 0, Convert.ToDateTime(details[2]), details[3], false, id);
-        
+
         CSV.AddUser(NewUser);
         users = CSV.ReadInUsers();
 
@@ -90,4 +94,22 @@ public partial class LoginForm : Form
     }
 
     private void ThrowError(string message) => MessageBox.Show(message, "Error");
+
+    private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e) { if (e.KeyChar == 13) btnSignIn_Click(sender, e); }
+
+    private void pictureBoxPasswordVisible_Click(object sender, EventArgs e)
+    {
+        if (passwordVisible)
+        {
+            passwordVisible = false;
+            textBoxPassword.PasswordChar = '•';
+            pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
+        }
+        else
+        {
+            passwordVisible = true;
+            textBoxPassword.PasswordChar = '\0';
+            pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/show.png");
+        }
+    }
 }

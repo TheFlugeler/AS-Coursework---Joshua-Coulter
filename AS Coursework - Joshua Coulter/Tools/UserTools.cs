@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AS_Coursework___Joshua_Coulter.Classes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+﻿using AS_Coursework___Joshua_Coulter.Classes;
 
 namespace AS_Coursework___Joshua_Coulter.Tools;
 
@@ -82,8 +76,9 @@ public static class UserTools
 
     public static List<User> RemoveUserID(List<User> users, int id)
     {
-        foreach (User user in users)
+        for(int i =0; i < users.Count; i++)
         {
+            User user = users[i];
             if (user.ID == id) users.Remove(user);
         }
         return users;
@@ -99,7 +94,8 @@ public static class UserTools
     public static int FindIndex(List<User> users, int id)
     {
         for (int i = 0; i < users.Count; i++) if (users[i].ID == id) return i;
-        return -2;
+        MessageBox.Show("FIND INDEX ERROR");
+        return -1;
     }
 
     public static bool VerifyList(List<User> users)

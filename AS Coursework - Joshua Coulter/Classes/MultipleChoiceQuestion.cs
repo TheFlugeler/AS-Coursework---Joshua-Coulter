@@ -12,7 +12,7 @@ public class MultipleChoiceQuestion: Question
     public string[] Options { get; set; }
     public int Answer {  get; set; }
 
-    public MultipleChoiceQuestion(string _qtext, Difficulty _difficulty, string[] _options, int _answer) : base(_qtext, _difficulty)
+    public MultipleChoiceQuestion(string _qtext, Difficulty _diff, string[] _options, int _answer) : base(_qtext, _diff)
     {
         Options = _options;
         Answer = _answer;

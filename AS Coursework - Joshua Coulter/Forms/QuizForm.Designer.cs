@@ -39,18 +39,26 @@
             btnSubmitTextQuestion = new Button();
             textBoxTextQuestion = new TextBox();
             lblTextQuestion = new Label();
+            panelTextPic = new Panel();
+            pictureBoxText = new PictureBox();
             panelMultipleChoiceQuestion = new Panel();
             btnPlayAudioMCQ = new Button();
             btnOption3 = new Button();
             btnOption2 = new Button();
             btnOption1 = new Button();
             lblMultipleChoiceQuestion = new Label();
+            panelMCPic = new Panel();
+            pictureBoxMultipleChoice = new PictureBox();
             panelQuizEndScreen = new Panel();
             btnQuizEndScreen = new Button();
             lblQuizEndScreen = new Label();
             panelQuizMenu.SuspendLayout();
             panelTextQuestion.SuspendLayout();
+            panelTextPic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxText).BeginInit();
             panelMultipleChoiceQuestion.SuspendLayout();
+            panelMCPic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMultipleChoice).BeginInit();
             panelQuizEndScreen.SuspendLayout();
             SuspendLayout();
             // 
@@ -140,6 +148,7 @@
             panelTextQuestion.Controls.Add(btnSubmitTextQuestion);
             panelTextQuestion.Controls.Add(textBoxTextQuestion);
             panelTextQuestion.Controls.Add(lblTextQuestion);
+            panelTextQuestion.Controls.Add(panelTextPic);
             panelTextQuestion.Location = new Point(24, 96);
             panelTextQuestion.Name = "panelTextQuestion";
             panelTextQuestion.Size = new Size(961, 518);
@@ -165,7 +174,7 @@
             // 
             btnSubmitTextQuestion.Anchor = AnchorStyles.None;
             btnSubmitTextQuestion.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSubmitTextQuestion.Location = new Point(763, 361);
+            btnSubmitTextQuestion.Location = new Point(770, 407);
             btnSubmitTextQuestion.Name = "btnSubmitTextQuestion";
             btnSubmitTextQuestion.Size = new Size(147, 44);
             btnSubmitTextQuestion.TabIndex = 2;
@@ -177,7 +186,7 @@
             // 
             textBoxTextQuestion.Anchor = AnchorStyles.None;
             textBoxTextQuestion.Font = new Font("Century Gothic", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxTextQuestion.Location = new Point(76, 363);
+            textBoxTextQuestion.Location = new Point(76, 410);
             textBoxTextQuestion.Name = "textBoxTextQuestion";
             textBoxTextQuestion.Size = new Size(643, 41);
             textBoxTextQuestion.TabIndex = 1;
@@ -187,11 +196,30 @@
             lblTextQuestion.Anchor = AnchorStyles.None;
             lblTextQuestion.AutoSize = true;
             lblTextQuestion.Font = new Font("Trebuchet MS", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTextQuestion.Location = new Point(76, 136);
+            lblTextQuestion.Location = new Point(76, 83);
             lblTextQuestion.Name = "lblTextQuestion";
             lblTextQuestion.Size = new Size(49, 38);
             lblTextQuestion.TabIndex = 0;
             lblTextQuestion.Text = "Q:";
+            // 
+            // panelTextPic
+            // 
+            panelTextPic.BackColor = Color.Teal;
+            panelTextPic.Controls.Add(pictureBoxText);
+            panelTextPic.Location = new Point(278, 160);
+            panelTextPic.Name = "panelTextPic";
+            panelTextPic.Size = new Size(421, 223);
+            panelTextPic.TabIndex = 9;
+            panelTextPic.Visible = false;
+            // 
+            // pictureBoxText
+            // 
+            pictureBoxText.Location = new Point(22, 20);
+            pictureBoxText.Name = "pictureBoxText";
+            pictureBoxText.Size = new Size(378, 188);
+            pictureBoxText.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxText.TabIndex = 8;
+            pictureBoxText.TabStop = false;
             // 
             // panelMultipleChoiceQuestion
             // 
@@ -202,6 +230,7 @@
             panelMultipleChoiceQuestion.Controls.Add(btnOption2);
             panelMultipleChoiceQuestion.Controls.Add(btnOption1);
             panelMultipleChoiceQuestion.Controls.Add(lblMultipleChoiceQuestion);
+            panelMultipleChoiceQuestion.Controls.Add(panelMCPic);
             panelMultipleChoiceQuestion.Location = new Point(24, 96);
             panelMultipleChoiceQuestion.Name = "panelMultipleChoiceQuestion";
             panelMultipleChoiceQuestion.Size = new Size(961, 518);
@@ -264,11 +293,30 @@
             lblMultipleChoiceQuestion.Anchor = AnchorStyles.None;
             lblMultipleChoiceQuestion.AutoSize = true;
             lblMultipleChoiceQuestion.Font = new Font("Trebuchet MS", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMultipleChoiceQuestion.Location = new Point(89, 98);
+            lblMultipleChoiceQuestion.Location = new Point(89, 63);
             lblMultipleChoiceQuestion.Name = "lblMultipleChoiceQuestion";
             lblMultipleChoiceQuestion.Size = new Size(49, 38);
             lblMultipleChoiceQuestion.TabIndex = 1;
             lblMultipleChoiceQuestion.Text = "Q:";
+            // 
+            // panelMCPic
+            // 
+            panelMCPic.BackColor = Color.Teal;
+            panelMCPic.Controls.Add(pictureBoxMultipleChoice);
+            panelMCPic.Location = new Point(298, 145);
+            panelMCPic.Name = "panelMCPic";
+            panelMCPic.Size = new Size(421, 223);
+            panelMCPic.TabIndex = 10;
+            panelMCPic.Visible = false;
+            // 
+            // pictureBoxMultipleChoice
+            // 
+            pictureBoxMultipleChoice.Location = new Point(22, 20);
+            pictureBoxMultipleChoice.Name = "pictureBoxMultipleChoice";
+            pictureBoxMultipleChoice.Size = new Size(378, 188);
+            pictureBoxMultipleChoice.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxMultipleChoice.TabIndex = 8;
+            pictureBoxMultipleChoice.TabStop = false;
             // 
             // panelQuizEndScreen
             // 
@@ -310,10 +358,10 @@
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
             Controls.Add(lblQuizTitle);
+            Controls.Add(panelQuizMenu);
             Controls.Add(panelMultipleChoiceQuestion);
             Controls.Add(panelTextQuestion);
             Controls.Add(panelQuizEndScreen);
-            Controls.Add(panelQuizMenu);
             Name = "QuizForm";
             Text = "QuizForm";
             FormClosing += QuizForm_FormClosing;
@@ -321,8 +369,12 @@
             panelQuizMenu.PerformLayout();
             panelTextQuestion.ResumeLayout(false);
             panelTextQuestion.PerformLayout();
+            panelTextPic.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxText).EndInit();
             panelMultipleChoiceQuestion.ResumeLayout(false);
             panelMultipleChoiceQuestion.PerformLayout();
+            panelMCPic.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMultipleChoice).EndInit();
             panelQuizEndScreen.ResumeLayout(false);
             panelQuizEndScreen.PerformLayout();
             ResumeLayout(false);
@@ -351,5 +403,9 @@
         private Button btnQuizEndScreen;
         private Button btnPlayAudioMCQ;
         private Button btnPlayAudioTQ;
+        private PictureBox pictureBoxText;
+        private Panel panelTextPic;
+        private Panel panelMCPic;
+        private PictureBox pictureBoxMultipleChoice;
     }
 }

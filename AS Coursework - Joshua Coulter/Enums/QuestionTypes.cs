@@ -11,5 +11,7 @@ public enum QuestionTypes
     MultipleChoice,
     Text,
     AudioMultipleChoice,
-    AudioText
+    AudioText,
+    PictureMultipleChoice,
+    PictureText
 }

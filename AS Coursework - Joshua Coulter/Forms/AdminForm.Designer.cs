@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panelAdminControls = new Panel();
-            button1 = new Button();
+            btnAddQuestions = new Button();
             btnViewQuestions = new Button();
             btnViewDatabase = new Button();
             lblAdminTitle = new Label();
@@ -40,7 +40,7 @@
             // 
             panelAdminControls.Anchor = AnchorStyles.None;
             panelAdminControls.BackColor = Color.FromArgb(0, 192, 192);
-            panelAdminControls.Controls.Add(button1);
+            panelAdminControls.Controls.Add(btnAddQuestions);
             panelAdminControls.Controls.Add(btnViewQuestions);
             panelAdminControls.Controls.Add(btnViewDatabase);
             panelAdminControls.Location = new Point(166, 142);
@@ -48,15 +48,16 @@
             panelAdminControls.Size = new Size(716, 386);
             panelAdminControls.TabIndex = 0;
             // 
-            // button1
+            // btnAddQuestions
             // 
-            button1.Font = new Font("Corbel", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(71, 231);
-            button1.Name = "button1";
-            button1.Size = new Size(184, 87);
-            button1.TabIndex = 2;
-            button1.Text = "Add Questions";
-            button1.UseVisualStyleBackColor = true;
+            btnAddQuestions.Font = new Font("Corbel", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddQuestions.Location = new Point(71, 231);
+            btnAddQuestions.Name = "btnAddQuestions";
+            btnAddQuestions.Size = new Size(184, 87);
+            btnAddQuestions.TabIndex = 2;
+            btnAddQuestions.Text = "Add Questions";
+            btnAddQuestions.UseVisualStyleBackColor = true;
+            btnAddQuestions.Click += buttonAddQuestions_Click;
             // 
             // btnViewQuestions
             // 
@@ -67,6 +68,7 @@
             btnViewQuestions.TabIndex = 1;
             btnViewQuestions.Text = "View/Edit Questions";
             btnViewQuestions.UseVisualStyleBackColor = true;
+            btnViewQuestions.Click += btnViewQuestions_Click;
             // 
             // btnViewDatabase
             // 
@@ -111,6 +113,6 @@
         private Label lblAdminTitle;
         private Button btnViewDatabase;
         private Button btnViewQuestions;
-        private Button button1;
+        private Button btnAddQuestions;
     }
 }

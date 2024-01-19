@@ -16,6 +16,8 @@ public static class CSV
     private static string Text = "Databases/TextQuestions.csv";
     private static string AudioMC = "Databases/AudioMultipleChoiceQuestions.csv";
     private static string AudioText = "Databases/AudioTextQuestions.csv";
+    private static string PictureMC = "Databases/PictureMultipleChoiceQuestions.csv";
+    private static string PictureText = "Databases/PictureTextQuestions.csv";
 
     public static List<User> ReadInUsers()
     {
@@ -35,7 +37,36 @@ public static class CSV
         return users;
     }
 
-    public static List<MultipleChoiceQuestion> ReadInMultipleChoiceQuestions()
+    public static List<Question> ReadInAllQuestions()
+    {
+        List<Question> allQuestions = new List<Question>();
+        allQuestions.AddRange(ReadInMultipleChoiceQuestions());
+        allQuestions.AddRange(ReadInTextQuestions());
+        allQuestions.AddRange(ReadInAudioMultipleChoiceQuestions());
+        allQuestions.AddRange(ReadInAudioTextQuestions());
+        allQuestions.AddRange(ReadInPictureMultipleChoiceQuestions());
+        allQuestions.AddRange(ReadInPictureTextQuestions());
+
+        return allQuestions;
+    }
+
+    public static List<Question> ReadInQuestions(QuestionTypes type)
+    {
+        switch (type)
+        {
+            case QuestionTypes.Text: return new List<Question>(ReadInTextQuestions());
+            case QuestionTypes.MultipleChoice: return new List<Question>(ReadInMultipleChoiceQuestions());
+            case QuestionTypes.AudioText: return new List<Question>(ReadInAudioTextQuestions());
+            case QuestionTypes.AudioMultipleChoice: return new List<Question>(ReadInAudioMultipleChoiceQuestions());
+            case QuestionTypes.PictureText: return new List<Question>(ReadInPictureTextQuestions());
+            case QuestionTypes.PictureMultipleChoice: return new List<Question>(ReadInPictureMultipleChoiceQuestions());
+            default: MessageBox.Show("Read in questions ERROR"); break;
+        }
+        return null!;
+    }
+
+
+    private static List<MultipleChoiceQuestion> ReadInMultipleChoiceQuestions()
     {
         List<MultipleChoiceQuestion> questions = new List<MultipleChoiceQuestion>();
         if (File.ReadAllLines(MultipleChoice).Length < 1) return questions;
@@ -54,7 +85,7 @@ public static class CSV
         return questions;
     }
 
-    public static List<TextQuestion> ReadInTextQuestions()
+    private static List<TextQuestion> ReadInTextQuestions()
     {
         List<TextQuestion> questions = new List<TextQuestion>();
         if (File.ReadAllLines(Text).Length < 1) return questions;
@@ -72,7 +103,7 @@ public static class CSV
         return questions;
     }
 
-    public static List<AudioMultipleChoiceQuestion> ReadInAudioMultipleChoiceQuestions()
+    private static List<AudioMultipleChoiceQuestion> ReadInAudioMultipleChoiceQuestions()
     {
         List<AudioMultipleChoiceQuestion> questions = new List<AudioMultipleChoiceQuestion>();
         if (File.ReadAllLines(AudioMC).Length < 1) return questions;
@@ -91,7 +122,7 @@ public static class CSV
         return questions;
     }
 
-    public static List<AudioTextQuestion> ReadInAudioTextQuestions()
+    private static List<AudioTextQuestion> ReadInAudioTextQuestions()
     {
         List<AudioTextQuestion> questions = new List<AudioTextQuestion>();
         if (File.ReadAllLines(AudioText).Length < 1) return questions;
@@ -108,6 +139,45 @@ public static class CSV
         }
         return questions;
     }
+
+    private static List<PictureMultipleChoiceQuestion> ReadInPictureMultipleChoiceQuestions()
+    {
+        List<PictureMultipleChoiceQuestion> questions = new List<PictureMultipleChoiceQuestion>();
+        if (File.ReadAllLines(PictureMC).Length < 1) return questions;
+        using (StreamReader reader = new StreamReader(PictureMC))
+        {
+            for (int i = 0; i < File.ReadAllLines(PictureMC).Length; i++)
+            {
+                string[] temp = reader.ReadLine().Split(",");
+                if (temp.Length < 7) return questions;
+                string[] _options = new string[3] { temp[2], temp[3], temp[4] };
+                PictureMultipleChoiceQuestion question = new PictureMultipleChoiceQuestion(temp[0], (Difficulty)Convert.ToInt16(temp[1]), _options, Convert.ToInt16(temp[5]), temp[6]);
+                questions.Add(question);
+            }
+            reader.Close();
+        }
+        return questions;
+    }
+
+    private static List<PictureTextQuestion> ReadInPictureTextQuestions()
+    {
+        List<PictureTextQuestion> questions = new List<PictureTextQuestion>();
+        if (File.ReadAllLines(PictureText).Length < 1) return questions;
+        using (StreamReader reader = new StreamReader(PictureText))
+        {
+            for (int i = 0; i < File.ReadAllLines(PictureText).Length; i++)
+            {
+                string[] temp = reader.ReadLine().Split(",");
+                if (temp.Length < 4) return questions;
+                PictureTextQuestion question = new PictureTextQuestion(temp[0], (Difficulty)Convert.ToInt16(temp[1]), temp[2], temp[3]);
+                questions.Add(question);
+            }
+            reader.Close();
+        }
+        return questions;
+    }
+
+
 
     public static void WriteUserList(List<User> users)
     {
@@ -140,6 +210,8 @@ public static class CSV
             case QuestionTypes.MultipleChoice: file = MultipleChoice; break;
             case QuestionTypes.AudioText: file = AudioText; break;
             case QuestionTypes.AudioMultipleChoice: file = AudioMC; break;
+            case QuestionTypes.PictureText: file = PictureText; break;
+            case QuestionTypes.PictureMultipleChoice: file = PictureMC; break;
             default: MessageBox.Show("WRITE QUESTIONS ERROR"); return;
         }
         using (StreamWriter writer = new StreamWriter(file, false))

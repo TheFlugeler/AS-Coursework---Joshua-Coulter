@@ -9,11 +9,11 @@ namespace AS_Coursework___Joshua_Coulter.Classes;
 
 public class AudioMultipleChoiceQuestion : MultipleChoiceQuestion
 {
-    public string FilePath { get; set; }
+    public string AudioFile { get; set; }
     public AudioMultipleChoiceQuestion(string qtext, Difficulty diff, string[] options, int answer, string filename) : base(qtext,diff,options,answer)
     {
-        FilePath = filename;
+        AudioFile = filename;
         QuestionType = QuestionTypes.AudioMultipleChoice;
     }
-    public override string ToWriteable() => base.ToWriteable() + $",{FilePath}";
+    public override string ToWriteable() => base.ToWriteable() + $",{AudioFile}";
 }

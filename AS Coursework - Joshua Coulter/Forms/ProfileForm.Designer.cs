@@ -74,9 +74,9 @@
             panelProfileDisplay.Controls.Add(lblProfilePassword);
             panelProfileDisplay.Controls.Add(lblProfileUsername);
             panelProfileDisplay.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            panelProfileDisplay.Location = new Point(306, 112);
+            panelProfileDisplay.Location = new Point(303, 112);
             panelProfileDisplay.Name = "panelProfileDisplay";
-            panelProfileDisplay.Size = new Size(397, 431);
+            panelProfileDisplay.Size = new Size(404, 431);
             panelProfileDisplay.TabIndex = 0;
             // 
             // textBoxProfileHighscore

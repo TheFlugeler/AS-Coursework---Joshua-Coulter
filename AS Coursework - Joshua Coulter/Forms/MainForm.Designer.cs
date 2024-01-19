@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelSideMenu = new Panel();
+            panel1 = new Panel();
             btnLogout = new Button();
             btnAdmin = new Button();
             btnProfile = new Button();
@@ -42,6 +43,7 @@
             lblMainTitle = new Label();
             backgroundWorkerClock = new System.ComponentModel.BackgroundWorker();
             panelSideMenu.SuspendLayout();
+            panel1.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             panelDisplay.SuspendLayout();
@@ -50,12 +52,7 @@
             // panelSideMenu
             // 
             panelSideMenu.BackColor = Color.FromArgb(0, 192, 192);
-            panelSideMenu.Controls.Add(btnLogout);
-            panelSideMenu.Controls.Add(btnAdmin);
-            panelSideMenu.Controls.Add(btnProfile);
-            panelSideMenu.Controls.Add(btnLeaderboard);
-            panelSideMenu.Controls.Add(btnQuiz);
-            panelSideMenu.Controls.Add(btnMainMenu);
+            panelSideMenu.Controls.Add(panel1);
             panelSideMenu.Controls.Add(panelLogo);
             panelSideMenu.Dock = DockStyle.Left;
             panelSideMenu.Location = new Point(0, 0);
@@ -63,16 +60,30 @@
             panelSideMenu.Size = new Size(234, 673);
             panelSideMenu.TabIndex = 0;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnLogout);
+            panel1.Controls.Add(btnAdmin);
+            panel1.Controls.Add(btnProfile);
+            panel1.Controls.Add(btnLeaderboard);
+            panel1.Controls.Add(btnQuiz);
+            panel1.Controls.Add(btnMainMenu);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 172);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(234, 501);
+            panel1.TabIndex = 1;
+            // 
             // btnLogout
             // 
             btnLogout.Dock = DockStyle.Top;
             btnLogout.FlatAppearance.BorderSize = 0;
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLogout.Location = new Point(0, 532);
+            btnLogout.Location = new Point(0, 360);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(234, 72);
-            btnLogout.TabIndex = 6;
+            btnLogout.TabIndex = 10;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
@@ -83,10 +94,10 @@
             btnAdmin.FlatAppearance.BorderSize = 0;
             btnAdmin.FlatStyle = FlatStyle.Flat;
             btnAdmin.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAdmin.Location = new Point(0, 460);
+            btnAdmin.Location = new Point(0, 288);
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(234, 72);
-            btnAdmin.TabIndex = 5;
+            btnAdmin.TabIndex = 9;
             btnAdmin.Text = "Admin";
             btnAdmin.UseVisualStyleBackColor = true;
             btnAdmin.Click += btnAdmin_Click;
@@ -97,10 +108,10 @@
             btnProfile.FlatAppearance.BorderSize = 0;
             btnProfile.FlatStyle = FlatStyle.Flat;
             btnProfile.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnProfile.Location = new Point(0, 388);
+            btnProfile.Location = new Point(0, 216);
             btnProfile.Name = "btnProfile";
             btnProfile.Size = new Size(234, 72);
-            btnProfile.TabIndex = 4;
+            btnProfile.TabIndex = 8;
             btnProfile.Text = "Profile";
             btnProfile.UseVisualStyleBackColor = true;
             btnProfile.Click += btnProfile_Click;
@@ -111,10 +122,10 @@
             btnLeaderboard.FlatAppearance.BorderSize = 0;
             btnLeaderboard.FlatStyle = FlatStyle.Flat;
             btnLeaderboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLeaderboard.Location = new Point(0, 316);
+            btnLeaderboard.Location = new Point(0, 144);
             btnLeaderboard.Name = "btnLeaderboard";
             btnLeaderboard.Size = new Size(234, 72);
-            btnLeaderboard.TabIndex = 3;
+            btnLeaderboard.TabIndex = 7;
             btnLeaderboard.Text = "Leaderboard";
             btnLeaderboard.UseVisualStyleBackColor = true;
             btnLeaderboard.Click += btnLeaderboard_Click;
@@ -125,10 +136,10 @@
             btnQuiz.FlatAppearance.BorderSize = 0;
             btnQuiz.FlatStyle = FlatStyle.Flat;
             btnQuiz.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnQuiz.Location = new Point(0, 244);
+            btnQuiz.Location = new Point(0, 72);
             btnQuiz.Name = "btnQuiz";
             btnQuiz.Size = new Size(234, 72);
-            btnQuiz.TabIndex = 2;
+            btnQuiz.TabIndex = 6;
             btnQuiz.Text = "Quiz";
             btnQuiz.UseVisualStyleBackColor = true;
             btnQuiz.Click += btnQuiz_Click;
@@ -139,17 +150,17 @@
             btnMainMenu.FlatAppearance.BorderSize = 0;
             btnMainMenu.FlatStyle = FlatStyle.Flat;
             btnMainMenu.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMainMenu.Location = new Point(0, 172);
+            btnMainMenu.Location = new Point(0, 0);
             btnMainMenu.Name = "btnMainMenu";
             btnMainMenu.Size = new Size(234, 72);
-            btnMainMenu.TabIndex = 1;
-            btnMainMenu.Text = "Main Page";
+            btnMainMenu.TabIndex = 5;
+            btnMainMenu.Text = "Main Menu";
             btnMainMenu.UseVisualStyleBackColor = true;
             btnMainMenu.Click += btnMainMenu_Click;
             // 
             // panelLogo
             // 
-            panelLogo.BackColor = Color.SeaGreen;
+            panelLogo.BackColor = Color.FromArgb(66, 143, 68);
             panelLogo.Controls.Add(pictureBoxLogo);
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
@@ -160,9 +171,9 @@
             // pictureBoxLogo
             // 
             pictureBoxLogo.Anchor = AnchorStyles.None;
-            pictureBoxLogo.BackgroundImage = Properties.Images.Music_Maestro_Logo;
+            pictureBoxLogo.BackgroundImage = Properties.Images.logo;
             pictureBoxLogo.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBoxLogo.Location = new Point(40, 6);
+            pictureBoxLogo.Location = new Point(35, 6);
             pictureBoxLogo.Name = "pictureBoxLogo";
             pictureBoxLogo.Size = new Size(160, 160);
             pictureBoxLogo.TabIndex = 0;
@@ -170,7 +181,7 @@
             // 
             // panelDisplay
             // 
-            panelDisplay.BackColor = Color.DarkGray;
+            panelDisplay.BackColor = Color.FromArgb(0, 106, 125);
             panelDisplay.BackgroundImage = Properties.Images.Main_menu_graphic;
             panelDisplay.BackgroundImageLayout = ImageLayout.Stretch;
             panelDisplay.Controls.Add(lblClock);
@@ -199,7 +210,7 @@
             lblMainTitle.AutoSize = true;
             lblMainTitle.BackColor = Color.Transparent;
             lblMainTitle.Font = new Font("Century Gothic", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblMainTitle.Location = new Point(466, 269);
+            lblMainTitle.Location = new Point(475, 186);
             lblMainTitle.Name = "lblMainTitle";
             lblMainTitle.Size = new Size(550, 47);
             lblMainTitle.TabIndex = 0;
@@ -222,6 +233,7 @@
             Name = "MainForm";
             Text = "MainForm";
             panelSideMenu.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
             panelDisplay.ResumeLayout(false);
@@ -233,16 +245,17 @@
 
         private Panel panelSideMenu;
         private Panel panelLogo;
-        private Button btnMainMenu;
-        private Button btnQuiz;
-        private Button btnLogout;
-        private Button btnAdmin;
-        private Button btnProfile;
-        private Button btnLeaderboard;
         private Panel panelDisplay;
         private PictureBox pictureBoxLogo;
         private Label lblMainTitle;
         private System.ComponentModel.BackgroundWorker backgroundWorkerClock;
         public Label lblClock;
+        private Panel panel1;
+        private Button btnLogout;
+        private Button btnAdmin;
+        private Button btnProfile;
+        private Button btnLeaderboard;
+        private Button btnQuiz;
+        private Button btnMainMenu;
     }
 }

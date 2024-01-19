@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelLoginBox = new Panel();
+            pictureBoxPasswordVisible = new PictureBox();
             linkLabelRegister = new LinkLabel();
             btnSignIn = new Button();
             textBoxPassword = new TextBox();
@@ -50,6 +51,7 @@
             lblRegister = new Label();
             label1 = new Label();
             panelLoginBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPasswordVisible).BeginInit();
             panelRegister.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,6 +59,7 @@
             // 
             panelLoginBox.Anchor = AnchorStyles.None;
             panelLoginBox.BackColor = Color.FromArgb(0, 106, 125);
+            panelLoginBox.Controls.Add(pictureBoxPasswordVisible);
             panelLoginBox.Controls.Add(linkLabelRegister);
             panelLoginBox.Controls.Add(btnSignIn);
             panelLoginBox.Controls.Add(textBoxPassword);
@@ -66,6 +69,16 @@
             panelLoginBox.Name = "panelLoginBox";
             panelLoginBox.Size = new Size(420, 380);
             panelLoginBox.TabIndex = 0;
+            // 
+            // pictureBoxPasswordVisible
+            // 
+            pictureBoxPasswordVisible.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBoxPasswordVisible.Location = new Point(343, 173);
+            pictureBoxPasswordVisible.Name = "pictureBoxPasswordVisible";
+            pictureBoxPasswordVisible.Size = new Size(38, 28);
+            pictureBoxPasswordVisible.TabIndex = 7;
+            pictureBoxPasswordVisible.TabStop = false;
+            pictureBoxPasswordVisible.Click += pictureBoxPasswordVisible_Click;
             // 
             // linkLabelRegister
             // 
@@ -100,10 +113,10 @@
             textBoxPassword.Location = new Point(78, 169);
             textBoxPassword.MaxLength = 24;
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.PasswordChar = '•';
             textBoxPassword.PlaceholderText = "Password";
             textBoxPassword.Size = new Size(250, 36);
             textBoxPassword.TabIndex = 4;
+            textBoxPassword.KeyPress += textBoxPassword_KeyPress;
             // 
             // textBoxUsername
             // 
@@ -306,14 +319,15 @@
             BackgroundImage = Properties.Images.Login_Graphic;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
-            Controls.Add(panelRegister);
             Controls.Add(label1);
             Controls.Add(panelLoginBox);
+            Controls.Add(panelRegister);
             DoubleBuffered = true;
             Name = "LoginForm";
             Text = "LoginForm";
             panelLoginBox.ResumeLayout(false);
             panelLoginBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPasswordVisible).EndInit();
             panelRegister.ResumeLayout(false);
             panelRegister.PerformLayout();
             ResumeLayout(false);
@@ -343,5 +357,6 @@
         private Button btnRegister;
         private LinkLabel linkLabelSignIn;
         private Label label1;
+        public PictureBox pictureBoxPasswordVisible;
     }
 }

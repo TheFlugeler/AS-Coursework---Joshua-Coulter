@@ -121,11 +121,11 @@
   <data name="Login_Graphic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Login Graphic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Main_menu_graphic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Main menu graphic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Music_Maestro_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Music Maestro Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Play_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

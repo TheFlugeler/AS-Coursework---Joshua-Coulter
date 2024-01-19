@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using System.ComponentModel.Design;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
 using AS_Coursework___Joshua_Coulter.Tools;
@@ -16,28 +8,19 @@ namespace AS_Coursework___Joshua_Coulter;
 
 public partial class QuizForm : Form
 {
-    SoundPlayer player = new SoundPlayer();
-    List<Question> allQuestions = new List<Question>();
-    List<Question> quizQuestions = new List<Question>();
-    string audioToPlay;
-    Question currentQuestion;
-    int questionIndex = 0;
-    double currentScore = 0;
-    Panel currentPanel;
-    Difficulty quizDifficulty;
+    private SoundPlayer player = new SoundPlayer();
+    private List<Question> allQuestions = new List<Question>(CSV.ReadInAllQuestions());
+    private List<Question> quizQuestions = new List<Question>();
+    private string audioToPlay;
+    private Question currentQuestion;
+    private int questionIndex = 0;
+    private double currentScore = 0;
+    private Panel currentPanel;
+    private Difficulty quizDifficulty;
     public QuizForm()
     {
         InitializeComponent();
-        PopulateQuestionList();
         currentPanel = panelQuizMenu;
-    }
-
-    public void PopulateQuestionList()
-    {
-        allQuestions.AddRange(CSV.ReadInTextQuestions());
-        allQuestions.AddRange(CSV.ReadInMultipleChoiceQuestions());
-        allQuestions.AddRange(CSV.ReadInAudioTextQuestions());
-        allQuestions.AddRange(CSV.ReadInAudioMultipleChoiceQuestions());
     }
 
     public void PopulateQuizQuestions(Difficulty diff)
@@ -51,6 +34,8 @@ public partial class QuizForm : Form
     public void DisplayNextQuestion()
     {
         player.Stop();
+        panelMCPic.Visible = false;
+        panelTextPic.Visible = false;
         currentPanel.Visible = false;
         btnPlayAudioMCQ.Visible = false;
         btnPlayAudioTQ.Visible = false;
@@ -71,31 +56,53 @@ public partial class QuizForm : Form
                 lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
                 break;
             case QuestionTypes.MultipleChoice:
-                MultipleChoiceQuestion question1 = (MultipleChoiceQuestion)currentQuestion;
+                MultipleChoiceQuestion questionMC = (MultipleChoiceQuestion)currentQuestion;
                 currentPanel = panelMultipleChoiceQuestion;
-                lblMultipleChoiceQuestion.Text = $"Q: {question1.QuestionText}";
-                btnOption1.Text = question1.Options[0];
-                btnOption2.Text = question1.Options[1];
-                btnOption3.Text = question1.Options[2];
+                lblMultipleChoiceQuestion.Text = $"Q: {questionMC.QuestionText}";
+                btnOption1.Text = questionMC.Options[0];
+                btnOption2.Text = questionMC.Options[1];
+                btnOption3.Text = questionMC.Options[2];
                 break;
             case QuestionTypes.AudioMultipleChoice:
-                AudioMultipleChoiceQuestion question2 = (AudioMultipleChoiceQuestion)currentQuestion;
+                AudioMultipleChoiceQuestion questionAMC = (AudioMultipleChoiceQuestion)currentQuestion;
                 currentPanel = panelMultipleChoiceQuestion;
-                lblMultipleChoiceQuestion.Text = $"Q: {question2.QuestionText}";
+                lblMultipleChoiceQuestion.Text = $"Q: {questionAMC.QuestionText}";
                 btnPlayAudioMCQ.Visible = true;
-                audioToPlay = question2.FilePath;
-                btnOption1.Text = question2.Options[0];
-                btnOption2.Text = question2.Options[1];
-                btnOption3.Text = question2.Options[2];
+                audioToPlay = questionAMC.AudioFile;
+                btnOption1.Text = questionAMC.Options[0];
+                btnOption2.Text = questionAMC.Options[1];
+                btnOption3.Text = questionAMC.Options[2];
                 break;
             case QuestionTypes.AudioText:
-                AudioTextQuestion question3 = (AudioTextQuestion)currentQuestion;
+                AudioTextQuestion questionAT = (AudioTextQuestion)currentQuestion;
                 currentPanel = panelTextQuestion;
                 textBoxTextQuestion.Clear();
                 textBoxTextQuestion.Select();
                 lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
                 btnPlayAudioTQ.Visible = true;
-                audioToPlay = question3.FilePath;
+                audioToPlay = questionAT.AudioFile;
+                break;
+            case QuestionTypes.PictureMultipleChoice:
+                PictureMultipleChoiceQuestion questionPMC = (PictureMultipleChoiceQuestion)currentQuestion;
+                currentPanel = panelMultipleChoiceQuestion;
+                lblMultipleChoiceQuestion.Text = $"Q: {questionPMC.QuestionText}";
+                Bitmap bmp = new Bitmap($"PictureFiles/{questionPMC.PictureFile}");
+                pictureBoxMultipleChoice.Image = bmp;
+                panelMCPic.Visible = true;
+                btnOption1.Text = questionPMC.Options[0];
+                btnOption2.Text = questionPMC.Options[1];
+                btnOption3.Text = questionPMC.Options[2];
+                break;
+            case QuestionTypes.PictureText:
+                PictureTextQuestion questionPT = (PictureTextQuestion)currentQuestion;
+                currentPanel = panelTextQuestion;
+                textBoxTextQuestion.Clear();
+                textBoxTextQuestion.Select();
+                lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+                Bitmap bmp2 = new Bitmap($"PictureFiles/{questionPT.PictureFile}");
+                pictureBoxText.Image = bmp2;
+                panelTextPic.Visible = true;
+                audioToPlay = questionPT.PictureFile;
                 break;
             default:
                 break;

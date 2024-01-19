@@ -73,9 +73,9 @@ namespace AS_Coursework___Joshua_Coulter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Main_menu_graphic {
+        internal static System.Drawing.Bitmap logo {
             get {
-                object obj = ResourceManager.GetObject("Main_menu_graphic", resourceCulture);
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace AS_Coursework___Joshua_Coulter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Music_Maestro_Logo {
+        internal static System.Drawing.Bitmap Main_menu_graphic {
             get {
-                object obj = ResourceManager.GetObject("Music_Maestro_Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("Main_menu_graphic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

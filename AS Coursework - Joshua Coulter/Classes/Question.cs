@@ -14,13 +14,13 @@ public abstract class Question
 
     public QuestionTypes QuestionType { get; set; }
 
-    public Question(string _qtext,Difficulty _difficulty)
+    public Question(string _qtext, Difficulty _diff)
     {
         QuestionText = _qtext;
-        QuestionDifficulty = _difficulty;
+        QuestionDifficulty = _diff;
     }
 
-    public virtual string ToWriteable() => $"{QuestionText},{QuestionDifficulty}";
+    public virtual string ToWriteable() => $"{QuestionText},{(int)QuestionDifficulty}";
 
     public virtual bool CheckAnswer(string answer) => false;
     public virtual bool CheckAnswer(int option) => false;

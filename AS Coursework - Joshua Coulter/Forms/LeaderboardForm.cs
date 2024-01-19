@@ -19,23 +19,33 @@ namespace AS_Coursework___Joshua_Coulter
         int currentUserPosition;
         public LeaderboardForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
             users = CSV.ReadInUsers();
             currentUser = UserTools.FindUserID(users, MainForm.userID);
             users = UserTools.SortUsersHighscore(users);
-            currentUserPosition = UserTools.FindIndex(users, MainForm.userID)+1;
+            currentUserPosition = UserTools.FindIndex(users, MainForm.userID) + 1;
             users = UserTools.TrimList(users, 5);
             PopulateLeaderboard();
         }
 
         void PopulateLeaderboard()
         {
-            textBox1.Text = $"1 - {users[0].Username} - {users[0].HighScore}";
-            textBox2.Text = $"2 - {users[1].Username} - {users[1].HighScore}";
-            textBox3.Text = $"3 - {users[2].Username} - {users[2].HighScore}";
-            textBox4.Text = $"4 - {users[3].Username} - {users[3].HighScore}";
-            textBox5.Text = $"5 - {users[4].Username} - {users[4].HighScore}";
-            textBox6.Text = $"{currentUserPosition} - {currentUser.Username} - {currentUser.HighScore}";
+            textBoxUsername1.Text = " " + users[0].Username;
+            textBoxUsername2.Text = " " + users[1].Username;
+            textBoxUsername3.Text = " " + users[2].Username;
+            textBoxUsername4.Text = " " + users[3].Username;
+            textBoxUsername5.Text = " " + users[4].Username;
+
+            textBoxScore1.Text = " " + Convert.ToString(users[0].HighScore);
+            textBoxScore2.Text = " " + Convert.ToString(users[1].HighScore);
+            textBoxScore3.Text = " " + Convert.ToString(users[2].HighScore);
+            textBoxScore4.Text = " " + Convert.ToString(users[3].HighScore);
+            textBoxScore5.Text = " " + Convert.ToString(users[4].HighScore);
+
+            textBoxRankUser.Text = " " + Convert.ToString(currentUserPosition);
+            textBoxScoreUser.Text = " " + Convert.ToString(currentUser.HighScore);
+            textBoxUsernameUser.Text = " " + currentUser.Username;
         }
+
     }
 }
