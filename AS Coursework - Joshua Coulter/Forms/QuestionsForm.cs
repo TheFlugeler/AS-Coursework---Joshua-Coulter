@@ -1,6 +1,6 @@
 ﻿using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
-using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.AllTools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,9 +52,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
             if (radioButtonAddTextQuestion.Checked)
             {
                 TextQuestion temp = new TextQuestion(richTextBoxAddQuestionText.Text, diff, textBoxAddTextAnswer.Text);
-                List<Question> questions = new List<Question>(CSV.ReadInQuestions(QuestionTypes.Text));
-                questions.Add(temp);
-                CSV.WriteQuestionsList(questions, QuestionTypes.Text);
+                temp.WriteQuestion();
                 MessageBox.Show("Text Question Successfully Added");
                 (MasterForm.DisplayedForm as MainForm)!.DisplayForm(new AdminForm());
                 Close();
@@ -67,9 +65,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
                 if (radioButtonAddOption2.Checked) answer = 2;
                 if (radioButtonAddOption3.Checked) answer = 3;
                 MultipleChoiceQuestion temp = new MultipleChoiceQuestion(richTextBoxAddQuestionText.Text, diff, options, answer);
-                List<Question> questions = new List<Question>(CSV.ReadInQuestions(QuestionTypes.MultipleChoice));
-                questions.Add(temp);
-                CSV.WriteQuestionsList(questions, QuestionTypes.MultipleChoice);
+                temp.WriteQuestion();
                 MessageBox.Show("Text Question Successfully Added");
                 (MasterForm.DisplayedForm as MainForm)!.DisplayForm(new AdminForm());
                 Close();
@@ -100,7 +96,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
         {
             type = _type;
             listBoxViewQuestions.Items.Clear();
-            questions = new List<Question>(CSV.ReadInQuestions(type));
+            questions = new(CSV.ReadInQuestions(type));
             foreach (Question question in questions)
             {
                 listBoxViewQuestions.Items.Add(question.QuestionText);
@@ -130,8 +126,9 @@ namespace AS_Coursework___Joshua_Coulter.Forms
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            if (listBoxViewQuestions.SelectedIndex < 0) return;
             questions.RemoveAt(listBoxViewQuestions.SelectedIndex);
-            CSV.WriteQuestionsList(questions, type);
+            questions.WriteQuestionsList();
             questions = CSV.ReadInQuestions(type);
             PopulateList(type);
         }
@@ -201,9 +198,10 @@ namespace AS_Coursework___Joshua_Coulter.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (listBoxViewQuestions.SelectedIndex < 0) return;
             SetEditMode(questions[listBoxViewQuestions.SelectedIndex]);
             questions.RemoveAt(listBoxViewQuestions.SelectedIndex);
-            CSV.WriteQuestionsList(questions, type);
+            questions.WriteQuestionsList();
             questions = CSV.ReadInQuestions(type);
         }
     }

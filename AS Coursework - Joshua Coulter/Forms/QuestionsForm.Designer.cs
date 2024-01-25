@@ -67,6 +67,7 @@
             panelAddTextAnswer = new Panel();
             textBoxAddTextAnswer = new TextBox();
             labelQuestionAnswer = new Label();
+            radioButton1 = new RadioButton();
             panelEditDelete.SuspendLayout();
             panelPickQuestionType.SuspendLayout();
             panelAdd.SuspendLayout();
@@ -386,7 +387,7 @@
             panelAddQuestionText.Controls.Add(richTextBoxAddQuestionText);
             panelAddQuestionText.Location = new Point(316, 104);
             panelAddQuestionText.Name = "panelAddQuestionText";
-            panelAddQuestionText.Size = new Size(388, 162);
+            panelAddQuestionText.Size = new Size(388, 170);
             panelAddQuestionText.TabIndex = 2;
             panelAddQuestionText.Visible = false;
             // 
@@ -411,18 +412,19 @@
             // panelAddQuestionType
             // 
             panelAddQuestionType.BackColor = Color.FromArgb(0, 106, 125);
+            panelAddQuestionType.Controls.Add(radioButton1);
             panelAddQuestionType.Controls.Add(radioButtonAddMCQuestion);
             panelAddQuestionType.Controls.Add(radioButtonAddTextQuestion);
             panelAddQuestionType.Controls.Add(labelAddQuestionType);
             panelAddQuestionType.Location = new Point(35, 104);
             panelAddQuestionType.Name = "panelAddQuestionType";
-            panelAddQuestionType.Size = new Size(243, 162);
+            panelAddQuestionType.Size = new Size(243, 170);
             panelAddQuestionType.TabIndex = 1;
             // 
             // radioButtonAddMCQuestion
             // 
             radioButtonAddMCQuestion.AutoSize = true;
-            radioButtonAddMCQuestion.Location = new Point(22, 101);
+            radioButtonAddMCQuestion.Location = new Point(22, 95);
             radioButtonAddMCQuestion.Name = "radioButtonAddMCQuestion";
             radioButtonAddMCQuestion.Size = new Size(197, 24);
             radioButtonAddMCQuestion.TabIndex = 2;
@@ -491,14 +493,25 @@
             labelQuestionAnswer.TabIndex = 2;
             labelQuestionAnswer.Text = "Question answer";
             // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(22, 130);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(134, 24);
+            radioButton1.TabIndex = 3;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Match Question";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
             // QuestionsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
-            Controls.Add(panelEditDelete);
             Controls.Add(panelAdd);
+            Controls.Add(panelEditDelete);
             Name = "QuestionsForm";
             Text = "QuestionsForm";
             panelEditDelete.ResumeLayout(false);
@@ -565,5 +578,6 @@
         private Label labelPickTypeView;
         private Label labelViewQuestionsTitle;
         private ListBox listBoxViewQuestions;
+        private RadioButton radioButton1;
     }
 }

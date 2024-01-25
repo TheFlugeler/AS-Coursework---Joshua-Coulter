@@ -73,9 +73,10 @@
             // pictureBoxPasswordVisible
             // 
             pictureBoxPasswordVisible.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBoxPasswordVisible.Location = new Point(343, 173);
+            pictureBoxPasswordVisible.Location = new Point(333, 173);
             pictureBoxPasswordVisible.Name = "pictureBoxPasswordVisible";
-            pictureBoxPasswordVisible.Size = new Size(38, 28);
+            pictureBoxPasswordVisible.Size = new Size(33, 28);
+            pictureBoxPasswordVisible.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxPasswordVisible.TabIndex = 7;
             pictureBoxPasswordVisible.TabStop = false;
             pictureBoxPasswordVisible.Click += pictureBoxPasswordVisible_Click;

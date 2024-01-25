@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.AllTools;
 
 namespace AS_Coursework___Joshua_Coulter
 {
@@ -21,10 +21,10 @@ namespace AS_Coursework___Joshua_Coulter
         {
             InitializeComponent();
             users = CSV.ReadInUsers();
-            currentUser = UserTools.FindUserID(users, MainForm.userID);
-            users = UserTools.SortUsersHighscore(users);
-            currentUserPosition = UserTools.FindIndex(users, MainForm.userID) + 1;
-            users = UserTools.TrimList(users, 5);
+            currentUser = users.FindUserID(MainForm.userID);
+            users.SortUsersHighscore();
+            currentUserPosition = users.FindIndex(MainForm.userID) + 1;
+            users.TrimList(5);
             PopulateLeaderboard();
         }
 

@@ -13,5 +13,6 @@ public enum QuestionTypes
     AudioMultipleChoice,
     AudioText,
     PictureMultipleChoice,
-    PictureText
+    PictureText,
+    Match
 }

@@ -24,4 +24,5 @@ public abstract class Question
 
     public virtual bool CheckAnswer(string answer) => false;
     public virtual bool CheckAnswer(int option) => false;
+    public virtual int CheckAnswer(string[] answer) => 0;
 }

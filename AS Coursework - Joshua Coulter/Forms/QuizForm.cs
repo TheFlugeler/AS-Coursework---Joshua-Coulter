@@ -1,22 +1,27 @@
 ﻿using System.ComponentModel.Design;
 using System.Media;
+using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
-using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.AllTools;
 
 namespace AS_Coursework___Joshua_Coulter;
 
 public partial class QuizForm : Form
 {
-    private SoundPlayer player = new SoundPlayer();
-    private List<Question> allQuestions = new List<Question>(CSV.ReadInAllQuestions());
-    private List<Question> quizQuestions = new List<Question>();
-    private string audioToPlay;
-    private Question currentQuestion;
+    private SoundPlayer player = new();
+    private List<Question> quizQuestions = new(CSV.ReadInAllQuestions());
+    private string audioToPlay = "";
+    private Question currentQuestion = null!;
     private int questionIndex = 0;
     private double currentScore = 0;
     private Panel currentPanel;
     private Difficulty quizDifficulty;
+    private int picMaxX = 580;
+    private int picMaxY = 210;
+    private int picMinX = 360;
+    private int picMinY = 180;
+
     public QuizForm()
     {
         InitializeComponent();
@@ -25,9 +30,9 @@ public partial class QuizForm : Form
 
     public void PopulateQuizQuestions(Difficulty diff)
     {
-        quizQuestions = QuestionTools.ReturnDifficulty(allQuestions, diff);
-        quizQuestions = QuestionTools.TrimList(quizQuestions);
-        quizQuestions = QuestionTools.ShuffleList(quizQuestions);
+        quizQuestions.ReturnDifficulty(diff);
+        quizQuestions.Shuffle();
+        quizQuestions.TrimList(10);        
         quizDifficulty = diff;
     }
 
@@ -50,64 +55,27 @@ public partial class QuizForm : Form
         switch (currentQuestion.QuestionType)
         {
             case QuestionTypes.Text:
-                currentPanel = panelTextQuestion;
-                textBoxTextQuestion.Clear();
-                textBoxTextQuestion.Select();
-                lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+                DisplayTextQuestion();
                 break;
             case QuestionTypes.MultipleChoice:
-                MultipleChoiceQuestion questionMC = (MultipleChoiceQuestion)currentQuestion;
-                currentPanel = panelMultipleChoiceQuestion;
-                lblMultipleChoiceQuestion.Text = $"Q: {questionMC.QuestionText}";
-                btnOption1.Text = questionMC.Options[0];
-                btnOption2.Text = questionMC.Options[1];
-                btnOption3.Text = questionMC.Options[2];
+                DisplayMultipleChoiceQuestion();
                 break;
             case QuestionTypes.AudioMultipleChoice:
-                AudioMultipleChoiceQuestion questionAMC = (AudioMultipleChoiceQuestion)currentQuestion;
-                currentPanel = panelMultipleChoiceQuestion;
-                lblMultipleChoiceQuestion.Text = $"Q: {questionAMC.QuestionText}";
-                btnPlayAudioMCQ.Visible = true;
-                audioToPlay = questionAMC.AudioFile;
-                btnOption1.Text = questionAMC.Options[0];
-                btnOption2.Text = questionAMC.Options[1];
-                btnOption3.Text = questionAMC.Options[2];
+                DisplayAudioMultipleChoiceQuestion();
                 break;
             case QuestionTypes.AudioText:
-                AudioTextQuestion questionAT = (AudioTextQuestion)currentQuestion;
-                currentPanel = panelTextQuestion;
-                textBoxTextQuestion.Clear();
-                textBoxTextQuestion.Select();
-                lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
-                btnPlayAudioTQ.Visible = true;
-                audioToPlay = questionAT.AudioFile;
+                DisplayAudioTextQuestion();
                 break;
             case QuestionTypes.PictureMultipleChoice:
-                PictureMultipleChoiceQuestion questionPMC = (PictureMultipleChoiceQuestion)currentQuestion;
-                currentPanel = panelMultipleChoiceQuestion;
-                lblMultipleChoiceQuestion.Text = $"Q: {questionPMC.QuestionText}";
-                Bitmap bmp = new Bitmap($"PictureFiles/{questionPMC.PictureFile}");
-                pictureBoxMultipleChoice.Image = bmp;
-                panelMCPic.Visible = true;
-                btnOption1.Text = questionPMC.Options[0];
-                btnOption2.Text = questionPMC.Options[1];
-                btnOption3.Text = questionPMC.Options[2];
+                DisplayPictureMultipleChoiceQuestion();
                 break;
             case QuestionTypes.PictureText:
-                PictureTextQuestion questionPT = (PictureTextQuestion)currentQuestion;
-                currentPanel = panelTextQuestion;
-                textBoxTextQuestion.Clear();
-                textBoxTextQuestion.Select();
-                lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
-                Bitmap bmp2 = new Bitmap($"PictureFiles/{questionPT.PictureFile}");
-                pictureBoxText.Image = bmp2;
-                panelTextPic.Visible = true;
-                audioToPlay = questionPT.PictureFile;
+                DisplayPictureTextQuestion();
                 break;
-            default:
+            case QuestionTypes.Match:
+                DisplayMatchQuestion();
                 break;
         }
-
         currentPanel.Visible = true;
         questionIndex++;
     }
@@ -132,16 +100,14 @@ public partial class QuizForm : Form
         lblQuizEndScreen.Text = $"Congratulations, you finished the quiz with a score of: {currentScore}";
 
         List<User> users = CSV.ReadInUsers();
-        User user = UserTools.FindUserID(users, MainForm.userID);
+        User user = users.FindUserID(MainForm.userID);
         if (user.HighScore < currentScore)
         {
             user.HighScore = currentScore;
-            users = UserTools.RemoveUserID(users, MainForm.userID);
+            users.RemoveUserID(MainForm.userID);
             users.Add(user);
-            CSV.WriteUserList(users);
+            users.WriteUserList();
         }
-
-        return;
     }
 
     private void btnQuizEasy_Click(object sender, EventArgs e)
@@ -188,7 +154,7 @@ public partial class QuizForm : Form
 
     private void PlayAudio()
     {
-        player = new SoundPlayer("AudioFiles/" + audioToPlay);
+        player = new("AudioFiles/" + audioToPlay);
         try { player.Play(); }
         catch (Exception e)
         {
@@ -198,4 +164,140 @@ public partial class QuizForm : Form
     }
 
     private void QuizForm_FormClosing(object sender, FormClosingEventArgs e) => player.Dispose();
+
+    private void DisplayTextQuestion()
+    {
+        currentPanel = panelTextQuestion;
+        textBoxTextQuestion.Clear();
+        textBoxTextQuestion.Select();
+        lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+    }
+
+    private void DisplayMultipleChoiceQuestion()
+    {
+        MultipleChoiceQuestion question = (MultipleChoiceQuestion)currentQuestion;
+        currentPanel = panelMultipleChoiceQuestion;
+        lblMultipleChoiceQuestion.Text = $"Q: {question.QuestionText}";
+        btnOption1.Text = question.Options[0];
+        btnOption2.Text = question.Options[1];
+        btnOption3.Text = question.Options[2];
+    }
+
+    private void DisplayAudioMultipleChoiceQuestion()
+    {
+        AudioMultipleChoiceQuestion question = (AudioMultipleChoiceQuestion)currentQuestion;
+        currentPanel = panelMultipleChoiceQuestion;
+        lblMultipleChoiceQuestion.Text = $"Q: {question.QuestionText}";
+        btnPlayAudioMCQ.Visible = true;
+        audioToPlay = question.AudioFile;
+        btnOption1.Text = question.Options[0];
+        btnOption2.Text = question.Options[1];
+        btnOption3.Text = question.Options[2];
+    }
+
+    private void DisplayAudioTextQuestion()
+    {
+        AudioTextQuestion question = (AudioTextQuestion)currentQuestion;
+        currentPanel = panelTextQuestion;
+        textBoxTextQuestion.Clear();
+        textBoxTextQuestion.Select();
+        lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+        btnPlayAudioTQ.Visible = true;
+        audioToPlay = question.AudioFile;
+    }
+
+    private void DisplayPictureMultipleChoiceQuestion()
+    {
+        PictureMultipleChoiceQuestion question = (PictureMultipleChoiceQuestion)currentQuestion; //NOT BREAKING BUT NOT WORKING
+        currentPanel = panelMultipleChoiceQuestion;
+        lblMultipleChoiceQuestion.Text = $"Q: {question.QuestionText}";
+        Bitmap bmp = new($"PictureFiles/{question.PictureFile}");
+        Tools.ResizePicPanel(pictureBoxMultipleChoice, bmp, picMaxX, picMaxY, picMinX, picMinY);
+        panelMCPic.Center();
+        pictureBoxMultipleChoice.Image = bmp;
+        panelMCPic.Visible = true;
+        btnOption1.Text = question.Options[0];
+        btnOption2.Text = question.Options[1];
+        btnOption3.Text = question.Options[2];
+    }
+
+    private void DisplayPictureTextQuestion()
+    {
+        PictureTextQuestion question = (PictureTextQuestion)currentQuestion;
+        currentPanel = panelTextQuestion;
+        textBoxTextQuestion.Clear();
+        textBoxTextQuestion.Select();
+        lblTextQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+        Bitmap bmp = new($"PictureFiles/{question.PictureFile}");
+        Tools.ResizePicPanel(pictureBoxText, bmp, picMaxX, picMaxY, picMinX, picMinY);
+        panelTextPic.Center();
+        pictureBoxText.Image = bmp;
+        panelTextPic.Visible = true;
+    }
+
+    private void DisplayMatchQuestion()
+    {
+        MatchQuestion question = (MatchQuestion)currentQuestion;
+        currentPanel = panelMatchQuestion;
+        labelMatchQuestion.Text = $"Q: {currentQuestion.QuestionText}";
+        ComboBox[] leftBoxes = new ComboBox[4] { comboBoxLeft1, comboBoxLeft2, comboBoxLeft3, comboBoxLeft4 };
+        ComboBox[] rightBoxes = new ComboBox[4] { comboBoxRight1, comboBoxRight2, comboBoxRight3, comboBoxRight4 };
+        string[] leftOptions = new string[4];
+        string[] rightOptions = new string[4];
+
+        for (int i = 0; i < question.Answers.Length; i++)
+        {
+            string[] temp = question.Answers[i].Split('/');
+            leftOptions[i] = temp[0];
+            rightOptions[i] = temp[1];
+        }
+
+        leftOptions.Shuffle();
+        rightOptions.Shuffle();
+
+        foreach (ComboBox cbox in leftBoxes)
+        {
+            cbox.Items.AddRange(leftOptions);
+        }
+        foreach (ComboBox cbox in rightBoxes)
+        {
+            cbox.Items.AddRange(rightOptions);
+        }
+    }
+
+    private void btnSubmitMatch_Click(object sender, EventArgs e)
+    {
+        ComboBox[] leftBoxes = new ComboBox[4] { comboBoxLeft1, comboBoxLeft2, comboBoxLeft3, comboBoxLeft4 };
+        ComboBox[] rightBoxes = new ComboBox[4] { comboBoxRight1, comboBoxRight2, comboBoxRight3, comboBoxRight4 };
+        for (int i = 0; i < 4; i++)
+        {
+            if ((leftBoxes[i].SelectedIndex == -1) || (rightBoxes[i].SelectedIndex == -1))
+            {
+                MessageBox.Show("All options must be filled", "Error");
+                return;
+            }
+        }
+
+        foreach (ComboBox cbox in leftBoxes)
+        {
+            int doubles = 0;
+            foreach (ComboBox cbox2 in leftBoxes)
+            {
+                if (cbox.SelectedIndex == cbox2.SelectedIndex) doubles++;
+            }
+            if (doubles > 1)
+            {
+                MessageBox.Show("Each answer must be unique", "Error");
+                return;
+            }
+        }
+
+        string[] answers = new string[4];
+        for (int i = 0; i < 4; i++)
+        {
+            answers[i] = leftBoxes[i].Text + "/" + rightBoxes[i].Text;
+        }
+        currentScore += currentQuestion.CheckAnswer(answers);
+        DisplayNextQuestion();
+    }
 }

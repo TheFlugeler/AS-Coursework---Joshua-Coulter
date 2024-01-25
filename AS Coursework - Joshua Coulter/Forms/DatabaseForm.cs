@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.AllTools;
 
 namespace AS_Coursework___Joshua_Coulter.Forms
 {
@@ -28,7 +28,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
         {
             if (dataGridViewUsers.SelectedRows.Count <= 0) return;
             List<User> users = CSV.ReadInUsers();
-            User user = UserTools.FindUserID(users, MainForm.userID);
+            User user = users.FindUserID(MainForm.userID);
             if (dataGridViewUsers.SelectedRows[0].Cells[0].Value.ToString() == user.Username)
             {
                 MessageBox.Show("Cannot delete current user","Error");
@@ -48,8 +48,8 @@ namespace AS_Coursework___Joshua_Coulter.Forms
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             List<User> newUsers = new List<User>(usersBL);
-            if (!UserTools.VerifyList(newUsers)) return;
-            CSV.WriteUserList(newUsers);
+            if (!newUsers.VerifyList()) return;
+            newUsers.WriteUserList();
             btnRevert_Click(sender, e);
             MessageBox.Show("Data Saved Successfully", "Data");
         }

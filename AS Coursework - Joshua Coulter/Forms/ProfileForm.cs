@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.AllTools;
 
 namespace AS_Coursework___Joshua_Coulter
 {
@@ -20,7 +20,7 @@ namespace AS_Coursework___Joshua_Coulter
         {
             InitializeComponent();
             allUsers = CSV.ReadInUsers();
-            currentUser = UserTools.FindUserID(allUsers, MainForm.userID);
+            currentUser = allUsers.FindUserID(MainForm.userID);
             FillDetails();
         }
 
@@ -64,7 +64,7 @@ namespace AS_Coursework___Joshua_Coulter
 
         private void btnProfileUpdate_Click(object sender, EventArgs e)
         {
-            string[] details = new string[4];
+            string[] details = new string[5];
             details[0] = textBoxEditUsername.Text;
             details[1] = textBoxEditPassword.Text;
             details[2] = dateTimePickerEditDOB.Value.ToShortDateString();
@@ -74,7 +74,7 @@ namespace AS_Coursework___Joshua_Coulter
             else details[3] = "";
             details[4] = Convert.ToString(MainForm.userID);
 
-            if (!UserTools.CheckProperties(details))
+            if (!details.CheckUser(false))
             {
                 MessageBox.Show("Invalid details entered", "Error");
                 return;
@@ -85,9 +85,9 @@ namespace AS_Coursework___Joshua_Coulter
             currentUser.DOB = Convert.ToDateTime(details[2]);
             currentUser.Gender = details[3];
 
-            allUsers = UserTools.RemoveUserID(allUsers, currentUser.ID);
+            allUsers.RemoveUserID(currentUser.ID);
             allUsers.Add(currentUser);
-            CSV.WriteUserList(allUsers);
+            allUsers.WriteUserList();
 
             panelEditProfile.Visible = false;
             panelProfileDisplay.Visible = true;

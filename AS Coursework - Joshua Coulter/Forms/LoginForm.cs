@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.Tools;
+using AS_Coursework___Joshua_Coulter.AllTools;
 
 namespace AS_Coursework___Joshua_Coulter;
 
@@ -21,7 +21,7 @@ public partial class LoginForm : Form
         InitializeComponent();
         users = CSV.ReadInUsers();
         panelLoginBox.Show();
-        panelRegister.Hide();
+        panelRegister.Hide();       
         textBoxPassword.PasswordChar = '•';
         pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
         passwordVisible = false;
@@ -34,7 +34,7 @@ public partial class LoginForm : Form
         {
             if (user.Username == textBoxUsername.Text && user.Password == textBoxPassword.Text)
             {
-                (ActiveForm as MasterForm).DisplayForm(new MainForm(user.ID, user.IsAdmin));
+                (ActiveForm as MasterForm)!.DisplayForm(new MainForm(user.ID, user.IsAdmin));
                 return;
             }
             index++;
@@ -44,7 +44,6 @@ public partial class LoginForm : Form
 
     private void btnRegister_Click(object sender, EventArgs e)
     {
-        User NewUser;
         string[] details = new string[4];
         details[0] = textBoxRegisterUsername.Text;
         details[1] = textBoxRegisterPassword.Text;
@@ -54,16 +53,15 @@ public partial class LoginForm : Form
         else if (radioButtonOther.Checked) details[3] = "Other";
         else details[3] = "";
 
-        if (!UserTools.CheckProperties(details))
+        if (!details.CheckUser(true))
         {
             ThrowError("Invalid User Details Entered");
             return;
         }
-        int id = UserTools.GenerateID();
+        int id = Tools.GenerateID();
 
-        NewUser = new User(details[0], details[1], 0, Convert.ToDateTime(details[2]), details[3], false, id);
+        new User(details[0], details[1], 0, Convert.ToDateTime(details[2]), details[3], false, id).WriteUser();
 
-        CSV.AddUser(NewUser);
         users = CSV.ReadInUsers();
 
         panelRegister.Visible = false;
