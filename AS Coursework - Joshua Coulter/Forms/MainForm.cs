@@ -4,7 +4,9 @@ namespace AS_Coursework___Joshua_Coulter;
 
 public partial class MainForm : Form
 {
-    private Form DisplayedForm = null;
+    //This is the Main form for the entire program and all subsequent forms are displayed within it
+
+    private Form DisplayedForm;
     public static int userID;
 
     public MainForm(int id, bool isAdmin)
@@ -15,6 +17,7 @@ public partial class MainForm : Form
         backgroundWorkerClock.RunWorkerAsync();
     }
 
+    //This is the same method as in the master form
     public void DisplayForm(Form form)
     {
         if (DisplayedForm != null) DisplayedForm.Close();
@@ -62,6 +65,7 @@ public partial class MainForm : Form
 
     //=======================================================
 
+    //This background worker keeps the clock going every half second
     private void backgroundWorkerClock_DoWork(object sender, DoWorkEventArgs e)
     {
         while (true)

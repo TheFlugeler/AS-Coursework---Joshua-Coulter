@@ -1,10 +1,20 @@
 ﻿using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
 
-namespace AS_Coursework___Joshua_Coulter.AllTools;
+namespace AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 public static class Tools
 {
+    //
+    //This is the generic tools static class for the program
+    //It contains all types of useful methods for different parts of the program
+    //For form controls it can center controls and resize pictures for the picture questions
+    //For questions it can filter a list of questions by difficulty
+    //For users it can sort a list by highscore, validate user details, generate user IDs and find or remove users from a list by user ID 
+    //For general uses it contains a shuffle method for both arrays and lists and a trim method to shorten lists
+    //
+
+
     private static Random rand = new();
     public static void Center<T>(this T control) where T : Control
     {
@@ -57,10 +67,7 @@ public static class Tools
             if (question.QuestionDifficulty == diff) result.Add(question);
         }
         questions.Clear();
-        foreach (Question question in result)
-        {
-            questions.Add(question);
-        }
+        foreach (Question question in result) questions.Add(question);
     }
 
     public static void Shuffle<T>(this List<T> list)
@@ -134,10 +141,7 @@ public static class Tools
             users.Remove(highestuser);
         }
         users.Clear();
-        foreach (User user in newlist)
-        {
-            users.Add(user);
-        }
+        foreach (User user in newlist) users.Add(user);
     }
 
     public static void TrimList<T>(this List<T> users, int amount)
@@ -242,5 +246,13 @@ public static class Tools
 
         }
         return true;
+    }
+
+    public static void RemoveAdmins(this List<User> users)
+    {
+        List<User> newlist = new();
+        foreach (User user in users) if(!user.IsAdmin) newlist.Add(user);
+        users.Clear();
+        foreach (User user in newlist) users.Add(user);
     }
 }

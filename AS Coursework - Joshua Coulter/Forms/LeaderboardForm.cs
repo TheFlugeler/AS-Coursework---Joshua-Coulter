@@ -8,23 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.AllTools;
+using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 namespace AS_Coursework___Joshua_Coulter
 {
     public partial class LeaderboardForm : Form
     {
-        List<User> users = new List<User>();
+        //This form shows the top 5 users by highscore and the current users placement overall
+        List<User> users = new(CSV.ReadInUsers());
         User currentUser;
         int currentUserPosition;
         public LeaderboardForm()
         {
             InitializeComponent();
-            users = CSV.ReadInUsers();
             currentUser = users.FindUserID(MainForm.userID);
+            users.RemoveAdmins();
             users.SortUsersHighscore();
-            currentUserPosition = users.FindIndex(MainForm.userID) + 1;
-            users.TrimList(5);
+            
+            if (!currentUser.IsAdmin) currentUserPosition = users.FindIndex(MainForm.userID) + 1;
+
             PopulateLeaderboard();
         }
 
@@ -42,7 +44,9 @@ namespace AS_Coursework___Joshua_Coulter
             textBoxScore4.Text = " " + Convert.ToString(users[3].HighScore);
             textBoxScore5.Text = " " + Convert.ToString(users[4].HighScore);
 
-            textBoxRankUser.Text = " " + Convert.ToString(currentUserPosition);
+            if (currentUser.IsAdmin) textBoxRankUser.Text = " N/A";
+            else textBoxRankUser.Text = " " + Convert.ToString(currentUserPosition);
+
             textBoxScoreUser.Text = " " + Convert.ToString(currentUser.HighScore);
             textBoxUsernameUser.Text = " " + currentUser.Username;
         }

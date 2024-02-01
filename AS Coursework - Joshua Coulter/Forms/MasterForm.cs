@@ -2,6 +2,8 @@ namespace AS_Coursework___Joshua_Coulter
 {
     public partial class MasterForm : Form
     {
+        //This is the base form that holds the other forms
+        
         public static Form DisplayedForm = null;
         public MasterForm()
         {
@@ -9,6 +11,7 @@ namespace AS_Coursework___Joshua_Coulter
             DisplayForm(new LoginForm());
         }
 
+        //This method is used in multiple forms to display a form within a panel in a parent form
         public void DisplayForm(Form form)
         {
             if (DisplayedForm != null) DisplayedForm.Close();

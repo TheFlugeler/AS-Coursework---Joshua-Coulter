@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AS_Coursework___Joshua_Coulter.Classes
 {
+    //
+    //This question is the same as the multiple choice question but it holds a picture file as well
+    //
     public class PictureMultipleChoiceQuestion : MultipleChoiceQuestion
     {
         public string PictureFile {  get; set; }
@@ -16,6 +19,7 @@ namespace AS_Coursework___Joshua_Coulter.Classes
             QuestionType = QuestionTypes.PictureMultipleChoice;
         }
 
+        //The file path of the picture file is the only extra information needed
         public override string ToWriteable() => base.ToWriteable() + $",{PictureFile}";
     }
 }

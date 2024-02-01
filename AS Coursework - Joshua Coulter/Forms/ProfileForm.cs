@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.AllTools;
+using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 namespace AS_Coursework___Joshua_Coulter
 {
+    //This form provides the facility to view and edit your profile
     public partial class ProfileForm : Form
     {
         User currentUser;
-        List<User> allUsers = new List<User>();
+        List<User> allUsers = new(CSV.ReadInUsers());
         public ProfileForm()
         {
             InitializeComponent();
-            allUsers = CSV.ReadInUsers();
             currentUser = allUsers.FindUserID(MainForm.userID);
             FillDetails();
         }
@@ -62,6 +62,7 @@ namespace AS_Coursework___Joshua_Coulter
             dateTimePickerEditDOB.Value = currentUser.DOB;
         }
 
+        //This method validates the new details for the user and then removes the old details and writes the new details
         private void btnProfileUpdate_Click(object sender, EventArgs e)
         {
             string[] details = new string[5];

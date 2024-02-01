@@ -129,6 +129,7 @@
             textBoxUsername.PlaceholderText = "Username";
             textBoxUsername.Size = new Size(250, 36);
             textBoxUsername.TabIndex = 2;
+            textBoxUsername.KeyPress += textBoxUsername_KeyPress;
             // 
             // lblLoginSubTitle
             // 

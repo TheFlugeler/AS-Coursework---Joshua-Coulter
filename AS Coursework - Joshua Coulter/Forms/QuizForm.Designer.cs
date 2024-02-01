@@ -208,6 +208,7 @@
             textBoxTextQuestion.Name = "textBoxTextQuestion";
             textBoxTextQuestion.Size = new Size(643, 41);
             textBoxTextQuestion.TabIndex = 1;
+            textBoxTextQuestion.KeyPress += textBoxTextQuestion_KeyPress;
             // 
             // lblTextQuestion
             // 

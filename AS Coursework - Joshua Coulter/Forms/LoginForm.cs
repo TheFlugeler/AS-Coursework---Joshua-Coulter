@@ -8,20 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.AllTools;
+using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 namespace AS_Coursework___Joshua_Coulter;
 
 public partial class LoginForm : Form
 {
-    List<User> users = new List<User>();
+    //This Form contains all the controls to login or register
+
+    List<User> users = new List<User>(CSV.ReadInUsers());
     bool passwordVisible;
     public LoginForm()
     {
         InitializeComponent();
-        users = CSV.ReadInUsers();
         panelLoginBox.Show();
-        panelRegister.Hide();       
+        panelRegister.Hide();
         textBoxPassword.PasswordChar = '•';
         pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
         passwordVisible = false;
@@ -42,6 +43,7 @@ public partial class LoginForm : Form
         ThrowError("Invalid Log In Details");
     }
 
+    //This method validates a new users details and appends the user to the file
     private void btnRegister_Click(object sender, EventArgs e)
     {
         string[] details = new string[4];
@@ -110,4 +112,6 @@ public partial class LoginForm : Form
             pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/show.png");
         }
     }
+
+    private void textBoxUsername_KeyPress(object sender, KeyPressEventArgs e) { if (e.KeyChar == 13) textBoxPassword.Select(); }
 }

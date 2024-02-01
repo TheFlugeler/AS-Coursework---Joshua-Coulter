@@ -3,12 +3,15 @@ using System.Media;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
-using AS_Coursework___Joshua_Coulter.AllTools;
+using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 namespace AS_Coursework___Joshua_Coulter;
 
 public partial class QuizForm : Form
 {
+    //This is the form that the quiz is displayed in
+    //Each question has an individual panel
+
     private SoundPlayer player = new();
     private List<Question> quizQuestions = new(CSV.ReadInAllQuestions());
     private string audioToPlay = "";
@@ -32,52 +35,8 @@ public partial class QuizForm : Form
     {
         quizQuestions.ReturnDifficulty(diff);
         quizQuestions.Shuffle();
-        quizQuestions.TrimList(10);        
+        quizQuestions.TrimList(10);
         quizDifficulty = diff;
-    }
-
-    public void DisplayNextQuestion()
-    {
-        player.Stop();
-        panelMCPic.Visible = false;
-        panelTextPic.Visible = false;
-        currentPanel.Visible = false;
-        btnPlayAudioMCQ.Visible = false;
-        btnPlayAudioTQ.Visible = false;
-        if (questionIndex >= quizQuestions.Count)
-        {
-            EndQuiz();
-            return;
-        }
-
-        lblQuizTitle.Text = $"Question #{questionIndex + 1}";
-        currentQuestion = quizQuestions[questionIndex];
-        switch (currentQuestion.QuestionType)
-        {
-            case QuestionTypes.Text:
-                DisplayTextQuestion();
-                break;
-            case QuestionTypes.MultipleChoice:
-                DisplayMultipleChoiceQuestion();
-                break;
-            case QuestionTypes.AudioMultipleChoice:
-                DisplayAudioMultipleChoiceQuestion();
-                break;
-            case QuestionTypes.AudioText:
-                DisplayAudioTextQuestion();
-                break;
-            case QuestionTypes.PictureMultipleChoice:
-                DisplayPictureMultipleChoiceQuestion();
-                break;
-            case QuestionTypes.PictureText:
-                DisplayPictureTextQuestion();
-                break;
-            case QuestionTypes.Match:
-                DisplayMatchQuestion();
-                break;
-        }
-        currentPanel.Visible = true;
-        questionIndex++;
     }
 
     private void EndQuiz()
@@ -128,6 +87,9 @@ public partial class QuizForm : Form
         DisplayNextQuestion();
     }
 
+
+    #region CheckQuestion
+
     private void btnSubmitTextQuestion_Click(object sender, EventArgs e)
     {
         if (currentQuestion.CheckAnswer(textBoxTextQuestion.Text)) currentScore++;
@@ -145,9 +107,46 @@ public partial class QuizForm : Form
         if (currentQuestion.CheckAnswer(choice)) currentScore++;
         DisplayNextQuestion();
     }
+    private void btnSubmitMatch_Click(object sender, EventArgs e)
+    {
+        ComboBox[] leftBoxes = new ComboBox[4] { comboBoxLeft1, comboBoxLeft2, comboBoxLeft3, comboBoxLeft4 };
+        ComboBox[] rightBoxes = new ComboBox[4] { comboBoxRight1, comboBoxRight2, comboBoxRight3, comboBoxRight4 };
+        for (int i = 0; i < 4; i++)
+        {
+            if ((leftBoxes[i].SelectedIndex == -1) || (rightBoxes[i].SelectedIndex == -1))
+            {
+                MessageBox.Show("All options must be filled", "Error");
+                return;
+            }
+        }
 
-    private void btnQuizEndScreen_Click(object sender, EventArgs e) => Close();
+        foreach (ComboBox cbox in leftBoxes)
+        {
+            int doubles = 0;
+            foreach (ComboBox cbox2 in leftBoxes)
+            {
+                if (cbox.SelectedIndex == cbox2.SelectedIndex) doubles++;
+            }
+            if (doubles > 1)
+            {
+                MessageBox.Show("Each answer must be unique", "Error");
+                return;
+            }
+        }
 
+        string[] answers = new string[4];
+        for (int i = 0; i < 4; i++)
+        {
+            answers[i] = leftBoxes[i].Text + "/" + rightBoxes[i].Text;
+        }
+        currentScore += currentQuestion.CheckAnswer(answers);
+        DisplayNextQuestion();
+    }
+
+    #endregion Check
+
+
+    #region Audio
     private void btnPlayAudioMCQ_Click(object sender, EventArgs e) => PlayAudio();
 
     private void btnPlayAudioTQ_Click(object sender, EventArgs e) => PlayAudio();
@@ -162,8 +161,54 @@ public partial class QuizForm : Form
             player.Stop();
         }
     }
+    #endregion Audio
 
-    private void QuizForm_FormClosing(object sender, FormClosingEventArgs e) => player.Dispose();
+    #region Display
+
+    public void DisplayNextQuestion()
+    {
+        player.Stop();
+        panelMCPic.Visible = false;
+        panelTextPic.Visible = false;
+        currentPanel.Visible = false;
+        btnPlayAudioMCQ.Visible = false;
+        btnPlayAudioTQ.Visible = false;
+        if (questionIndex >= quizQuestions.Count)
+        {
+            EndQuiz();
+            return;
+        }
+
+        lblQuizTitle.Text = $"Question #{questionIndex + 1}";
+        currentQuestion = quizQuestions[questionIndex];
+
+        switch (currentQuestion.QuestionType)
+        {
+            case QuestionTypes.Text:
+                DisplayTextQuestion();
+                break;
+            case QuestionTypes.MultipleChoice:
+                DisplayMultipleChoiceQuestion();
+                break;
+            case QuestionTypes.AudioMultipleChoice:
+                DisplayAudioMultipleChoiceQuestion();
+                break;
+            case QuestionTypes.AudioText:
+                DisplayAudioTextQuestion();
+                break;
+            case QuestionTypes.PictureMultipleChoice:
+                DisplayPictureMultipleChoiceQuestion();
+                break;
+            case QuestionTypes.PictureText:
+                DisplayPictureTextQuestion();
+                break;
+            case QuestionTypes.Match:
+                DisplayMatchQuestion();
+                break;
+        }
+        currentPanel.Visible = true;
+        questionIndex++;
+    }
 
     private void DisplayTextQuestion()
     {
@@ -265,39 +310,11 @@ public partial class QuizForm : Form
         }
     }
 
-    private void btnSubmitMatch_Click(object sender, EventArgs e)
-    {
-        ComboBox[] leftBoxes = new ComboBox[4] { comboBoxLeft1, comboBoxLeft2, comboBoxLeft3, comboBoxLeft4 };
-        ComboBox[] rightBoxes = new ComboBox[4] { comboBoxRight1, comboBoxRight2, comboBoxRight3, comboBoxRight4 };
-        for (int i = 0; i < 4; i++)
-        {
-            if ((leftBoxes[i].SelectedIndex == -1) || (rightBoxes[i].SelectedIndex == -1))
-            {
-                MessageBox.Show("All options must be filled", "Error");
-                return;
-            }
-        }
+    #endregion Display
 
-        foreach (ComboBox cbox in leftBoxes)
-        {
-            int doubles = 0;
-            foreach (ComboBox cbox2 in leftBoxes)
-            {
-                if (cbox.SelectedIndex == cbox2.SelectedIndex) doubles++;
-            }
-            if (doubles > 1)
-            {
-                MessageBox.Show("Each answer must be unique", "Error");
-                return;
-            }
-        }
+    private void textBoxTextQuestion_KeyPress(object sender, KeyPressEventArgs e) { if (e.KeyChar == 13) btnSubmitTextQuestion_Click(sender, e); }
 
-        string[] answers = new string[4];
-        for (int i = 0; i < 4; i++)
-        {
-            answers[i] = leftBoxes[i].Text + "/" + rightBoxes[i].Text;
-        }
-        currentScore += currentQuestion.CheckAnswer(answers);
-        DisplayNextQuestion();
-    }
+    private void QuizForm_FormClosing(object sender, FormClosingEventArgs e) => player.Dispose();
+
+    private void btnQuizEndScreen_Click(object sender, EventArgs e) => Close();
 }

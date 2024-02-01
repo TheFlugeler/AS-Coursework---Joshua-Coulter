@@ -13,6 +13,7 @@ namespace AS_Coursework___Joshua_Coulter
 {
     public partial class AdminForm : Form
     {
+        //This form is the hub to send the user to different admin forms
         public AdminForm()
         {
             InitializeComponent();

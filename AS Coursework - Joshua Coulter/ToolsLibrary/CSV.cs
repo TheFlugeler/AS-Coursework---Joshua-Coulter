@@ -1,10 +1,19 @@
 ﻿using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
+using System.Runtime.CompilerServices;
 
-namespace AS_Coursework___Joshua_Coulter.AllTools;
+namespace AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 public static class CSV
 {
+    //
+    //This is the helper class for writing and reading from the CSV files
+    //It contains specific methods for reading each question type and users
+    //It also contains a generic method for writing questions to file as polymorphism can be used
+    //Instead of having a long list of methods for reading each question type, we use one base method that references the others
+    //It also contains methods to append individual questions and users to the file
+    //
+
     private static string UserFile = "Databases/Users.csv";
     private static string MultipleChoice = "Databases/MultipleChoiceQuestions.csv";
     private static string Text = "Databases/TextQuestions.csv";

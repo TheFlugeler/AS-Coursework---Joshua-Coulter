@@ -8,20 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AS_Coursework___Joshua_Coulter.Classes;
-using AS_Coursework___Joshua_Coulter.AllTools;
+using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
 namespace AS_Coursework___Joshua_Coulter.Forms
 {
     public partial class DatabaseForm : Form
     {
-        BindingList<User> usersBL, usersBL2;
+        //This form displays the database of users in the system
+        //It allows you to edit details of a user and delete users
+        BindingList<User> usersBL;
         public DatabaseForm()
         {
             InitializeComponent();
             usersBL = new BindingList<User>(CSV.ReadInUsers());
-            usersBL2 = new BindingList<User>(CSV.ReadInUsers());
             usersBL.AllowRemove = true;
-            usersBL2.AllowRemove = true;
             dataGridViewUsers.DataSource = usersBL;
         }
         private void btnDeleteRow_Click(object sender, EventArgs e)
@@ -39,15 +39,14 @@ namespace AS_Coursework___Joshua_Coulter.Forms
 
         private void btnRevert_Click(object sender, EventArgs e)
         {
-            dataGridViewUsers.DataSource = usersBL2;
             usersBL = new BindingList<User>(CSV.ReadInUsers());
             dataGridViewUsers.DataSource = usersBL;
-            usersBL2 = new BindingList<User>(CSV.ReadInUsers());
+            dataGridViewUsers.Refresh();
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            List<User> newUsers = new List<User>(usersBL);
+            List<User> newUsers = new(usersBL);
             if (!newUsers.VerifyList()) return;
             newUsers.WriteUserList();
             btnRevert_Click(sender, e);
