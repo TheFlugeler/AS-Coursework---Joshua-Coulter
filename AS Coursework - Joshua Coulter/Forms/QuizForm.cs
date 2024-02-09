@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-using System.Media;
-using System.Windows.Forms;
+﻿using System.Media;
 using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
 using AS_Coursework___Joshua_Coulter.ToolsLibrary;

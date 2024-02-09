@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AS_Coursework___Joshua_Coulter.Enums;
+﻿using AS_Coursework___Joshua_Coulter.Enums;
 
 namespace AS_Coursework___Joshua_Coulter.Classes;
 

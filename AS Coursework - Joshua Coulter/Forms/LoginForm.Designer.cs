@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelLoginBox = new Panel();
             pictureBoxPasswordVisible = new PictureBox();
             linkLabelRegister = new LinkLabel();
             btnSignIn = new Button();
             textBoxPassword = new TextBox();
             textBoxUsername = new TextBox();
             lblLoginSubTitle = new Label();
-            panelRegister = new Panel();
             linkLabelSignIn = new LinkLabel();
             btnRegister = new Button();
             lblRegisterGender = new Label();
@@ -50,30 +48,17 @@
             lblRegisterUsername = new Label();
             lblRegister = new Label();
             label1 = new Label();
-            panelLoginBox.SuspendLayout();
+            panelLoginBox = new Panel();
+            panelRegister = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPasswordVisible).BeginInit();
+            panelLoginBox.SuspendLayout();
             panelRegister.SuspendLayout();
             SuspendLayout();
-            // 
-            // panelLoginBox
-            // 
-            panelLoginBox.Anchor = AnchorStyles.None;
-            panelLoginBox.BackColor = Color.FromArgb(0, 106, 125);
-            panelLoginBox.Controls.Add(pictureBoxPasswordVisible);
-            panelLoginBox.Controls.Add(linkLabelRegister);
-            panelLoginBox.Controls.Add(btnSignIn);
-            panelLoginBox.Controls.Add(textBoxPassword);
-            panelLoginBox.Controls.Add(textBoxUsername);
-            panelLoginBox.Controls.Add(lblLoginSubTitle);
-            panelLoginBox.Location = new Point(418, 166);
-            panelLoginBox.Name = "panelLoginBox";
-            panelLoginBox.Size = new Size(420, 380);
-            panelLoginBox.TabIndex = 0;
             // 
             // pictureBoxPasswordVisible
             // 
             pictureBoxPasswordVisible.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBoxPasswordVisible.Location = new Point(333, 173);
+            pictureBoxPasswordVisible.Location = new Point(314, 176);
             pictureBoxPasswordVisible.Name = "pictureBoxPasswordVisible";
             pictureBoxPasswordVisible.Size = new Size(33, 28);
             pictureBoxPasswordVisible.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -87,7 +72,7 @@
             linkLabelRegister.AutoSize = true;
             linkLabelRegister.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             linkLabelRegister.LinkColor = Color.White;
-            linkLabelRegister.Location = new Point(124, 311);
+            linkLabelRegister.Location = new Point(105, 314);
             linkLabelRegister.Name = "linkLabelRegister";
             linkLabelRegister.Size = new Size(158, 23);
             linkLabelRegister.TabIndex = 6;
@@ -99,7 +84,7 @@
             // btnSignIn
             // 
             btnSignIn.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSignIn.Location = new Point(136, 243);
+            btnSignIn.Location = new Point(117, 246);
             btnSignIn.Name = "btnSignIn";
             btnSignIn.Size = new Size(130, 48);
             btnSignIn.TabIndex = 5;
@@ -111,7 +96,7 @@
             // 
             textBoxPassword.Anchor = AnchorStyles.Top;
             textBoxPassword.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPassword.Location = new Point(78, 169);
+            textBoxPassword.Location = new Point(59, 172);
             textBoxPassword.MaxLength = 24;
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PlaceholderText = "Password";
@@ -123,7 +108,7 @@
             // 
             textBoxUsername.Anchor = AnchorStyles.Top;
             textBoxUsername.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxUsername.Location = new Point(78, 93);
+            textBoxUsername.Location = new Point(59, 96);
             textBoxUsername.MaxLength = 24;
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.PlaceholderText = "Username";
@@ -136,34 +121,11 @@
             lblLoginSubTitle.Anchor = AnchorStyles.Top;
             lblLoginSubTitle.AutoSize = true;
             lblLoginSubTitle.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblLoginSubTitle.Location = new Point(160, 31);
+            lblLoginSubTitle.Location = new Point(141, 34);
             lblLoginSubTitle.Name = "lblLoginSubTitle";
             lblLoginSubTitle.Size = new Size(87, 34);
             lblLoginSubTitle.TabIndex = 0;
             lblLoginSubTitle.Text = "Login";
-            // 
-            // panelRegister
-            // 
-            panelRegister.Anchor = AnchorStyles.None;
-            panelRegister.BackColor = Color.FromArgb(0, 106, 125);
-            panelRegister.Controls.Add(linkLabelSignIn);
-            panelRegister.Controls.Add(btnRegister);
-            panelRegister.Controls.Add(lblRegisterGender);
-            panelRegister.Controls.Add(radioButtonFemale);
-            panelRegister.Controls.Add(radioButtonOther);
-            panelRegister.Controls.Add(radioButtonMale);
-            panelRegister.Controls.Add(dateTimePickerRegisterDOB);
-            panelRegister.Controls.Add(lblRegisterDOB);
-            panelRegister.Controls.Add(textBoxRegisterPassword);
-            panelRegister.Controls.Add(lblRegisterPassword);
-            panelRegister.Controls.Add(textBoxRegisterUsername);
-            panelRegister.Controls.Add(lblRegisterUsername);
-            panelRegister.Controls.Add(lblRegister);
-            panelRegister.Location = new Point(388, 129);
-            panelRegister.Name = "panelRegister";
-            panelRegister.Size = new Size(480, 460);
-            panelRegister.TabIndex = 2;
-            panelRegister.Visible = false;
             // 
             // linkLabelSignIn
             // 
@@ -171,7 +133,7 @@
             linkLabelSignIn.AutoSize = true;
             linkLabelSignIn.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             linkLabelSignIn.LinkColor = Color.White;
-            linkLabelSignIn.Location = new Point(186, 419);
+            linkLabelSignIn.Location = new Point(178, 407);
             linkLabelSignIn.Name = "linkLabelSignIn";
             linkLabelSignIn.Size = new Size(100, 23);
             linkLabelSignIn.TabIndex = 12;
@@ -183,7 +145,7 @@
             // btnRegister
             // 
             btnRegister.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRegister.Location = new Point(167, 349);
+            btnRegister.Location = new Point(159, 337);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(139, 58);
             btnRegister.TabIndex = 11;
@@ -195,7 +157,7 @@
             // 
             lblRegisterGender.AutoSize = true;
             lblRegisterGender.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRegisterGender.Location = new Point(60, 294);
+            lblRegisterGender.Location = new Point(52, 282);
             lblRegisterGender.Name = "lblRegisterGender";
             lblRegisterGender.Size = new Size(105, 27);
             lblRegisterGender.TabIndex = 10;
@@ -205,7 +167,7 @@
             // 
             radioButtonFemale.AutoSize = true;
             radioButtonFemale.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            radioButtonFemale.Location = new Point(258, 298);
+            radioButtonFemale.Location = new Point(250, 286);
             radioButtonFemale.Name = "radioButtonFemale";
             radioButtonFemale.Size = new Size(96, 25);
             radioButtonFemale.TabIndex = 9;
@@ -217,7 +179,7 @@
             // 
             radioButtonOther.AutoSize = true;
             radioButtonOther.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            radioButtonOther.Location = new Point(361, 298);
+            radioButtonOther.Location = new Point(353, 286);
             radioButtonOther.Name = "radioButtonOther";
             radioButtonOther.Size = new Size(82, 25);
             radioButtonOther.TabIndex = 8;
@@ -229,7 +191,7 @@
             // 
             radioButtonMale.AutoSize = true;
             radioButtonMale.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            radioButtonMale.Location = new Point(176, 298);
+            radioButtonMale.Location = new Point(168, 286);
             radioButtonMale.Name = "radioButtonMale";
             radioButtonMale.Size = new Size(75, 25);
             radioButtonMale.TabIndex = 7;
@@ -240,7 +202,7 @@
             // dateTimePickerRegisterDOB
             // 
             dateTimePickerRegisterDOB.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerRegisterDOB.Location = new Point(176, 227);
+            dateTimePickerRegisterDOB.Location = new Point(168, 215);
             dateTimePickerRegisterDOB.Name = "dateTimePickerRegisterDOB";
             dateTimePickerRegisterDOB.Size = new Size(270, 36);
             dateTimePickerRegisterDOB.TabIndex = 6;
@@ -249,7 +211,7 @@
             // 
             lblRegisterDOB.AutoSize = true;
             lblRegisterDOB.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRegisterDOB.Location = new Point(97, 228);
+            lblRegisterDOB.Location = new Point(89, 216);
             lblRegisterDOB.Name = "lblRegisterDOB";
             lblRegisterDOB.Size = new Size(68, 27);
             lblRegisterDOB.TabIndex = 5;
@@ -258,7 +220,7 @@
             // textBoxRegisterPassword
             // 
             textBoxRegisterPassword.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxRegisterPassword.Location = new Point(176, 156);
+            textBoxRegisterPassword.Location = new Point(168, 144);
             textBoxRegisterPassword.Name = "textBoxRegisterPassword";
             textBoxRegisterPassword.Size = new Size(270, 36);
             textBoxRegisterPassword.TabIndex = 4;
@@ -267,7 +229,7 @@
             // 
             lblRegisterPassword.AutoSize = true;
             lblRegisterPassword.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRegisterPassword.Location = new Point(41, 158);
+            lblRegisterPassword.Location = new Point(33, 146);
             lblRegisterPassword.Name = "lblRegisterPassword";
             lblRegisterPassword.Size = new Size(124, 27);
             lblRegisterPassword.TabIndex = 3;
@@ -276,7 +238,7 @@
             // textBoxRegisterUsername
             // 
             textBoxRegisterUsername.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxRegisterUsername.Location = new Point(176, 85);
+            textBoxRegisterUsername.Location = new Point(168, 73);
             textBoxRegisterUsername.Name = "textBoxRegisterUsername";
             textBoxRegisterUsername.Size = new Size(270, 36);
             textBoxRegisterUsername.TabIndex = 2;
@@ -285,7 +247,7 @@
             // 
             lblRegisterUsername.AutoSize = true;
             lblRegisterUsername.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRegisterUsername.Location = new Point(33, 88);
+            lblRegisterUsername.Location = new Point(25, 76);
             lblRegisterUsername.Name = "lblRegisterUsername";
             lblRegisterUsername.Size = new Size(132, 27);
             lblRegisterUsername.TabIndex = 1;
@@ -295,7 +257,7 @@
             // 
             lblRegister.AutoSize = true;
             lblRegister.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRegister.Location = new Point(176, 31);
+            lblRegister.Location = new Point(168, 19);
             lblRegister.Name = "lblRegister";
             lblRegister.Size = new Size(121, 34);
             lblRegister.TabIndex = 0;
@@ -313,23 +275,59 @@
             label1.TabIndex = 3;
             label1.Text = "Welcome to Music Maestro!";
             // 
+            // panelLoginBox
+            // 
+            panelLoginBox.BackColor = Color.FromArgb(0, 106, 125);
+            panelLoginBox.Controls.Add(pictureBoxPasswordVisible);
+            panelLoginBox.Controls.Add(lblLoginSubTitle);
+            panelLoginBox.Controls.Add(linkLabelRegister);
+            panelLoginBox.Controls.Add(textBoxUsername);
+            panelLoginBox.Controls.Add(btnSignIn);
+            panelLoginBox.Controls.Add(textBoxPassword);
+            panelLoginBox.Location = new Point(441, 170);
+            panelLoginBox.Name = "panelLoginBox";
+            panelLoginBox.Size = new Size(375, 376);
+            panelLoginBox.TabIndex = 4;
+            // 
+            // panelRegister
+            // 
+            panelRegister.BackColor = Color.FromArgb(0, 106, 125);
+            panelRegister.Controls.Add(linkLabelSignIn);
+            panelRegister.Controls.Add(lblRegister);
+            panelRegister.Controls.Add(btnRegister);
+            panelRegister.Controls.Add(lblRegisterUsername);
+            panelRegister.Controls.Add(lblRegisterGender);
+            panelRegister.Controls.Add(textBoxRegisterUsername);
+            panelRegister.Controls.Add(radioButtonFemale);
+            panelRegister.Controls.Add(lblRegisterPassword);
+            panelRegister.Controls.Add(radioButtonOther);
+            panelRegister.Controls.Add(textBoxRegisterPassword);
+            panelRegister.Controls.Add(radioButtonMale);
+            panelRegister.Controls.Add(lblRegisterDOB);
+            panelRegister.Controls.Add(dateTimePickerRegisterDOB);
+            panelRegister.Location = new Point(391, 137);
+            panelRegister.Name = "panelRegister";
+            panelRegister.Size = new Size(474, 444);
+            panelRegister.TabIndex = 5;
+            panelRegister.Text = "roundedPanel1";
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(71, 82, 186);
+            BackColor = Color.FromArgb(0, 151, 178);
             BackgroundImage = Properties.Images.Login_Graphic;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
-            Controls.Add(label1);
             Controls.Add(panelLoginBox);
+            Controls.Add(label1);
             Controls.Add(panelRegister);
             DoubleBuffered = true;
             Name = "LoginForm";
             Text = "LoginForm";
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPasswordVisible).EndInit();
             panelLoginBox.ResumeLayout(false);
             panelLoginBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPasswordVisible).EndInit();
             panelRegister.ResumeLayout(false);
             panelRegister.PerformLayout();
             ResumeLayout(false);
@@ -337,14 +335,11 @@
         }
 
         #endregion
-
-        private Panel panelLoginBox;
         private Label lblLoginSubTitle;
         private TextBox textBoxPassword;
         private TextBox textBoxUsername;
         private LinkLabel linkLabelRegister;
         private Button btnSignIn;
-        private Panel panelRegister;
         private DateTimePicker dateTimePickerRegisterDOB;
         private Label lblRegisterDOB;
         private TextBox textBoxRegisterPassword;
@@ -360,5 +355,7 @@
         private LinkLabel linkLabelSignIn;
         private Label label1;
         public PictureBox pictureBoxPasswordVisible;
+        private Panel panelLoginBox;
+        private Panel panelRegister;
     }
 }

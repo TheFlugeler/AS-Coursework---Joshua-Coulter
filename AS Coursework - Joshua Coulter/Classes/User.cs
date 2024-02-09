@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AS_Coursework___Joshua_Coulter.Classes;
+﻿namespace AS_Coursework___Joshua_Coulter.Classes;
 
 public class User : IComparable<User>
 {
@@ -32,16 +26,16 @@ public class User : IComparable<User>
         ID = id;
     }
 
-    //Similarly to the Question object, User is serialized to be written to the CSV
+    //The User object is serialized to be written to the CSV with a public method
     public override string ToString() => $"{Username},{Password},{HighScore},{DOB.ToShortDateString()},{Gender},{IsAdmin},{ID}";
 
-    //The IComparable interface is used to generate unique user IDs and allows the users to be sorted easily
+    //The IComparable interface is used to sort the users using inbuilt sort functions by User ID
     //The unique user IDs are used throughout the program to easily differentiate users
     public int CompareTo(User? other)
     {
         if (ID > other.ID) return 1;
         if(ID < other.ID) return -1;
-        MessageBox.Show("BIG ERROR PANIC");
+        MessageBox.Show("Sorting User Error","Error");
         return 0 ;
     }
 }

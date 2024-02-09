@@ -1,15 +1,6 @@
 ﻿using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
 using AS_Coursework___Joshua_Coulter.ToolsLibrary;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AS_Coursework___Joshua_Coulter.Forms;
 
@@ -52,7 +43,7 @@ public partial class QuestionsForm : Form
     {
         if (!CheckValid())
         {
-            MessageBox.Show("Please fill in all details");
+            MessageBox.Show("Please enter valid values", "Error");
             return;
         }
 
@@ -65,7 +56,7 @@ public partial class QuestionsForm : Form
         {
             TextQuestion temp = new TextQuestion(richTextBoxAddQuestionText.Text, diff, textBoxAddTextAnswer.Text);
             temp.WriteQuestion();
-            MessageBox.Show("Text Question Successfully Added");
+            MessageBox.Show("Text Question saved", "Admin");
             (MasterForm.DisplayedForm as MainForm)!.DisplayForm(new AdminForm());
             Close();
         }
@@ -78,7 +69,7 @@ public partial class QuestionsForm : Form
             if (radioButtonAddOption3.Checked) answer = 3;
             MultipleChoiceQuestion temp = new MultipleChoiceQuestion(richTextBoxAddQuestionText.Text, diff, options, answer);
             temp.WriteQuestion();
-            MessageBox.Show("Text Question Successfully Added");
+            MessageBox.Show("Multiple Choice Question saved", "Admin");
             (MasterForm.DisplayedForm as MainForm)!.DisplayForm(new AdminForm());
             Close();
         }
@@ -92,7 +83,7 @@ public partial class QuestionsForm : Form
             };
             MatchQuestion temp = new(richTextBoxAddQuestionText.Text, diff, answers);
             temp.WriteQuestion();
-            MessageBox.Show("Match Question Successfully Added");
+            MessageBox.Show("Match Question Saved", "Admin");
             (MasterForm.DisplayedForm as MainForm)!.DisplayForm(new AdminForm());
             Close();
         }
@@ -102,6 +93,7 @@ public partial class QuestionsForm : Form
     {
         if (!radioButtonAddEasy.Checked && !radioButtonAddMedium.Checked && !radioButtonAddHard.Checked) return false;
         if (string.IsNullOrEmpty(richTextBoxAddQuestionText.Text)) return false;
+        if (!ValidateString(richTextBoxAddQuestionText.Text)) return false;
         if (radioButtonText.Checked)
         {
             if (string.IsNullOrEmpty(textBoxAddTextAnswer.Text)) return false;
@@ -111,6 +103,7 @@ public partial class QuestionsForm : Form
             if (string.IsNullOrEmpty(textBoxAddOption1.Text)) return false;
             if (string.IsNullOrEmpty(textBoxAddOption2.Text)) return false;
             if (string.IsNullOrEmpty(textBoxAddOption3.Text)) return false;
+            if (!ValidateString(textBoxAddOption1.Text + textBoxAddOption2.Text + textBoxAddOption3.Text)) return false;
             if (!radioButtonAddOption1.Checked && !radioButtonAddOption2.Checked && !radioButtonAddOption3.Checked) return false;
         }
         else if (radioButtonMatch.Checked)
@@ -122,8 +115,15 @@ public partial class QuestionsForm : Form
             foreach (var matchBox in matchBoxes)
             {
                 if (string.IsNullOrEmpty(matchBox.Text)) return false;
+                if (!ValidateString(matchBox.Text)) return false;
             }
         }
+        return true;
+    }
+
+    private bool ValidateString(string text)
+    {
+        foreach (char c in text) if (c == ',') return false;
         return true;
     }
 
@@ -219,10 +219,10 @@ public partial class QuestionsForm : Form
                 {
                     string[] temp = ((MatchQuestion)currentQuestion).Answers[i].Split('/');
                     matchBoxes[i].Text = temp[0];
-                    matchBoxes[i+4].Text = temp[1];
+                    matchBoxes[i + 4].Text = temp[1];
                 }
                 break;
-                
+
         }
         switch (currentQuestion.QuestionDifficulty)
         {
@@ -269,7 +269,7 @@ public partial class QuestionsForm : Form
         panelAdd.Visible = true;
         labelAddQuestionTitle.Text = "Design Question";
         richTextBoxAddQuestionText.Text = string.Empty;
-        
+
         buttonAddQuestion.Text = "Add Question";
     }
 

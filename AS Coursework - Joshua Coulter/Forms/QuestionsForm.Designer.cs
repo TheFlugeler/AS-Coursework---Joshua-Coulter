@@ -235,21 +235,21 @@
             textBoxRight2.Location = new Point(213, 125);
             textBoxRight2.Name = "textBoxRight2";
             textBoxRight2.Size = new Size(144, 27);
-            textBoxRight2.TabIndex = 9;
+            textBoxRight2.TabIndex = 7;
             // 
             // textBoxRight4
             // 
             textBoxRight4.Location = new Point(213, 241);
             textBoxRight4.Name = "textBoxRight4";
             textBoxRight4.Size = new Size(144, 27);
-            textBoxRight4.TabIndex = 8;
+            textBoxRight4.TabIndex = 9;
             // 
             // textBoxRight3
             // 
             textBoxRight3.Location = new Point(213, 183);
             textBoxRight3.Name = "textBoxRight3";
             textBoxRight3.Size = new Size(144, 27);
-            textBoxRight3.TabIndex = 7;
+            textBoxRight3.TabIndex = 8;
             // 
             // textBoxRight1
             // 
@@ -655,8 +655,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
-            Controls.Add(panelEditDelete);
             Controls.Add(panelAdd);
+            Controls.Add(panelEditDelete);
             Name = "QuestionsForm";
             Text = "QuestionsForm";
             panelEditDelete.ResumeLayout(false);
