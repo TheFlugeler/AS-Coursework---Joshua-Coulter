@@ -57,7 +57,7 @@ public partial class QuizForm : Form
         lblQuizEndScreen.Text = $"Congratulations, you finished the quiz with a score of: {currentScore}";
 
         List<User> users = CSV.ReadInUsers();
-        User user = users.FindUserID(MainForm.userID);
+        User user = users.GetUser(MainForm.userID);
         if (user.HighScore < currentScore)
         {
             user.HighScore = currentScore;
@@ -141,7 +141,7 @@ public partial class QuizForm : Form
         DisplayNextQuestion();
     }
 
-    #endregion Check
+    #endregion 
 
 
     #region Audio
@@ -159,7 +159,7 @@ public partial class QuizForm : Form
             player.Stop();
         }
     }
-    #endregion Audio
+    #endregion
 
     #region Display
 
@@ -180,30 +180,23 @@ public partial class QuizForm : Form
         lblQuizTitle.Text = $"Question #{questionIndex + 1}";
         currentQuestion = quizQuestions[questionIndex];
 
-        switch (currentQuestion.QuestionType)
+        // This switch expression is used to identify which display method should be run
+        // Depending on the question type, a method is chosen and stored in "DisplayMethod"
+        // That action is then run meaning the correct display method is run
+
+        Action DisplayMethod = currentQuestion.QuestionType switch
         {
-            case QuestionTypes.Text:
-                DisplayTextQuestion();
-                break;
-            case QuestionTypes.MultipleChoice:
-                DisplayMultipleChoiceQuestion();
-                break;
-            case QuestionTypes.AudioMultipleChoice:
-                DisplayAudioMultipleChoiceQuestion();
-                break;
-            case QuestionTypes.AudioText:
-                DisplayAudioTextQuestion();
-                break;
-            case QuestionTypes.PictureMultipleChoice:
-                DisplayPictureMultipleChoiceQuestion();
-                break;
-            case QuestionTypes.PictureText:
-                DisplayPictureTextQuestion();
-                break;
-            case QuestionTypes.Match:
-                DisplayMatchQuestion();
-                break;
-        }
+            QuestionTypes.Text => DisplayTextQuestion,
+            QuestionTypes.MultipleChoice => DisplayMultipleChoiceQuestion,
+            QuestionTypes.AudioText => DisplayAudioTextQuestion,
+            QuestionTypes.AudioMultipleChoice => DisplayAudioMultipleChoiceQuestion,
+            QuestionTypes.PictureText => DisplayPictureTextQuestion,
+            QuestionTypes.PictureMultipleChoice => DisplayPictureMultipleChoiceQuestion,
+            QuestionTypes.Match => DisplayMatchQuestion,
+            _ => () => { MessageBox.Show("QuestionType error", "Error"); }
+        } ;
+        DisplayMethod();
+
         currentPanel.Visible = true;
         questionIndex++;
     }
@@ -251,7 +244,7 @@ public partial class QuizForm : Form
 
     private void DisplayPictureMultipleChoiceQuestion()
     {
-        PictureMultipleChoiceQuestion question = (PictureMultipleChoiceQuestion)currentQuestion; //NOT BREAKING BUT NOT WORKING
+        PictureMultipleChoiceQuestion question = (PictureMultipleChoiceQuestion)currentQuestion;
         currentPanel = panelMultipleChoiceQuestion;
         lblMultipleChoiceQuestion.Text = $"Q: {question.QuestionText}";
         Bitmap bmp = new($"PictureFiles/{question.PictureFile}");
@@ -308,8 +301,8 @@ public partial class QuizForm : Form
         }
     }
 
-    #endregion Display
-
+    #endregion
+    
     private void textBoxTextQuestion_KeyPress(object sender, KeyPressEventArgs e) { if (e.KeyChar == 13) btnSubmitTextQuestion_Click(sender, e); }
 
     private void QuizForm_FormClosing(object sender, FormClosingEventArgs e) => player.Dispose();

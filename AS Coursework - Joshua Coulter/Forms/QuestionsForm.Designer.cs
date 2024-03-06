@@ -38,20 +38,15 @@
             btnDeleteQuestion = new Button();
             btnEdit = new Button();
             panelAdd = new Panel();
-            panelAddMatchPairs = new Panel();
-            textBoxRight2 = new TextBox();
-            textBoxRight4 = new TextBox();
-            textBoxRight3 = new TextBox();
-            textBoxRight1 = new TextBox();
-            textBoxLeft4 = new TextBox();
-            textBoxLeft3 = new TextBox();
-            textBoxLeft2 = new TextBox();
-            labelQuestionOptions = new Label();
-            textBoxLeft1 = new TextBox();
-            label1 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label2 = new Label();
+            panelChooseFile = new Panel();
+            textBoxFilePath = new TextBox();
+            btnChooseFile = new Button();
+            labelChooseFile = new Label();
+            panelMediaChoice = new Panel();
+            radioButtonNeither = new RadioButton();
+            radioButtonPicture = new RadioButton();
+            radioButtonAudio = new RadioButton();
+            labelMediaChoice = new Label();
             panelAddQuestionDifficulty = new Panel();
             radioButtonAddHard = new RadioButton();
             radioButtonAddMedium = new RadioButton();
@@ -82,15 +77,32 @@
             panelAddTextAnswer = new Panel();
             textBoxAddTextAnswer = new TextBox();
             labelQuestionAnswer = new Label();
+            panelAddMatchPairs = new Panel();
+            textBoxRight2 = new TextBox();
+            textBoxRight4 = new TextBox();
+            textBoxRight3 = new TextBox();
+            textBoxRight1 = new TextBox();
+            textBoxLeft4 = new TextBox();
+            textBoxLeft3 = new TextBox();
+            textBoxLeft2 = new TextBox();
+            labelQuestionOptions = new Label();
+            textBoxLeft1 = new TextBox();
+            label1 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label2 = new Label();
+            openFileDialogChooseMedia = new OpenFileDialog();
             panelEditDelete.SuspendLayout();
             panelPickQuestionType.SuspendLayout();
             panelAdd.SuspendLayout();
-            panelAddMatchPairs.SuspendLayout();
+            panelChooseFile.SuspendLayout();
+            panelMediaChoice.SuspendLayout();
             panelAddQuestionDifficulty.SuspendLayout();
             panelAddQuestionType.SuspendLayout();
             panelAddQuestionText.SuspendLayout();
             panelAddAnswerOptions.SuspendLayout();
             panelAddTextAnswer.SuspendLayout();
+            panelAddMatchPairs.SuspendLayout();
             SuspendLayout();
             // 
             // panelEditDelete
@@ -161,6 +173,7 @@
             // btnAddQuestion
             // 
             btnAddQuestion.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddQuestion.ForeColor = Color.Black;
             btnAddQuestion.Location = new Point(593, 387);
             btnAddQuestion.Name = "btnAddQuestion";
             btnAddQuestion.Size = new Size(192, 70);
@@ -172,6 +185,7 @@
             // btnDeleteQuestion
             // 
             btnDeleteQuestion.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDeleteQuestion.ForeColor = Color.Black;
             btnDeleteQuestion.Location = new Point(593, 250);
             btnDeleteQuestion.Name = "btnDeleteQuestion";
             btnDeleteQuestion.Size = new Size(192, 70);
@@ -182,20 +196,23 @@
             // 
             // btnEdit
             // 
+            btnEdit.BackColor = Color.White;
             btnEdit.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEdit.ForeColor = Color.Black;
             btnEdit.Location = new Point(593, 159);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(192, 70);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "Edit Question";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
             // panelAdd
             // 
             panelAdd.Anchor = AnchorStyles.None;
             panelAdd.BackColor = Color.FromArgb(0, 192, 192);
-            panelAdd.Controls.Add(panelAddMatchPairs);
+            panelAdd.Controls.Add(panelChooseFile);
+            panelAdd.Controls.Add(panelMediaChoice);
             panelAdd.Controls.Add(panelAddQuestionDifficulty);
             panelAdd.Controls.Add(buttonAddQuestion);
             panelAdd.Controls.Add(panelAddQuestionType);
@@ -203,138 +220,111 @@
             panelAdd.Controls.Add(panelAddQuestionText);
             panelAdd.Controls.Add(panelAddAnswerOptions);
             panelAdd.Controls.Add(panelAddTextAnswer);
-            panelAdd.Location = new Point(82, 63);
+            panelAdd.Controls.Add(panelAddMatchPairs);
+            panelAdd.Location = new Point(47, 63);
             panelAdd.Name = "panelAdd";
-            panelAdd.Size = new Size(870, 497);
+            panelAdd.Size = new Size(920, 497);
             panelAdd.TabIndex = 1;
             // 
-            // panelAddMatchPairs
+            // panelChooseFile
             // 
-            panelAddMatchPairs.BackColor = Color.FromArgb(0, 106, 125);
-            panelAddMatchPairs.Controls.Add(textBoxRight2);
-            panelAddMatchPairs.Controls.Add(textBoxRight4);
-            panelAddMatchPairs.Controls.Add(textBoxRight3);
-            panelAddMatchPairs.Controls.Add(textBoxRight1);
-            panelAddMatchPairs.Controls.Add(textBoxLeft4);
-            panelAddMatchPairs.Controls.Add(textBoxLeft3);
-            panelAddMatchPairs.Controls.Add(textBoxLeft2);
-            panelAddMatchPairs.Controls.Add(labelQuestionOptions);
-            panelAddMatchPairs.Controls.Add(textBoxLeft1);
-            panelAddMatchPairs.Controls.Add(label1);
-            panelAddMatchPairs.Controls.Add(label3);
-            panelAddMatchPairs.Controls.Add(label4);
-            panelAddMatchPairs.Controls.Add(label2);
-            panelAddMatchPairs.Location = new Point(316, 188);
-            panelAddMatchPairs.Name = "panelAddMatchPairs";
-            panelAddMatchPairs.Size = new Size(388, 288);
-            panelAddMatchPairs.TabIndex = 7;
-            panelAddMatchPairs.Visible = false;
+            panelChooseFile.BackColor = Color.FromArgb(0, 106, 125);
+            panelChooseFile.Controls.Add(textBoxFilePath);
+            panelChooseFile.Controls.Add(btnChooseFile);
+            panelChooseFile.Controls.Add(labelChooseFile);
+            panelChooseFile.Location = new Point(735, 264);
+            panelChooseFile.Name = "panelChooseFile";
+            panelChooseFile.Size = new Size(162, 134);
+            panelChooseFile.TabIndex = 9;
+            panelChooseFile.Visible = false;
             // 
-            // textBoxRight2
+            // textBoxFilePath
             // 
-            textBoxRight2.Location = new Point(213, 125);
-            textBoxRight2.Name = "textBoxRight2";
-            textBoxRight2.Size = new Size(144, 27);
-            textBoxRight2.TabIndex = 7;
+            textBoxFilePath.Location = new Point(12, 46);
+            textBoxFilePath.Name = "textBoxFilePath";
+            textBoxFilePath.ReadOnly = true;
+            textBoxFilePath.Size = new Size(132, 27);
+            textBoxFilePath.TabIndex = 5;
             // 
-            // textBoxRight4
+            // btnChooseFile
             // 
-            textBoxRight4.Location = new Point(213, 241);
-            textBoxRight4.Name = "textBoxRight4";
-            textBoxRight4.Size = new Size(144, 27);
-            textBoxRight4.TabIndex = 9;
+            btnChooseFile.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnChooseFile.Location = new Point(12, 96);
+            btnChooseFile.Name = "btnChooseFile";
+            btnChooseFile.Size = new Size(94, 29);
+            btnChooseFile.TabIndex = 4;
+            btnChooseFile.Text = "Choose file";
+            btnChooseFile.UseVisualStyleBackColor = true;
+            btnChooseFile.Click += btnChooseFile_Click;
             // 
-            // textBoxRight3
+            // labelChooseFile
             // 
-            textBoxRight3.Location = new Point(213, 183);
-            textBoxRight3.Name = "textBoxRight3";
-            textBoxRight3.Size = new Size(144, 27);
-            textBoxRight3.TabIndex = 8;
+            labelChooseFile.AutoSize = true;
+            labelChooseFile.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelChooseFile.Location = new Point(3, 4);
+            labelChooseFile.Name = "labelChooseFile";
+            labelChooseFile.Size = new Size(103, 28);
+            labelChooseFile.TabIndex = 3;
+            labelChooseFile.Text = "Select File";
             // 
-            // textBoxRight1
+            // panelMediaChoice
             // 
-            textBoxRight1.Location = new Point(213, 67);
-            textBoxRight1.Name = "textBoxRight1";
-            textBoxRight1.Size = new Size(144, 27);
-            textBoxRight1.TabIndex = 6;
+            panelMediaChoice.BackColor = Color.FromArgb(0, 106, 125);
+            panelMediaChoice.Controls.Add(radioButtonNeither);
+            panelMediaChoice.Controls.Add(radioButtonPicture);
+            panelMediaChoice.Controls.Add(radioButtonAudio);
+            panelMediaChoice.Controls.Add(labelMediaChoice);
+            panelMediaChoice.Location = new Point(735, 104);
+            panelMediaChoice.Name = "panelMediaChoice";
+            panelMediaChoice.Size = new Size(162, 138);
+            panelMediaChoice.TabIndex = 8;
+            panelMediaChoice.Visible = false;
             // 
-            // textBoxLeft4
+            // radioButtonNeither
             // 
-            textBoxLeft4.Location = new Point(34, 241);
-            textBoxLeft4.Name = "textBoxLeft4";
-            textBoxLeft4.Size = new Size(144, 27);
-            textBoxLeft4.TabIndex = 5;
+            radioButtonNeither.AutoSize = true;
+            radioButtonNeither.Location = new Point(16, 104);
+            radioButtonNeither.Name = "radioButtonNeither";
+            radioButtonNeither.Size = new Size(79, 24);
+            radioButtonNeither.TabIndex = 6;
+            radioButtonNeither.TabStop = true;
+            radioButtonNeither.Text = "Neither";
+            radioButtonNeither.UseVisualStyleBackColor = true;
+            radioButtonNeither.CheckedChanged += radioButtonAddTextQuestion_CheckedChanged;
             // 
-            // textBoxLeft3
+            // radioButtonPicture
             // 
-            textBoxLeft3.Location = new Point(34, 183);
-            textBoxLeft3.Name = "textBoxLeft3";
-            textBoxLeft3.Size = new Size(144, 27);
-            textBoxLeft3.TabIndex = 4;
+            radioButtonPicture.AutoSize = true;
+            radioButtonPicture.Location = new Point(16, 69);
+            radioButtonPicture.Name = "radioButtonPicture";
+            radioButtonPicture.Size = new Size(75, 24);
+            radioButtonPicture.TabIndex = 5;
+            radioButtonPicture.TabStop = true;
+            radioButtonPicture.Text = "Picture";
+            radioButtonPicture.UseVisualStyleBackColor = true;
+            radioButtonPicture.CheckedChanged += radioButtonAddTextQuestion_CheckedChanged;
             // 
-            // textBoxLeft2
+            // radioButtonAudio
             // 
-            textBoxLeft2.Location = new Point(34, 125);
-            textBoxLeft2.Name = "textBoxLeft2";
-            textBoxLeft2.Size = new Size(144, 27);
-            textBoxLeft2.TabIndex = 3;
+            radioButtonAudio.AutoSize = true;
+            radioButtonAudio.Location = new Point(16, 34);
+            radioButtonAudio.Name = "radioButtonAudio";
+            radioButtonAudio.Size = new Size(70, 24);
+            radioButtonAudio.TabIndex = 4;
+            radioButtonAudio.TabStop = true;
+            radioButtonAudio.Text = "Audio";
+            radioButtonAudio.UseVisualStyleBackColor = true;
+            radioButtonAudio.CheckedChanged += radioButtonAddTextQuestion_CheckedChanged;
             // 
-            // labelQuestionOptions
+            // labelMediaChoice
             // 
-            labelQuestionOptions.AutoSize = true;
-            labelQuestionOptions.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelQuestionOptions.Location = new Point(15, 17);
-            labelQuestionOptions.Name = "labelQuestionOptions";
-            labelQuestionOptions.Size = new Size(173, 28);
-            labelQuestionOptions.TabIndex = 1;
-            labelQuestionOptions.Text = "Question Options";
-            // 
-            // textBoxLeft1
-            // 
-            textBoxLeft1.Location = new Point(34, 67);
-            textBoxLeft1.Name = "textBoxLeft1";
-            textBoxLeft1.Size = new Size(144, 27);
-            textBoxLeft1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(139, 51);
-            label1.Name = "label1";
-            label1.Size = new Size(99, 34);
-            label1.TabIndex = 10;
-            label1.Text = "______";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(139, 167);
-            label3.Name = "label3";
-            label3.Size = new Size(99, 34);
-            label3.TabIndex = 12;
-            label3.Text = "______";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(139, 225);
-            label4.Name = "label4";
-            label4.Size = new Size(99, 34);
-            label4.TabIndex = 13;
-            label4.Text = "______";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(139, 109);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 34);
-            label2.TabIndex = 11;
-            label2.Text = "______";
+            labelMediaChoice.AutoSize = true;
+            labelMediaChoice.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelMediaChoice.Location = new Point(3, 3);
+            labelMediaChoice.Name = "labelMediaChoice";
+            labelMediaChoice.Size = new Size(137, 28);
+            labelMediaChoice.TabIndex = 2;
+            labelMediaChoice.Text = "Picture/Audio";
             // 
             // panelAddQuestionDifficulty
             // 
@@ -395,9 +385,9 @@
             // buttonAddQuestion
             // 
             buttonAddQuestion.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonAddQuestion.Location = new Point(723, 409);
+            buttonAddQuestion.Location = new Point(735, 409);
             buttonAddQuestion.Name = "buttonAddQuestion";
-            buttonAddQuestion.Size = new Size(116, 65);
+            buttonAddQuestion.Size = new Size(162, 65);
             buttonAddQuestion.TabIndex = 5;
             buttonAddQuestion.Text = "Add Question";
             buttonAddQuestion.UseVisualStyleBackColor = true;
@@ -425,7 +415,7 @@
             radioButtonMatch.TabStop = true;
             radioButtonMatch.Text = "Match Question";
             radioButtonMatch.UseVisualStyleBackColor = true;
-            radioButtonMatch.CheckedChanged += radioButtonMatch_CheckedChanged;
+            radioButtonMatch.CheckedChanged += radioButtonAddTextQuestion_CheckedChanged;
             // 
             // radioButtonMultipleChoice
             // 
@@ -437,7 +427,7 @@
             radioButtonMultipleChoice.TabStop = true;
             radioButtonMultipleChoice.Text = "Multiple Choice Question";
             radioButtonMultipleChoice.UseVisualStyleBackColor = true;
-            radioButtonMultipleChoice.CheckedChanged += radioButtonAddMCQuestion_CheckedChanged;
+            radioButtonMultipleChoice.CheckedChanged += radioButtonAddTextQuestion_CheckedChanged;
             // 
             // radioButtonText
             // 
@@ -495,6 +485,7 @@
             // richTextBoxAddQuestionText
             // 
             richTextBoxAddQuestionText.Location = new Point(23, 44);
+            richTextBoxAddQuestionText.MaxLength = 55;
             richTextBoxAddQuestionText.Name = "richTextBoxAddQuestionText";
             richTextBoxAddQuestionText.Size = new Size(335, 54);
             richTextBoxAddQuestionText.TabIndex = 0;
@@ -649,14 +640,142 @@
             labelQuestionAnswer.TabIndex = 2;
             labelQuestionAnswer.Text = "Question answer";
             // 
+            // panelAddMatchPairs
+            // 
+            panelAddMatchPairs.BackColor = Color.FromArgb(0, 106, 125);
+            panelAddMatchPairs.Controls.Add(textBoxRight2);
+            panelAddMatchPairs.Controls.Add(textBoxRight4);
+            panelAddMatchPairs.Controls.Add(textBoxRight3);
+            panelAddMatchPairs.Controls.Add(textBoxRight1);
+            panelAddMatchPairs.Controls.Add(textBoxLeft4);
+            panelAddMatchPairs.Controls.Add(textBoxLeft3);
+            panelAddMatchPairs.Controls.Add(textBoxLeft2);
+            panelAddMatchPairs.Controls.Add(labelQuestionOptions);
+            panelAddMatchPairs.Controls.Add(textBoxLeft1);
+            panelAddMatchPairs.Controls.Add(label1);
+            panelAddMatchPairs.Controls.Add(label3);
+            panelAddMatchPairs.Controls.Add(label4);
+            panelAddMatchPairs.Controls.Add(label2);
+            panelAddMatchPairs.Location = new Point(316, 188);
+            panelAddMatchPairs.Name = "panelAddMatchPairs";
+            panelAddMatchPairs.Size = new Size(388, 288);
+            panelAddMatchPairs.TabIndex = 7;
+            panelAddMatchPairs.Visible = false;
+            // 
+            // textBoxRight2
+            // 
+            textBoxRight2.Location = new Point(213, 125);
+            textBoxRight2.Name = "textBoxRight2";
+            textBoxRight2.Size = new Size(144, 27);
+            textBoxRight2.TabIndex = 7;
+            // 
+            // textBoxRight4
+            // 
+            textBoxRight4.Location = new Point(213, 241);
+            textBoxRight4.Name = "textBoxRight4";
+            textBoxRight4.Size = new Size(144, 27);
+            textBoxRight4.TabIndex = 9;
+            // 
+            // textBoxRight3
+            // 
+            textBoxRight3.Location = new Point(213, 183);
+            textBoxRight3.Name = "textBoxRight3";
+            textBoxRight3.Size = new Size(144, 27);
+            textBoxRight3.TabIndex = 8;
+            // 
+            // textBoxRight1
+            // 
+            textBoxRight1.Location = new Point(213, 67);
+            textBoxRight1.Name = "textBoxRight1";
+            textBoxRight1.Size = new Size(144, 27);
+            textBoxRight1.TabIndex = 6;
+            // 
+            // textBoxLeft4
+            // 
+            textBoxLeft4.Location = new Point(34, 241);
+            textBoxLeft4.Name = "textBoxLeft4";
+            textBoxLeft4.Size = new Size(144, 27);
+            textBoxLeft4.TabIndex = 5;
+            // 
+            // textBoxLeft3
+            // 
+            textBoxLeft3.Location = new Point(34, 183);
+            textBoxLeft3.Name = "textBoxLeft3";
+            textBoxLeft3.Size = new Size(144, 27);
+            textBoxLeft3.TabIndex = 4;
+            // 
+            // textBoxLeft2
+            // 
+            textBoxLeft2.Location = new Point(34, 125);
+            textBoxLeft2.Name = "textBoxLeft2";
+            textBoxLeft2.Size = new Size(144, 27);
+            textBoxLeft2.TabIndex = 3;
+            // 
+            // labelQuestionOptions
+            // 
+            labelQuestionOptions.AutoSize = true;
+            labelQuestionOptions.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelQuestionOptions.Location = new Point(15, 17);
+            labelQuestionOptions.Name = "labelQuestionOptions";
+            labelQuestionOptions.Size = new Size(173, 28);
+            labelQuestionOptions.TabIndex = 1;
+            labelQuestionOptions.Text = "Question Options";
+            // 
+            // textBoxLeft1
+            // 
+            textBoxLeft1.Location = new Point(34, 67);
+            textBoxLeft1.Name = "textBoxLeft1";
+            textBoxLeft1.Size = new Size(144, 27);
+            textBoxLeft1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(139, 51);
+            label1.Name = "label1";
+            label1.Size = new Size(99, 34);
+            label1.TabIndex = 10;
+            label1.Text = "______";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(139, 167);
+            label3.Name = "label3";
+            label3.Size = new Size(99, 34);
+            label3.TabIndex = 12;
+            label3.Text = "______";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(139, 225);
+            label4.Name = "label4";
+            label4.Size = new Size(99, 34);
+            label4.TabIndex = 13;
+            label4.Text = "______";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(139, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 34);
+            label2.TabIndex = 11;
+            label2.Text = "______";
+            // 
             // QuestionsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
-            Controls.Add(panelAdd);
             Controls.Add(panelEditDelete);
+            Controls.Add(panelAdd);
             Name = "QuestionsForm";
             Text = "QuestionsForm";
             panelEditDelete.ResumeLayout(false);
@@ -665,8 +784,10 @@
             panelPickQuestionType.PerformLayout();
             panelAdd.ResumeLayout(false);
             panelAdd.PerformLayout();
-            panelAddMatchPairs.ResumeLayout(false);
-            panelAddMatchPairs.PerformLayout();
+            panelChooseFile.ResumeLayout(false);
+            panelChooseFile.PerformLayout();
+            panelMediaChoice.ResumeLayout(false);
+            panelMediaChoice.PerformLayout();
             panelAddQuestionDifficulty.ResumeLayout(false);
             panelAddQuestionDifficulty.PerformLayout();
             panelAddQuestionType.ResumeLayout(false);
@@ -677,6 +798,8 @@
             panelAddAnswerOptions.PerformLayout();
             panelAddTextAnswer.ResumeLayout(false);
             panelAddTextAnswer.PerformLayout();
+            panelAddMatchPairs.ResumeLayout(false);
+            panelAddMatchPairs.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -740,5 +863,15 @@
         private Label label3;
         private Label label4;
         private Label label2;
+        private Panel panelMediaChoice;
+        private RadioButton radioButtonNeither;
+        private RadioButton radioButtonPicture;
+        private RadioButton radioButtonAudio;
+        private Label labelMediaChoice;
+        private Panel panelChooseFile;
+        private TextBox textBoxFilePath;
+        private Button btnChooseFile;
+        private Label labelChooseFile;
+        private OpenFileDialog openFileDialogChooseMedia;
     }
 }

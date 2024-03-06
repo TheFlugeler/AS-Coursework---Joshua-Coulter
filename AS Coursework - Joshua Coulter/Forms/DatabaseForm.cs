@@ -19,8 +19,9 @@ namespace AS_Coursework___Joshua_Coulter.Forms
         private void btnDeleteRow_Click(object sender, EventArgs e)
         {
             if (dataGridViewUsers.SelectedRows.Count <= 0) return;
+            if (MessageBox.Show("Are you sure you want to delete the user?", "Delete", MessageBoxButtons.YesNo) == DialogResult.No) return;
             List<User> users = CSV.ReadInUsers();
-            User user = users.FindUserID(MainForm.userID);
+            User user = users.GetUser(MainForm.userID);
             if (dataGridViewUsers.SelectedRows[0].Cells[0].Value.ToString() == user.Username)
             {
                 MessageBox.Show("Cannot delete current user","Error");
@@ -39,6 +40,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             List<User> newUsers = new(usersBL);
+            if (!newUsers.GetUser(MainForm.userID).IsAdmin) return;
             if (!newUsers.VerifyList()) return;
             newUsers.WriteUserList();
             btnRevert_Click(sender, e);

@@ -15,7 +15,7 @@ public partial class LoginForm : Form
         panelLoginBox.Show();
         panelRegister.Hide();
         textBoxPassword.PasswordChar = '•';
-        pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
+        pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/show.png");
         passwordVisible = false;
     }
 
@@ -48,7 +48,7 @@ public partial class LoginForm : Form
 
         if (!details.CheckUser(true))
         {
-            ThrowError("Invalid User Details Entered");
+            ThrowError(details.CheckUserMessage(true));
             return;
         }
         int id = Tools.GenerateID();
@@ -59,6 +59,14 @@ public partial class LoginForm : Form
 
         panelRegister.Visible = false;
         panelLoginBox.Visible = true;
+
+        textBoxRegisterUsername.Clear();
+        textBoxRegisterPassword.Clear();
+        dateTimePickerRegisterDOB.Value = DateTime.Today;
+        radioButtonFemale.Checked = false;
+        radioButtonMale.Checked = false;
+        radioButtonOther.Checked = false;
+
 
         MessageBox.Show("Succesfully Registered", "Register");
     }
@@ -94,13 +102,13 @@ public partial class LoginForm : Form
         {
             passwordVisible = false;
             textBoxPassword.PasswordChar = '•';
-            pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
+            pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/show.png");
         }
         else
         {
             passwordVisible = true;
             textBoxPassword.PasswordChar = '\0';
-            pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/show.png");
+            pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/hide.png");
         }
     }
 

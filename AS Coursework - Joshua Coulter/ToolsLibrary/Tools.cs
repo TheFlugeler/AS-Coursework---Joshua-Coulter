@@ -23,7 +23,6 @@ public static class Tools
 
     public static void ResizePicPanel<T>(T control, Bitmap pic, int maxX, int maxY, int minX, int minY) where T : PictureBox
     {
-
         int X = pic.Width;
         int Y = pic.Height;
 
@@ -98,8 +97,6 @@ public static class Tools
             if (char.IsSymbol(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c)) return false;
         }
 
-        
-        
         List<User> users = CSV.ReadInUsers();
         if (!newUser) users.RemoveUserID(MainForm.userID);
         foreach (User user in users)
@@ -109,9 +106,9 @@ public static class Tools
 
         string password = details[1];
         if (string.IsNullOrEmpty(password)) return false;
-        foreach (char bit in password)
+        foreach (char c in password)
         {
-            if (char.IsSymbol(bit) || char.IsWhiteSpace(bit) || bit == ',') return false;
+            if (char.IsSymbol(c) || char.IsWhiteSpace(c) || c == ',') return false;
         }
 
         DateTime dob;
@@ -120,6 +117,38 @@ public static class Tools
         if (details[3] != "Male" && details[3] != "Female" && details[3] != "Other") return false;
 
         return true;
+    }
+
+
+    public static string CheckUserMessage(this string[] details, bool newUser)
+    {
+        string username = details[0];
+        if (string.IsNullOrEmpty(username)) return "Invalid Username";
+
+        foreach (char c in username)
+        {
+            if (char.IsSymbol(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c)) return "Invalid Username";
+        }
+
+        List<User> users = CSV.ReadInUsers();
+        if (!newUser) users.RemoveUserID(MainForm.userID);
+        foreach (User user in users)
+        {
+            if (details[0] == user.Username) return "Username already taken";
+        }
+
+        string password = details[1];
+        if (string.IsNullOrEmpty(password)) return "Invalid Password";
+        foreach (char bit in password)
+        {
+            if (char.IsSymbol(bit) || char.IsWhiteSpace(bit) || bit == ',') return "Invalid Password";
+        }
+
+        DateTime dob;
+        if (!DateTime.TryParse(details[2], out dob)) return "Invalid Date Format/Range";
+
+        if (details[3] != "Male" && details[3] != "Female" && details[3] != "Other") return "Invalid gender selction";
+        return "No errors";
     }
 
     public static void SortUsersHighscore(this List<User> users)
@@ -166,7 +195,7 @@ public static class Tools
         }
     }
 
-    public static User FindUserID(this List<User> users, int id)
+    public static User GetUser(this List<User> users, int id)
     {
         foreach (User user in users) if (user.ID == id) return user;
         MessageBox.Show("FIND USER ERROR");

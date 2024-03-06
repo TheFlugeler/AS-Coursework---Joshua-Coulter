@@ -65,7 +65,7 @@ public static class CSV
             case QuestionTypes.PictureMultipleChoice: return new List<Question>(ReadInPictureMultipleChoiceQuestions());
             case QuestionTypes.Match: return new List<Question>(ReadInMatchQuestions());
         }
-        return null!;
+        return new();
     }
 
 

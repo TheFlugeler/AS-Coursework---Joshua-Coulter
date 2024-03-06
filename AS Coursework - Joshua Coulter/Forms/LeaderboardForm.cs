@@ -1,46 +1,50 @@
 ﻿using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 
-namespace AS_Coursework___Joshua_Coulter
+namespace AS_Coursework___Joshua_Coulter;
+
+public partial class LeaderboardForm : Form
 {
-    public partial class LeaderboardForm : Form
+    //This form shows the top 5 users by highscore and the current users placement overall
+    List<User> users = new(CSV.ReadInUsers());
+    User currentUser;
+    int currentUserPosition;
+    public LeaderboardForm()
     {
-        //This form shows the top 5 users by highscore and the current users placement overall
-        List<User> users = new(CSV.ReadInUsers());
-        User currentUser;
-        int currentUserPosition;
-        public LeaderboardForm()
-        {
-            InitializeComponent();
-            currentUser = users.FindUserID(MainForm.userID);
-            users.RemoveAdmins();
-            users.SortUsersHighscore();
-            
-            if (!currentUser.IsAdmin) currentUserPosition = users.FindIndex(MainForm.userID) + 1;
+        InitializeComponent();
+        currentUser = users.GetUser(MainForm.userID);
+        users.RemoveAdmins();
+        users.SortUsersHighscore();
+        
+        if (!currentUser.IsAdmin) currentUserPosition = users.FindIndex(MainForm.userID) + 1;
 
-            PopulateLeaderboard();
-        }
-
-        void PopulateLeaderboard()
-        {
-            textBoxUsername1.Text = " " + users[0].Username;
-            textBoxUsername2.Text = " " + users[1].Username;
-            textBoxUsername3.Text = " " + users[2].Username;
-            textBoxUsername4.Text = " " + users[3].Username;
-            textBoxUsername5.Text = " " + users[4].Username;
-
-            textBoxScore1.Text = " " + Convert.ToString(users[0].HighScore);
-            textBoxScore2.Text = " " + Convert.ToString(users[1].HighScore);
-            textBoxScore3.Text = " " + Convert.ToString(users[2].HighScore);
-            textBoxScore4.Text = " " + Convert.ToString(users[3].HighScore);
-            textBoxScore5.Text = " " + Convert.ToString(users[4].HighScore);
-
-            if (currentUser.IsAdmin) textBoxRankUser.Text = " N/A";
-            else textBoxRankUser.Text = " " + Convert.ToString(currentUserPosition);
-
-            textBoxScoreUser.Text = " " + Convert.ToString(currentUser.HighScore);
-            textBoxUsernameUser.Text = " " + currentUser.Username;
-        }
-
+        PopulateLeaderboard();
     }
+
+    void PopulateLeaderboard()
+    {
+        List<TextBox> usernames = new() {textBoxUsername1, textBoxUsername2, textBoxUsername3, textBoxUsername4, textBoxUsername5 };
+        List<TextBox> highscores = new() {textBoxScore1,  textBoxScore2, textBoxScore3, textBoxScore4, textBoxScore5};
+        
+        for (int i = 0; i < 5; i++)
+        {
+            try
+            {
+                usernames[i].Text = users[i].Username;
+                highscores[i].Text = users[i].HighScore.ToString();
+            }catch
+            {
+                usernames[i].Text = "N/A";
+                highscores[i].Text = "N/A";
+            }
+        }
+
+
+        if (currentUser.IsAdmin) textBoxRankUser.Text = " N/A";
+        else textBoxRankUser.Text = " " + Convert.ToString(currentUserPosition);
+
+        textBoxScoreUser.Text = " " + Convert.ToString(currentUser.HighScore);
+        textBoxUsernameUser.Text = " " + currentUser.Username;
+    }
+
 }

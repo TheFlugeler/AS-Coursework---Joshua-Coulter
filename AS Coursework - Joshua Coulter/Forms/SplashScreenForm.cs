@@ -13,7 +13,7 @@
         private void timer_Tick(object sender, EventArgs e)
         {
             if (panelLoader.Width >= panelBackPanel.Width - 22) End();
-            panelLoader.Width += 2;
+            panelLoader.Width += 3;
         }
 
         void End()

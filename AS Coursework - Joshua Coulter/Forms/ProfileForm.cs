@@ -11,7 +11,7 @@ namespace AS_Coursework___Joshua_Coulter
         public ProfileForm()
         {
             InitializeComponent();
-            currentUser = allUsers.FindUserID(MainForm.userID);
+            currentUser = allUsers.GetUser(MainForm.userID);
             FillDetails();
         }
 
@@ -68,7 +68,7 @@ namespace AS_Coursework___Joshua_Coulter
 
             if (!details.CheckUser(false))
             {
-                MessageBox.Show("Invalid details entered", "Error");
+                MessageBox.Show(details.CheckUserMessage(false), "Error");
                 return;
             }
 
