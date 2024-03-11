@@ -39,7 +39,6 @@ public partial class LeaderboardForm : Form
             }
         }
 
-
         if (currentUser.IsAdmin) textBoxRankUser.Text = " N/A";
         else textBoxRankUser.Text = " " + Convert.ToString(currentUserPosition);
 

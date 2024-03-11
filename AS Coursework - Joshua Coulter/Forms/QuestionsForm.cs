@@ -459,6 +459,9 @@ public partial class QuestionsForm : Form
 
         OldFilePath = filepath;
         textBoxFilePath.Text = Path.GetFileName(filepath);
+        radioButtonAudio.Enabled = false;
+        radioButtonPicture.Enabled = false;
+        radioButtonNeither.Enabled = false;
     }
 
     private bool CopyFile()
