@@ -15,5 +15,5 @@ public class AudioTextQuestion : TextQuestion
     }
 
     //The file path of the audio file is the only extra information needed
-    public override string ToWriteable() => base.ToWriteable() + $"{AudioFile}";
+    public override string ToWriteable() => base.ToWriteable() + $",{AudioFile}";
 }

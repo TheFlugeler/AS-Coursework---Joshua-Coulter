@@ -462,6 +462,9 @@ public partial class QuestionsForm : Form
         radioButtonAudio.Enabled = false;
         radioButtonPicture.Enabled = false;
         radioButtonNeither.Enabled = false;
+        radioButtonText.Enabled = false;
+        radioButtonMultipleChoice.Enabled = false;
+        radioButtonMatch.Enabled = false;
     }
 
     private bool CopyFile()
