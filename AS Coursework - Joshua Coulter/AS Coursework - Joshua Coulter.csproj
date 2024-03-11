@@ -10,6 +10,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net7.0-windows\ApplicationImages\hide.png" />
+    <Content Include="bin\Debug\net7.0-windows\ApplicationImages\show.png" />
+    <Content Include="bin\Debug\net7.0-windows\AudioFiles\BeethovenPiano.wav" />
+    <Content Include="bin\Debug\net7.0-windows\AudioFiles\TrumpetSound.wav" />
+    <Content Include="bin\Debug\net7.0-windows\logo.ico" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\bach.jpg" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\clarinet.jpeg" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\cmajor.png" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\contrast.png" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\fminor.png" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\minim.png" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\mozart.jpeg" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\ophicleide.jpg" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\Sun.png" />
+    <Content Include="bin\Debug\net7.0-windows\PictureFiles\trumpet.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net7.0-windows\Databases\AudioMultipleChoiceQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\AudioTextQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\MatchQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\MultipleChoiceQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\PictureMultipleChoiceQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\PictureTextQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\TextQuestions.csv" />
+    <None Include="bin\Debug\net7.0-windows\Databases\Users.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Audio.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
