@@ -5,7 +5,8 @@ namespace AS_Coursework___Joshua_Coulter;
 
 public partial class LeaderboardForm : Form
 {
-    //This form shows the top 5 users by highscore and the current users placement overall
+    //This form shows the top 5 users by highscore 
+    //It has to validate each place and also display the current users placement
     List<User> users = new(CSV.ReadInUsers());
     User currentUser;
     int currentUserPosition;
@@ -26,6 +27,8 @@ public partial class LeaderboardForm : Form
         List<TextBox> usernames = new() {textBoxUsername1, textBoxUsername2, textBoxUsername3, textBoxUsername4, textBoxUsername5 };
         List<TextBox> highscores = new() {textBoxScore1,  textBoxScore2, textBoxScore3, textBoxScore4, textBoxScore5};
         
+        //This error catching loop is used to ensure that no errors occur in the program
+        //If there are not 5 users to display then the application displays "N/A"
         for (int i = 0; i < 5; i++)
         {
             try

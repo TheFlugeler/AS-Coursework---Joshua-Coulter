@@ -485,7 +485,7 @@
             // richTextBoxAddQuestionText
             // 
             richTextBoxAddQuestionText.Location = new Point(23, 44);
-            richTextBoxAddQuestionText.MaxLength = 55;
+            richTextBoxAddQuestionText.MaxLength = 31572;
             richTextBoxAddQuestionText.Name = "richTextBoxAddQuestionText";
             richTextBoxAddQuestionText.Size = new Size(335, 54);
             richTextBoxAddQuestionText.TabIndex = 0;
@@ -774,8 +774,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 151, 178);
             ClientSize = new Size(1009, 626);
-            Controls.Add(panelEditDelete);
             Controls.Add(panelAdd);
+            Controls.Add(panelEditDelete);
             Name = "QuestionsForm";
             Text = "QuestionsForm";
             panelEditDelete.ResumeLayout(false);

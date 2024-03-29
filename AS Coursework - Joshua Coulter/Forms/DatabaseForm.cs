@@ -8,6 +8,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
     {
         //This form displays the database of users in the system
         //It allows you to edit details of a user and delete users
+        //A binding list was used to automatically update the list as the datagridview was changed
         BindingList<User> usersBL;
         public DatabaseForm()
         {
@@ -16,6 +17,10 @@ namespace AS_Coursework___Joshua_Coulter.Forms
             usersBL.AllowRemove = true;
             dataGridViewUsers.DataSource = usersBL;
         }
+
+        //This method attempts to delete the selected user
+        //Unless it is the current user, then the admin is prompted to confirm the choice and then the user is removed from the view
+        //This change is not saved until all changes are saved
         private void btnDeleteRow_Click(object sender, EventArgs e)
         {
             if (dataGridViewUsers.SelectedRows.Count <= 0) return;
@@ -30,6 +35,7 @@ namespace AS_Coursework___Joshua_Coulter.Forms
             dataGridViewUsers.Rows.RemoveAt(dataGridViewUsers.SelectedRows[0].Index);
         }
 
+        //This recalls the last saved state of the database
         private void btnRevert_Click(object sender, EventArgs e)
         {
             usersBL = new BindingList<User>(CSV.ReadInUsers());
@@ -37,10 +43,15 @@ namespace AS_Coursework___Joshua_Coulter.Forms
             dataGridViewUsers.Refresh();
         }
 
+        //This saves the changes made so far to the csv file
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             List<User> newUsers = new(usersBL);
-            if (!newUsers.GetUser(MainForm.userID).IsAdmin) return;
+            if (!newUsers.GetUser(MainForm.userID).IsAdmin)
+            {
+                MessageBox.Show("Cannot remove current users admin", "Error");
+                return;
+            }
             if (!newUsers.VerifyList()) return;
             newUsers.WriteUserList();
             btnRevert_Click(sender, e);

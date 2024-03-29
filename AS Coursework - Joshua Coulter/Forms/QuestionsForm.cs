@@ -1,12 +1,16 @@
 ﻿using AS_Coursework___Joshua_Coulter.Classes;
 using AS_Coursework___Joshua_Coulter.Enums;
 using AS_Coursework___Joshua_Coulter.ToolsLibrary;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace AS_Coursework___Joshua_Coulter.Forms;
 
 public partial class QuestionsForm : Form
 {
     //This form allows admins to edit, add and delete questions
+    //It provides both a browsing system for all the questions
+    //And a system to add or edit question data
 
     private List<Question> questions;
     private QuestionTypes type;
@@ -21,6 +25,8 @@ public partial class QuestionsForm : Form
         if (isAdd) SetAddMode();
     }
 
+    //This method updates the state of the add questions page
+    //It checks the selected question type and updates the page accordingly
     private void radioButtonAddTextQuestion_CheckedChanged(object sender, EventArgs e)
     {
         panelAddAnswerOptions.Visible = radioButtonMultipleChoice.Checked;
@@ -36,6 +42,8 @@ public partial class QuestionsForm : Form
         else panelChooseFile.Visible = false;
     }
 
+    //This is a complicated method which identifies the type of question that has been created and creates a new object with it
+    //If there is any media it is copied across into the program files to be used later
     private void buttonAddQuestion_Click(object sender, EventArgs e)
     {
         if (!CheckValid())
@@ -130,6 +138,8 @@ public partial class QuestionsForm : Form
     }
 
     #region Validate
+
+    //This method checks that all necessary inputs have been filled for each type of question to be added
     private bool CheckValid()
     {
         if (!radioButtonAddEasy.Checked && !radioButtonAddMedium.Checked && !radioButtonAddHard.Checked) return false;
@@ -162,6 +172,7 @@ public partial class QuestionsForm : Form
         return true;
     }
 
+    //This method fetches the error message for each mistake in the question creation form
     private string QuestionError()
     {
         if (!radioButtonAddEasy.Checked && !radioButtonAddMedium.Checked && !radioButtonAddHard.Checked) return "Please select a difficulty";
@@ -235,10 +246,12 @@ public partial class QuestionsForm : Form
 
     private void buttonDelete_Click(object sender, EventArgs e)
     {
+        if (listBoxViewQuestions.SelectedIndex < 0) return;
         Question temp = questions[listBoxViewQuestions.SelectedIndex];
         if (listBoxViewQuestions.SelectedIndex < 0) return;
         if (MessageBox.Show("Are you sure you want to delete this question?", "Delete", MessageBoxButtons.YesNo) == DialogResult.No) return;
 
+        //This part of the code checks if the deleted question has a media file and if so, it deletes the file from program storage
         if (temp.QuestionType == QuestionTypes.PictureMultipleChoice) File.Delete($"PictureFiles/{((PictureMultipleChoiceQuestion)temp).PictureFile}");
         if (temp.QuestionType == QuestionTypes.PictureText) File.Delete($"PictureFiles/{((PictureTextQuestion)temp).PictureFile}");
         if (temp.QuestionType == QuestionTypes.AudioMultipleChoice) File.Delete($"PictureFiles/{((AudioMultipleChoiceQuestion)temp).AudioFile}");
@@ -252,6 +265,9 @@ public partial class QuestionsForm : Form
 
     #region Modes
 
+
+    //This mode prepares the add question panel into edit mode
+    //This means that the question data is filled in to the inputs automatically to show the user the existing question
     private void SetEditMode(Question currentQuestion)
     {
         TextBox[] matchBoxes = new TextBox[8]
@@ -376,6 +392,8 @@ public partial class QuestionsForm : Form
         }
     }
 
+    //This method sets the panel into add mode
+    //This means that it clears all of the inputs to empty so it is ready for a new user
     private void SetAddMode()
     {
         TextBox[] tBoxes = new TextBox[12]
@@ -416,10 +434,12 @@ public partial class QuestionsForm : Form
 
         buttonAddQuestion.Text = "Add Question";
         btnChooseFile.Enabled = true;
+        textBoxFilePath.Text = string.Empty;
     }
 
     private void btnEdit_Click(object sender, EventArgs e)
     {
+        if (listBoxViewQuestions.SelectedIndex < 0) return;
         Question temp = questions[listBoxViewQuestions.SelectedIndex];
         if (listBoxViewQuestions.SelectedIndex < 0) return;
         SetEditMode(questions[listBoxViewQuestions.SelectedIndex]);
@@ -429,6 +449,9 @@ public partial class QuestionsForm : Form
     #endregion
 
     #region Files
+
+    //This method opens a file dialog for the user to select the media file for the question
+    //If the file is of a valid type for the question chosen then the file path is saved
     private async void btnChooseFile_Click(object sender, EventArgs e)
     {
         string filepath = "";
@@ -467,6 +490,8 @@ public partial class QuestionsForm : Form
         radioButtonMatch.Enabled = false;
     }
 
+    //Once the file has been chosen and the user is finished
+    //When they save the question, the file is copied from the filepath on the users machine to the program storage
     private bool CopyFile()
     {
         if (OldFilePath == null) return true;

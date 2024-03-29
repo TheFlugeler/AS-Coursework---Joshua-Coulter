@@ -108,11 +108,12 @@ public static class Tools
         if (string.IsNullOrEmpty(password)) return false;
         foreach (char c in password)
         {
-            if (char.IsSymbol(c) || char.IsWhiteSpace(c) || c == ',') return false;
+            if (char.IsSymbol(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c)) return false;
         }
 
         DateTime dob;
         if (!DateTime.TryParse(details[2], out dob)) return false;
+        if (dob <  DateTime.Now - new TimeSpan(36500,0,0,0) || dob > DateTime.Now) return false;
 
         if (details[3] != "Male" && details[3] != "Female" && details[3] != "Other") return false;
 
@@ -146,6 +147,7 @@ public static class Tools
 
         DateTime dob;
         if (!DateTime.TryParse(details[2], out dob)) return "Invalid Date Format/Range";
+        if (dob < DateTime.Now - new TimeSpan(36500, 0, 0, 0) || dob > DateTime.Now) return "Invalid Date Format/Range";
 
         if (details[3] != "Male" && details[3] != "Female" && details[3] != "Other") return "Invalid gender selction";
         return "No errors";
@@ -260,7 +262,7 @@ public static class Tools
                 return false;
             }
 
-            if (user.DOB < DateTimePicker.MinimumDateTime || user.DOB > DateTimePicker.MaximumDateTime)
+            if (user.DOB < DateTime.Now - new TimeSpan(36500, 0, 0, 0) || user.DOB > DateTime.Now)
             {
                 MessageBox.Show("Invalid date has been entered", "Error");
                 return false;

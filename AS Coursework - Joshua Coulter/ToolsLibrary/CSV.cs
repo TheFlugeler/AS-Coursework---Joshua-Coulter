@@ -53,6 +53,8 @@ public static class CSV
         return allQuestions;
     }
 
+    //This is the public method for accessing all the different question databases
+    //Each question type has a different method to read in and they are all centralised to here
     public static List<Question> ReadInQuestions(QuestionTypes type)
     {
         switch (type)
@@ -225,6 +227,8 @@ public static class CSV
         }
     }
 
+    //Writing the questions puts polymorphism into practice as each question overrides a base method
+    //"ToWriteable" which allows me to make a specifc object level request at runtime with a base class method call
     public static void WriteQuestionsList(this List<Question> list)
     {
         QuestionTypes type = list[0].QuestionType;

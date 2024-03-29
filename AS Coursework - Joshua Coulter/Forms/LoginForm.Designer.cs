@@ -203,9 +203,11 @@
             // 
             dateTimePickerRegisterDOB.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerRegisterDOB.Location = new Point(168, 215);
+            dateTimePickerRegisterDOB.MaxDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimePickerRegisterDOB.Name = "dateTimePickerRegisterDOB";
             dateTimePickerRegisterDOB.Size = new Size(270, 36);
             dateTimePickerRegisterDOB.TabIndex = 6;
+            dateTimePickerRegisterDOB.Value = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             // 
             // lblRegisterDOB
             // 
@@ -319,9 +321,9 @@
             BackgroundImage = Properties.Images.Login_Graphic;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(panelRegister);
             Controls.Add(panelLoginBox);
             Controls.Add(label1);
-            Controls.Add(panelRegister);
             DoubleBuffered = true;
             Name = "LoginForm";
             Text = "LoginForm";

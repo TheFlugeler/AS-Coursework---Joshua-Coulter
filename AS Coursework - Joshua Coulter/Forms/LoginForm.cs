@@ -6,6 +6,8 @@ namespace AS_Coursework___Joshua_Coulter;
 public partial class LoginForm : Form
 {
     //This Form contains all the controls to login or register
+    //It is loaded at the start of the program
+    //Users will return to this screen when they logout
 
     List<User> users = new List<User>(CSV.ReadInUsers());
     bool passwordVisible;
@@ -17,8 +19,11 @@ public partial class LoginForm : Form
         textBoxPassword.PasswordChar = '•';
         pictureBoxPasswordVisible.Image = new Bitmap("ApplicationImages/show.png");
         passwordVisible = false;
+        dateTimePickerRegisterDOB.MaxDate = DateTime.Now;
+        dateTimePickerRegisterDOB.MinDate = DateTime.Now - new TimeSpan(36500, 0, 0, 0);
     }
 
+    //This makes an attempt to sign in and validates the user credentials
     private void btnSignIn_Click(object sender, EventArgs e)
     {
         int index = 0;
@@ -34,7 +39,8 @@ public partial class LoginForm : Form
         ThrowError("Invalid Log In Details");
     }
 
-    //This method validates a new users details and appends the user to the file
+
+    //This method validates a new users details and appends the new user to the file if valid
     private void btnRegister_Click(object sender, EventArgs e)
     {
         string[] details = new string[4];
@@ -96,6 +102,7 @@ public partial class LoginForm : Form
 
     private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e) { if (e.KeyChar == 13) btnSignIn_Click(sender, e); }
 
+    //This method toggles the visibility of the password in the login page
     private void pictureBoxPasswordVisible_Click(object sender, EventArgs e)
     {
         if (passwordVisible)

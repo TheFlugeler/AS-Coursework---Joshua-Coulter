@@ -4,6 +4,7 @@ using AS_Coursework___Joshua_Coulter.ToolsLibrary;
 namespace AS_Coursework___Joshua_Coulter
 {
     //This form provides the facility to view and edit your profile
+    //All details are changeable and validated except for the highscore
     public partial class ProfileForm : Form
     {
         User currentUser;
@@ -15,6 +16,7 @@ namespace AS_Coursework___Joshua_Coulter
             FillDetails();
         }
 
+        //This method populates the data in the display section
         public void FillDetails()
         {
             textBoxProfileUsername.Text = currentUser.Username;

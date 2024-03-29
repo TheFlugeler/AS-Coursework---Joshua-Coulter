@@ -8,7 +8,7 @@ namespace AS_Coursework___Joshua_Coulter;
 public partial class QuizForm : Form
 {
     //This is the form that the quiz is displayed in
-    //Each question has an individual panel
+    //Each question has an individual panel that contains specialised inputs and displays
 
     private SoundPlayer player = new();
     private List<Question> quizQuestions = new(CSV.ReadInAllQuestions());
@@ -29,6 +29,7 @@ public partial class QuizForm : Form
         currentPanel = panelQuizMenu;
     }
 
+    //This method creates the list of questions that will be used in the upcoming quiz
     public void PopulateQuizQuestions(Difficulty diff)
     {
         quizQuestions.ReturnDifficulty(diff);
@@ -90,6 +91,11 @@ public partial class QuizForm : Form
 
     private void btnSubmitTextQuestion_Click(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(textBoxTextQuestion.Text))
+        {
+            MessageBox.Show("Please enter an answer", "Error");
+            return;
+        }
         if (currentQuestion.CheckAnswer(textBoxTextQuestion.Text)) currentScore++;
         DisplayNextQuestion();
     }
@@ -105,6 +111,9 @@ public partial class QuizForm : Form
         if (currentQuestion.CheckAnswer(choice)) currentScore++;
         DisplayNextQuestion();
     }
+
+    //This method validates the entry of match questions answers
+    //If it is valid it is then parsed into the correct format and checked against the answer
     private void btnSubmitMatch_Click(object sender, EventArgs e)
     {
         ComboBox[] leftBoxes = new ComboBox[4] { comboBoxLeft1, comboBoxLeft2, comboBoxLeft3, comboBoxLeft4 };
@@ -163,6 +172,8 @@ public partial class QuizForm : Form
 
     #region Display
 
+    //All of the methods to display questions are unique
+    //They populate the controls that are required for the format of question and call other methods to display media
     public void DisplayNextQuestion()
     {
         player.Stop();

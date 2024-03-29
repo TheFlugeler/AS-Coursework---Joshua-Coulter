@@ -5,6 +5,7 @@ namespace AS_Coursework___Joshua_Coulter;
 public partial class MainForm : Form
 {
     //This is the Main form for the entire program and all subsequent forms are displayed within it
+    //It contains navigation tools for all the other forms
 
     private Form DisplayedForm;
     public static int userID;
@@ -17,7 +18,8 @@ public partial class MainForm : Form
         backgroundWorkerClock.RunWorkerAsync();
     }
 
-    //This is the same method as in the master form
+    //This is the same method as in the master form, it displays other forms within a panel in this form
+    //This allows me to use one central form to hold all the others
     public void DisplayForm(Form form)
     {
         if (DisplayedForm != null) DisplayedForm.Close();
@@ -66,6 +68,7 @@ public partial class MainForm : Form
     //=======================================================
 
     //This background worker keeps the clock going every half second
+    //It updates the label to the current date and time
     private void backgroundWorkerClock_DoWork(object sender, DoWorkEventArgs e)
     {
         while (true)
