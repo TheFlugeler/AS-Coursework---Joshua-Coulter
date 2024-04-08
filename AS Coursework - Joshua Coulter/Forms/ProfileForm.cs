@@ -14,6 +14,8 @@ namespace AS_Coursework___Joshua_Coulter
             InitializeComponent();
             currentUser = allUsers.GetUser(MainForm.userID);
             FillDetails();
+            dateTimePickerEditDOB.MaxDate = DateTime.Now.Date;
+            dateTimePickerEditDOB.MinDate = DateTime.Now.Date - new TimeSpan(36500,0,0,0);
         }
 
         //This method populates the data in the display section
