@@ -92,7 +92,7 @@ public partial class LoginForm : Form
         panelLoginBox.Visible = true;
         textBoxRegisterUsername.Clear();
         textBoxPassword.Clear();
-        dateTimePickerRegisterDOB.Value = DateTime.Now;
+        dateTimePickerRegisterDOB.Value = DateTime.Today;
         radioButtonMale.Checked = false;
         radioButtonFemale.Checked = false;
         radioButtonOther.Checked = false;

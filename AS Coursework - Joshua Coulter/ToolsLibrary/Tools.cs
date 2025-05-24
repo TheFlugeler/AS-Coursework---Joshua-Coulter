@@ -139,10 +139,11 @@ public static class Tools
         }
 
         string password = details[1];
+
         if (string.IsNullOrEmpty(password)) return "Invalid Password";
         foreach (char bit in password)
         {
-            if (char.IsSymbol(bit) || char.IsWhiteSpace(bit) || bit == ',') return "Invalid Password";
+            if (char.IsSymbol(bit) || char.IsWhiteSpace(bit) || char.IsPunctuation(bit)) return "Invalid Password";
         }
 
         DateTime dob;
